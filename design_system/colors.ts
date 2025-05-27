@@ -2,37 +2,37 @@ import { SemanticTokens } from "@pandacss/dev";
 
 export const colors: SemanticTokens["colors"] = {
   surface: {
-    s0: { value: { base: "#ffffff", _dark: "#1B1D22" } },
-    s1: { value: { base: "#F4F5F7", _dark: "#23272F" } },
+    s0: { value: { base: "red", _dark: "#181A1E" } },
+    s1: { value: { base: "red", _dark: "#232120" } },
   },
   border: {
-    value: { base: "#dadada", _dark: "#363b45" },
+    value: { base: "", _dark: "#5A5A5A " },
   },
   primaryClr: {
-    value: { base: "#57C4DC", _dark: "#57C4DC" },
+    value: { base: "", _dark: "#F6D757" },
   },
   text: {
     normal: {
-      value: { base: "#141414", _dark: "#fff" },
+      value: { base: "", _dark: "#FFFFFF" },
     },
     secondary: {
-      value: { base: "#969696", _dark: "#969696" },
+      value: { base: "", _dark: "#90929F" },
     },
     invert: {
-      value: { base: "#fff", _dark: "#141414" },
+      value: { base: "", _dark: "#141414" },
     },
   },
   base: {
-    white: { value: { base: "#fff", _dark: "#fff" } },
-    black: { value: { base: "#141414", _dark: "#141414" } },
-    gray: { value: { base: "#969696", _dark: "#969696" } },
+    white: { value: { base: "", _dark: "#fff" } },
+    black: { value: { base: "", _dark: "#141414" } },
+    gray: { value: { base: "", _dark: "#90929F" } },
   },
   actions: {
     postive: {
-      value: { base: "#0aa480" },
+      value: { base: "#82E59D" },
     },
     negative: {
-      value: { base: "#d82222" },
+      value: { base: "#E5829D" },
     },
   },
   input: {
@@ -114,6 +114,33 @@ export const colors: SemanticTokens["colors"] = {
         border: { value: { base: "", _dark: "#363b45" } },
         text: { value: { base: "", _dark: "#fff" } },
       },
+    },
+  },
+  navLink: {
+    default: {
+      bg: { value: { base: "", _dark: "#181A1E" } },
+      border: { value: { base: "", _dark: "#181A1E" } },
+      text: { value: { base: "", _dark: "#90929F" } },
+    },
+    hover: {
+      bg: { value: { base: "", _dark: "#rgba(228, 288, 288, 0.2)" } },
+      border: { value: { base: "", _dark: "#rgba(228, 288, 288, 0.2)" } },
+      text: { value: { base: "", _dark: "#90929F" } },
+    },
+    focus: {
+      bg: { value: { base: "", _dark: "" } },
+      border: { value: { base: "", _dark: "" } },
+      text: { value: { base: "", _dark: "" } },
+    },
+    active: {
+      bg: { value: { base: "", _dark: "rgba(228, 288, 288, 0.2)" } },
+      border: { value: { base: "", _dark: "rgba(228, 288, 288, 0.2)" } },
+      text: { value: { base: "", _dark: "#F6D757" } },
+    },
+    disabled: {
+      bg: { value: { base: "", _dark: "" } },
+      border: { value: { base: "", _dark: "" } },
+      text: { value: { base: "", _dark: "" } },
     },
   },
 };

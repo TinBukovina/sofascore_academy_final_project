@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 
 import "@/app/index.css";
+import Navigation from "@/2_widgets/navigation/ui/Navigation";
+import { css } from "@/../../styled-system/css";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -13,8 +15,21 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body>{children}</body>
+    <html lang="en" className="dark">
+      <body
+        className={css({
+          display: "grid",
+          gridTemplateColumns: "auto 1fr",
+          gridTemplateRows: "1fr",
+
+          height: "100dvh",
+          overflow: "hidden",
+          overflowY: "auto",
+        })}
+      >
+        <Navigation />
+        {children}
+      </body>
     </html>
   );
 }
