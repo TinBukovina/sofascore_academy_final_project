@@ -51,6 +51,7 @@ export default function NavigationResizeBtn({
       bg={isActive ? "rgba(228, 228, 228, 0.2)" : "transparent"}
       borderRadius={"sm"}
       fill={"navLink.active.text"}
+      cursor={"pointer"}
       _hover={{ bg: "rgba(228, 228, 228, 0.2)" }}
       onClick={handleOnClick}
       onMouseEnter={() => setIsHovered(true)}

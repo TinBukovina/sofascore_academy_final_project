@@ -8,7 +8,6 @@ export function useWindowWidth() {
 
   useEffect(() => {
     const handleResize = () => {
-      console.log("Resizing, new width from hook:", window.innerWidth);
       setWindowWidth(window.innerWidth);
     };
 
@@ -19,7 +18,6 @@ export function useWindowWidth() {
 
     return () => {
       if (typeof window !== "undefined") {
-        console.log("Cleaning up resize listener from hook");
         window.removeEventListener("resize", handleResize);
       }
     };

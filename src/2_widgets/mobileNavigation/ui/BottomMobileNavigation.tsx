@@ -10,7 +10,7 @@ import {
 import { ActiveLinksType } from "@/2_widgets/navigation/ui/Navigation";
 import { usePathname, useRouter } from "next/navigation";
 
-export function MobileNavigation() {
+export function BottomMobileNavigation() {
   const pathname = usePathname();
   const router = useRouter();
 
@@ -31,6 +31,7 @@ export function MobileNavigation() {
       h={"fit-content"}
       bg={"surface.s0"}
       color={"text.normal"}
+      borderTop={"1px solid token(colors.border)"}
     >
       <NavigationIconBtn
         svgInfo={bookmarkFillSvgInfo}
@@ -50,10 +51,14 @@ export function MobileNavigation() {
         svgW="32px"
         boxPx="8px"
         boxPy="8px"
-        isActive={activeNavLink === "home"}
+        isActive={
+          activeNavLink === "football" ||
+          activeNavLink === "basketball" ||
+          activeNavLink === "rugby"
+        }
         handleOnClick={() => {
-          setActiveNavLink("home");
-          router.push("/home");
+          setActiveNavLink("football");
+          router.push("/home/football");
         }}
       />
       <NavigationIconBtn

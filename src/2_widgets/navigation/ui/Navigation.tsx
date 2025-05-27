@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Box, Flex } from "../../../../styled-system/jsx";
 import {
   basketball300SvgInfo,
@@ -15,6 +15,7 @@ import NavigationLink from "./NavigationLink";
 import NavigationIconBtn from "../../../5_shared/ui/NavigationIconBtn";
 import NavigationResizeBtn from "./NavigationResizeBtn";
 import { usePathname, useRouter } from "next/navigation";
+import { getActiveLinkFromUrl } from "@/5_shared/lib/utils/utilsFunction";
 
 export type ActiveLinksType =
   | "football"
@@ -22,8 +23,7 @@ export type ActiveLinksType =
   | "rugby"
   | "search"
   | "favourites"
-  | "settings"
-  | "home";
+  | "settings";
 
 export function Navigation() {
   const router = useRouter();
@@ -46,6 +46,12 @@ export function Navigation() {
   const bookmarkFillSvgInfo = bookmarkFill300SvgInfo();
   const settingsSvgInfo = settings300SvgInfo();
 
+  useEffect(() => {
+    if (!pathname) return;
+
+    setActiveNavLink(getActiveLinkFromUrl(pathname));
+  }, [pathname]);
+
   const isCompact = navigationWidthState === "compact";
 
   return (
@@ -54,13 +60,13 @@ export function Navigation() {
       gap={"2rem"}
       py={"2rem"}
       pr={"1rem"}
-      w={!isCompact ? "230px" : "fit-content"}
+      w={!isCompact ? "clamp(190px, 20vw, 230px)" : "fit-content"}
       maxW={!isCompact ? "230px" : "60px"}
-      minW={!isCompact ? "230px" : "60px"}
+      minW={!isCompact ? "190px" : "60px"}
       bg={"surface.s0"}
       color={"text.normal"}
       paddingRight={!isCompact ? "1rem" : "0rem"}
-      transition={"all 0.3s ease"}
+      /* transition={"all 2.5s ease"} */
     >
       <Flex px={"0.75rem"} justifyContent={"space-between"}>
         <NavigationResizeBtn

@@ -4,7 +4,10 @@ import { useWindowWidth } from "@/5_shared/lib/hooks/useWindowWidth";
 import React, { ReactNode } from "react";
 import { css } from "../../../styled-system/css";
 import { Navigation } from "@/2_widgets/navigation";
-import { MobileNavigation } from "@/2_widgets/mobileNavigation";
+import {
+  BottomMobileNavigation,
+  TopMobileNavigation,
+} from "@/2_widgets/mobileNavigation";
 
 export default function ClientLayoutWrapper({
   children,
@@ -18,9 +21,12 @@ export default function ClientLayoutWrapper({
       className={css({
         display: "grid",
         gridTemplateColumns: windowWidth > 700 ? "auto 1fr" : "unset",
-        gridTemplateRows: windowWidth < 700 ? "1fr auto" : "unset",
+        gridTemplateRows: windowWidth < 700 ? "auto 1fr auto" : "unset",
 
         height: "100dvh",
+
+        bg: "surface.s0",
+
         overflow: "hidden",
         overflowY: "auto",
       })}
@@ -32,8 +38,9 @@ export default function ClientLayoutWrapper({
         </>
       ) : (
         <>
+          <TopMobileNavigation />
           {children}
-          <MobileNavigation />
+          <BottomMobileNavigation />
         </>
       )}
     </body>

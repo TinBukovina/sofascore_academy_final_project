@@ -1,1 +1,2 @@
-export { MobileNavigation } from "./ui/MobileNavigation";
+export { BottomMobileNavigation } from "./ui/BottomMobileNavigation";
+export { TopMobileNavigation } from "./ui/TopMobileNavigation";

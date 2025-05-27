@@ -24,13 +24,18 @@ export default function NavigationIconBtn({
 }: NavigationIconBtnProps) {
   return (
     <Box
-      px={boxPx}
-      py={boxPy}
       bg={isActive ? "rgba(228, 228, 228, 0.2)" : "transparent"}
       borderRadius={"sm"}
       fill={isActive ? "navLink.active.text" : "navLink.default.text"}
+      cursor={"pointer"}
       _hover={{ bg: "rgba(228, 228, 228, 0.2)" }}
       onClick={handleOnClick}
+      style={{
+        paddingLeft: boxPx,
+        paddingRight: boxPx,
+        paddingTop: boxPy,
+        paddingBottom: boxPy,
+      }}
     >
       <Icon svgInfo={svgInfo} width={svgW} height={svgH} />
     </Box>
