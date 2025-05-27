@@ -12,11 +12,27 @@ import {
   settings300SvgInfo,
 } from "@/5_shared/lib/utils/svgPaths";
 import NavigationLink from "./NavigationLink";
-import NavigationIconBtn from "./NavigationIconBtn";
+import NavigationIconBtn from "../../../5_shared/ui/NavigationIconBtn";
 import NavigationResizeBtn from "./NavigationResizeBtn";
+import { usePathname, useRouter } from "next/navigation";
 
-export default function Navigation() {
-  const [activeNavLink, setActiveNavLink] = useState<string>("football");
+export type ActiveLinksType =
+  | "football"
+  | "basketball"
+  | "rugby"
+  | "search"
+  | "favourites"
+  | "settings"
+  | "home";
+
+export function Navigation() {
+  const router = useRouter();
+  const pathname = usePathname();
+  console.log(pathname);
+
+  const [activeNavLink, setActiveNavLink] = useState<ActiveLinksType>(
+    pathname?.split("/")[pathname.split("/").length - 1] as ActiveLinksType
+  );
   const [navigationWidthState, setNavigationWidthState] = useState<
     "normal" | "compact"
   >("normal");
@@ -96,6 +112,7 @@ export default function Navigation() {
           }
           handleOnClick={() => {
             setActiveNavLink("favourites");
+            router.push("/favourites");
           }}
         >
           Favourites
@@ -106,6 +123,7 @@ export default function Navigation() {
           svgInfo={settingsSvgInfo}
           handleOnClick={() => {
             setActiveNavLink("settings");
+            router.push("/settings");
           }}
         >
           Settings
@@ -127,6 +145,7 @@ export default function Navigation() {
           svgInfo={footballSvgInfo}
           handleOnClick={() => {
             setActiveNavLink("football");
+            router.push("/home/football");
           }}
         >
           Football
@@ -137,16 +156,18 @@ export default function Navigation() {
           svgInfo={basketballSvgInfo}
           handleOnClick={() => {
             setActiveNavLink("basketball");
+            router.push("/home/basketball");
           }}
         >
           Basketball
         </NavigationLink>
         <NavigationLink
           isCompact={isCompact}
-          isActive={activeNavLink === "american footbal"}
+          isActive={activeNavLink === "rugby"}
           svgInfo={rugbySvgInfo}
           handleOnClick={() => {
-            setActiveNavLink("american footbal");
+            setActiveNavLink("rugby");
+            router.push("/home/rugby");
           }}
         >
           Rugby

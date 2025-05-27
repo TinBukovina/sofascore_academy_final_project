@@ -1,6 +1,6 @@
 import { SvgReturnType } from "@/5_shared/lib/utils/svgPaths";
 import React from "react";
-import { Box } from "../../../../styled-system/jsx";
+import { Box } from "../../../styled-system/jsx";
 import Icon from "@/5_shared/ui/Icon";
 
 interface NavigationIconBtnProps {
