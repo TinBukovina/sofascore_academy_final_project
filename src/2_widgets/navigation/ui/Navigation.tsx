@@ -28,7 +28,6 @@ export type ActiveLinksType =
 export function Navigation() {
   const router = useRouter();
   const pathname = usePathname();
-  console.log(pathname);
 
   const [activeNavLink, setActiveNavLink] = useState<ActiveLinksType>(
     pathname?.split("/")[pathname.split("/").length - 1] as ActiveLinksType
