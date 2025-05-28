@@ -1,13 +1,9 @@
+import { TeamInterface } from "../team";
+
 export interface ScoreInterface {
   total: number;
   period1: number;
   period2: number;
-}
-
-export interface TeamInterface {
-  id: number;
-  name: string;
-  country: CountryInterface;
 }
 
 export interface CountryInterface {
@@ -32,7 +28,7 @@ export interface TournomentInterface {
 export interface EventInterface {
   id: number;
   slug: string;
-  tournoment: TournomentInterface;
+  tournament: TournomentInterface;
   homeTeam: TeamInterface;
   awayTeam: TeamInterface;
   status: string;

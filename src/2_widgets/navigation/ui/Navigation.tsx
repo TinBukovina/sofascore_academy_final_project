@@ -55,6 +55,10 @@ export function Navigation() {
 
   return (
     <Flex
+      display={{
+        base: "none",
+        md: "flex",
+      }}
       direction={"column"}
       gap={"2rem"}
       py={"2rem"}

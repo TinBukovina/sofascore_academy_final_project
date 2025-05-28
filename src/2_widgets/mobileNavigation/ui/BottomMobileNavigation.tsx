@@ -1,3 +1,5 @@
+"use client";
+
 import React, { useState } from "react";
 import { Flex } from "../../../../styled-system/jsx";
 import NavigationIconBtn from "@/5_shared/ui/NavigationIconBtn";
@@ -25,6 +27,10 @@ export function BottomMobileNavigation() {
 
   return (
     <Flex
+      display={{
+        base: "flex",
+        md: "none",
+      }}
       justifyContent={"center"}
       gap={"clamp(1rem, 5vw ,2rem)"}
       py={"0.75rem"}

@@ -1,18 +1,33 @@
 "use client";
 
-import { useEventById } from "@/3_features/events/hooks/useEventById";
+import { Box } from "../../../../styled-system/jsx";
+import { useEventsFromSportAndDate } from "@/4_entities/event/hooks/useEventsFromSportAndDate";
+import { EventList } from "@/2_widgets/eventList";
 
 export default function Page() {
-  const { event, isLoading, isError, error } = useEventById(1);
+  const { events, isLoading, isError, error } = useEventsFromSportAndDate(
+    "football",
+    "2024-01-20"
+  );
 
-  if (isLoading) return <div>Učitavanje događaja</div>;
-  if (isError)
+  if (isLoading)
+    return <Box color={"white"}>Učitavanje početnih događaja...</Box>;
+
+  if (isError) {
+    console.log(error);
+    return <Box color={"white"}>There was error fetching</Box>;
+  }
+
+  if (!events || events?.length <= 0) {
     return (
-      <div>
-        Greška: {error?.message || "Nije moguće učitati event s tim id-jem."}
-      </div>
+      <Box color={"white"}>There is no events for that sport on that date.</Box>
     );
-  if (!event) return <div>Event nije pronađen s tim id-jem.</div>;
+  }
 
-  return <div>Football page</div>;
+  console.log(events);
+  return (
+    <Box color={"white"} overflow={"auto"}>
+      <EventList events={events} />
+    </Box>
+  );
 }

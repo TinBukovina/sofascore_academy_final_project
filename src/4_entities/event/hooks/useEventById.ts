@@ -16,17 +16,11 @@ const getSWRKey = (
   return [`/event`, String(eventId)];
 };
 
-/**
- * SWR fetcher funkcija koja koristi getEventById.
- * SWR prosljeđuje ključ kao argumente.
- * @param keyParts - Dijelovi SWR ključa, npr. ['/event', '123']
- * @returns Promise koji razrješava EventInterface ili null.
- */
 const eventFetcher = async (
   keyParts: [string, string]
 ): Promise<EventInterface | null> => {
   const [, eventIdStr] = keyParts;
-  const eventIdNum = parseInt(eventIdStr, 10); // Konvertiraj string ID natrag u broj
+  const eventIdNum = parseInt(eventIdStr, 10);
   return getEventById(eventIdNum);
 };
 

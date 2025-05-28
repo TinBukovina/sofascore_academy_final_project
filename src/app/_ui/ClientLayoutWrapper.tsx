@@ -1,6 +1,3 @@
-"use client";
-
-import { useWindowWidth } from "@/5_shared/lib/hooks/useWindowWidth";
 import React, { ReactNode } from "react";
 import { css } from "../../../styled-system/css";
 import { Navigation } from "@/2_widgets/navigation";
@@ -14,14 +11,12 @@ export default function ClientLayoutWrapper({
 }: {
   children: ReactNode;
 }) {
-  const windowWidth = useWindowWidth();
-
   return (
     <body
       className={css({
         display: "grid",
-        gridTemplateColumns: windowWidth > 700 ? "auto 1fr" : "unset",
-        gridTemplateRows: windowWidth < 700 ? "auto 1fr auto" : "unset",
+        gridTemplateColumns: { base: "unset", md: "auto 1fr" },
+        gridTemplateRows: { base: "auto 1fr auto", md: "unset" },
 
         height: "100dvh",
 
@@ -31,18 +26,10 @@ export default function ClientLayoutWrapper({
         overflowY: "auto",
       })}
     >
-      {windowWidth > 700 || !windowWidth ? (
-        <>
-          <Navigation />
-          {children}
-        </>
-      ) : (
-        <>
-          <TopMobileNavigation />
-          {children}
-          <BottomMobileNavigation />
-        </>
-      )}
+      <Navigation />
+      <TopMobileNavigation />
+      {children}
+      <BottomMobileNavigation />
     </body>
   );
 }

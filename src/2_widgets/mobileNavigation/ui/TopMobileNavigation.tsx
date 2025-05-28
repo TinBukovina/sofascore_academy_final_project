@@ -1,3 +1,5 @@
+"use client";
+
 import React from "react";
 import { Flex } from "../../../../styled-system/jsx";
 import Link from "next/link";
@@ -33,6 +35,10 @@ export function TopMobileNavigation() {
 
   return (
     <Flex
+      display={{
+        base: "flex",
+        md: "none",
+      }}
       justifyContent={"space-between"}
       gap={"clamp(1rem, 10vw ,2rem)"}
       py={"0.75rem"}
