@@ -10,7 +10,7 @@ import {
 import { EventInterface, TournomentInterface } from "@/4_entities/event";
 import { TeamInterface } from "@/4_entities/team";
 import { PlayerInterface } from "@/4_entities/player";
-import { useFavourites } from "../context/UseFavourites";
+import { useFavourites } from "../context/useFavourites";
 
 interface FavouriteToggleBtnProps {
   styles?: React.CSSProperties;

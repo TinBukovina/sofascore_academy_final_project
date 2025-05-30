@@ -24,6 +24,7 @@ export function FinishedEventItem({
         !lastChild ? "1px solid token(colors.border)" : "1px solid transparent"
       }
       gap={"0.5rem"}
+      fontSize={"sm"}
     >
       <Flex
         direction={"column"}
@@ -61,6 +62,7 @@ export function FinishedEventItem({
         border={"1px solid transparent"}
       >
         <Flex
+          display={{ base: "flex", md: "none", lg: "flex" }}
           alignItems={"center"}
           color={
             event.homeScore.total >= event.awayScore.total
@@ -127,6 +129,7 @@ export function FinishedEventItem({
           alt="Home team image"
         />
         <Flex
+          display={{ base: "flex", md: "none", lg: "flex" }}
           alignItems={"center"}
           color={
             event.awayScore.total >= event.homeScore.total

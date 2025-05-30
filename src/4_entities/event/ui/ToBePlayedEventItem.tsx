@@ -23,6 +23,7 @@ export function ToBePlayedEventItem({
       borderBottom={
         !lastChild ? "1px solid token(colors.border)" : "1px solid transparent"
       }
+      fontSize={"sm"}
     >
       <Flex
         gap={"1rem"}

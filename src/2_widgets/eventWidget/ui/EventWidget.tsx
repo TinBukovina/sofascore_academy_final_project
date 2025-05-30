@@ -6,7 +6,6 @@ import {
   rightShortArrow400SvgInfo,
 } from "@/5_shared";
 import { Box, Flex } from "../../../../styled-system/jsx";
-import { useState } from "react";
 import { EventWidgetLink } from "./EventWidgetLink";
 import { MyDateInput } from "./DateInput";
 
@@ -16,6 +15,8 @@ interface EventWidgetProps {
   handleDateChange: (date: string) => void;
   handleNextDay: () => void;
   handlePrevDay: () => void;
+  activeWindow: "all" | "favourites";
+  setActiveWindow: React.Dispatch<React.SetStateAction<"all" | "favourites">>;
 }
 
 export function EventWidget({
@@ -24,14 +25,16 @@ export function EventWidget({
   handleDateChange,
   handleNextDay,
   handlePrevDay,
+  activeWindow,
+  setActiveWindow,
 }: EventWidgetProps) {
-  const [activeWindow, setActiveWindow] = useState<"all" | "favourites">("all");
-
   return (
     <Box
       border={"1px solid token(colors.border)"}
       borderRadius={"md"}
       overflow={"hidden"}
+      w={"100%"}
+      h={"fit-content"}
     >
       <Flex
         direction={"column"}
