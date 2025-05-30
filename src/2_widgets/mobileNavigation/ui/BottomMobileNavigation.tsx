@@ -2,13 +2,13 @@
 
 import React, { useState } from "react";
 import { Flex } from "../../../../styled-system/jsx";
-import NavigationIconBtn from "@/5_shared/ui/NavigationIconBtn";
+import { NavigationIconBtn } from "@/5_shared";
 import {
   bookmarkFill300SvgInfo,
   calendar400SvgInfo,
   search400SvgInfo,
   settings300SvgInfo,
-} from "@/5_shared/lib/utils/svgPaths";
+} from "@/5_shared/lib/svgPaths";
 import { ActiveLinksType } from "@/2_widgets/navigation/ui/Navigation";
 import { usePathname, useRouter } from "next/navigation";
 

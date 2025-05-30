@@ -1,4 +1,4 @@
-import { SvgReturnType } from "@/5_shared/lib/utils/svgPaths";
+import { SvgReturnType } from "@/5_shared/lib/svgPaths";
 import Icon from "@/5_shared/ui/Icon";
 import React, { ReactNode } from "react";
 import { Flex } from "../../../../styled-system/jsx";

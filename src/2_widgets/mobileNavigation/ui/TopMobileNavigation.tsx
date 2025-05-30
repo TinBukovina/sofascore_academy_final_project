@@ -8,10 +8,10 @@ import {
   basketball300SvgInfo,
   football300SvgInfo,
   rugby300SvgInfo,
-} from "@/5_shared/lib/utils/svgPaths";
+} from "@/5_shared/lib/svgPaths";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
-import { getActiveLinkFromUrl } from "@/5_shared/lib/utils/utilsFunction";
+import { getActiveLinkFromUrl } from "@/5_shared/lib/utils";
 import { css } from "../../../../styled-system/css";
 
 const activeLinkStyles = {

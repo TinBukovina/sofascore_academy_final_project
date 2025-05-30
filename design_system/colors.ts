@@ -123,8 +123,8 @@ export const colors: SemanticTokens["colors"] = {
       text: { value: { base: "", _dark: "#90929F" } },
     },
     hover: {
-      bg: { value: { base: "", _dark: "#rgba(228, 288, 288, 0.2)" } },
-      border: { value: { base: "", _dark: "#rgba(228, 288, 288, 0.2)" } },
+      bg: { value: { base: "", _dark: "rgba(228, 288, 288, 0.2)" } },
+      border: { value: { base: "", _dark: "rgba(228, 288, 288, 0.2)" } },
       text: { value: { base: "", _dark: "#90929F" } },
     },
     focus: {

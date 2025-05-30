@@ -5,6 +5,7 @@ import {
   BottomMobileNavigation,
   TopMobileNavigation,
 } from "@/2_widgets/mobileNavigation";
+import { FavouritesProvider } from "@/3_features/favourites/context/FavouritesProvider";
 
 export default function ClientLayoutWrapper({
   children,
@@ -26,10 +27,12 @@ export default function ClientLayoutWrapper({
         overflowY: "auto",
       })}
     >
-      <Navigation />
-      <TopMobileNavigation />
-      {children}
-      <BottomMobileNavigation />
+      <FavouritesProvider>
+        <Navigation />
+        <TopMobileNavigation />
+        {children}
+        <BottomMobileNavigation />
+      </FavouritesProvider>
     </body>
   );
 }

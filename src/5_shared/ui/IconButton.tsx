@@ -1,11 +1,11 @@
 import { SvgReturnType } from "@/5_shared/lib/svgPaths";
 import React from "react";
-import { Box } from "../../../styled-system/jsx";
+import { Flex } from "../../../styled-system/jsx";
 import Icon from "./Icon";
 
 interface NavigationIconBtnProps {
   svgInfo: SvgReturnType;
-  isActive?: boolean;
+
   svgW?: string;
   svgH?: string;
   boxPx?: string;
@@ -13,9 +13,8 @@ interface NavigationIconBtnProps {
   handleOnClick?: () => void;
 }
 
-export function NavigationIconBtn({
+export function IconButton({
   svgInfo,
-  isActive = false,
   svgW = "24px",
   svgH = "24px",
   boxPx = "6px",
@@ -23,10 +22,12 @@ export function NavigationIconBtn({
   handleOnClick,
 }: NavigationIconBtnProps) {
   return (
-    <Box
-      bg={isActive ? "navLink.hover.bg" : "transparent"}
+    <Flex
+      display={"inline-block"}
+      justifyContent={"center"}
+      alignItems={"center"}
       borderRadius={"sm"}
-      fill={isActive ? "navLink.active.text" : "navLink.default.text"}
+      fill={"text.normal"}
       cursor={"pointer"}
       _hover={{ bg: "navLink.hover.bg" }}
       onClick={handleOnClick}
@@ -38,6 +39,6 @@ export function NavigationIconBtn({
       }}
     >
       <Icon svgInfo={svgInfo} width={svgW} height={svgH} />
-    </Box>
+    </Flex>
   );
 }

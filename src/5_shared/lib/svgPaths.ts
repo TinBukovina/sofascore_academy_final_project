@@ -254,3 +254,24 @@ export const calendar400SvgInfo = (): SvgReturnType => {
     viewBox: "0 -960 960 960",
   };
 };
+
+export const leftShortArrow400SvgInfo = (): SvgReturnType => {
+  return {
+    path: "m332-480 294 294q15 15 14.5 35T625-116q-15 15-35 15t-35-15L247-423q-12-12-18-27t-6-30q0-15 6-30t18-27l308-308q15-15 35.5-14.5T626-844q15 15 15 35t-15 35L332-480Z",
+    viewBox: "0 -960 960 960",
+  };
+};
+
+export const rightShortArrow400SvgInfo = (): SvgReturnType => {
+  return {
+    path: "M579-480 285-774q-15-15-14.5-35.5T286-845q15-15 35.5-15t35.5 15l307 308q12 12 18 27t6 30q0 15-6 30t-18 27L356-115q-15 15-35 14.5T286-116q-15-15-15-35.5t15-35.5l293-293Z",
+    viewBox: "0 -960 960 960",
+  };
+};
+
+export const dropDownArrow400SvgInfo = (): SvgReturnType => {
+  return {
+    path: "M459-381 314-526q-3-3-4.5-6.5T308-540q0-8 5.5-14t14.5-6h304q9 0 14.5 6t5.5 14q0 2-6 14L501-381q-5 5-10 7t-11 2q-6 0-11-2t-10-7Z",
+    viewBox: "0 -960 960 960",
+  };
+};

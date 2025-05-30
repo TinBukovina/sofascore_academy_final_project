@@ -10,12 +10,12 @@ import {
   rugby300SvgInfo,
   search400SvgInfo,
   settings300SvgInfo,
-} from "@/5_shared/lib/utils/svgPaths";
+} from "@/5_shared/lib/svgPaths";
 import NavigationLink from "./NavigationLink";
-import NavigationIconBtn from "../../../5_shared/ui/NavigationIconBtn";
+import { NavigationIconBtn } from "../../../5_shared";
 import NavigationResizeBtn from "./NavigationResizeBtn";
 import { usePathname, useRouter } from "next/navigation";
-import { getActiveLinkFromUrl } from "@/5_shared/lib/utils/utilsFunction";
+import { getActiveLinkFromUrl } from "@/5_shared/lib/utils";
 
 export type ActiveLinksType =
   | "football"
@@ -63,9 +63,9 @@ export function Navigation() {
       gap={"2rem"}
       py={"2rem"}
       pr={"1rem"}
-      w={!isCompact ? "clamp(190px, 20vw, 230px)" : "fit-content"}
+      w={!isCompact ? "clamp(180px, 20vw, 230px)" : "fit-content"}
       maxW={!isCompact ? "230px" : "60px"}
-      minW={!isCompact ? "190px" : "60px"}
+      minW={!isCompact ? "180px" : "60px"}
       bg={"surface.s0"}
       color={"text.normal"}
       paddingRight={!isCompact ? "1rem" : "0rem"}
