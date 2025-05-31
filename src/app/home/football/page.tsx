@@ -9,6 +9,7 @@ import { getDifferentTournomentFromListOfEvents } from "@/4_entities/tournoment/
 import { useState } from "react";
 import { useFavourites } from "@/3_features/favourites/context/useFavourites";
 import { TopTornoments } from "@/2_widgets/topTournoments";
+import { css } from "../../../../styled-system/css";
 
 export default function Page() {
   const [currentDate, setCurrentDate] = useState<string>("2024-01-20");
@@ -39,7 +40,7 @@ export default function Page() {
 
   if (isLoading)
     return (
-      <Box color={"white"} overflow={"auto"} p={"1rem"}>
+      <Box color={"white"} overflow={"auto"}>
         <EventWidget
           currentDate={currentDate}
           handleDateChange={handleDateChange}
@@ -71,7 +72,7 @@ export default function Page() {
 
   if (!events || events?.length <= 0) {
     return (
-      <Box color={"white"} overflow={"auto"} p={"1rem"}>
+      <Box color={"white"} overflow={"auto"}>
         <EventWidget
           currentDate={currentDate}
           handleDateChange={handleDateChange}
@@ -104,7 +105,7 @@ export default function Page() {
   console.log(filteredEvents);
   if (!filteredEvents || filteredEvents.length <= 0) {
     return (
-      <Box color={"white"} overflow={"auto"} p={"1rem"}>
+      <Box color={"white"} overflow={"auto"}>
         <EventWidget
           currentDate={currentDate}
           handleDateChange={handleDateChange}
@@ -130,7 +131,23 @@ export default function Page() {
 
   console.log(events);
   return (
-    <Flex color={"white"} overflow={"auto"} p={"1rem"} gap={"1rem"}>
+    <Flex
+      color={"white"}
+      overflow={"auto"}
+      gap={"1rem"}
+      className={css({
+        "&::-webkit-scrollbar": {
+          width: "8px",
+        },
+        "&::-webkit-scrollbar-track": {
+          background: "transparent",
+        },
+        "&::-webkit-scrollbar-thumb": {
+          background: "table.scrollBar",
+          borderRadius: "4px",
+        },
+      })}
+    >
       <TopTornoments />
       <EventWidget
         currentDate={currentDate}

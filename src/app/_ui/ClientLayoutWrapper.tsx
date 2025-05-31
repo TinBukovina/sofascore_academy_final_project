@@ -6,6 +6,8 @@ import {
   TopMobileNavigation,
 } from "@/2_widgets/mobileNavigation";
 import { FavouritesProvider } from "@/3_features/favourites/context/FavouritesProvider";
+import { Box, Flex } from "../../../styled-system/jsx";
+import Image from "next/image";
 
 export default function ClientLayoutWrapper({
   children,
@@ -22,15 +24,29 @@ export default function ClientLayoutWrapper({
         height: "100dvh",
 
         bg: "surface.s0",
-
-        overflow: "hidden",
-        overflowY: "auto",
       })}
     >
       <FavouritesProvider>
         <Navigation />
         <TopMobileNavigation />
-        {children}
+        <Flex
+          direction={"column"}
+          p={"16px"}
+          pt={"34px"}
+          gap={"32px"}
+          overflow={"auto"}
+          scrollbarWidth={"none"}
+        >
+          <Box display={{ base: "none", md: "flex" }}>
+            <Image
+              src={"/images/sofascore_logo_small.png"}
+              width={160}
+              height={26}
+              alt="Sofascore logo"
+            />
+          </Box>
+          {children}
+        </Flex>
         <BottomMobileNavigation />
       </FavouritesProvider>
     </body>
