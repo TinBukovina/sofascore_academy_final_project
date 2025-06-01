@@ -83,7 +83,7 @@ export function Navigation() {
         />
         {!isCompact ? (
           <NavigationIconBtn
-            isActive={activeNavLink === "search"}
+            isActive={pathname?.includes("search")}
             svgInfo={searchSvgInfo}
             handleOnClick={() => {
               setActiveNavLink("search");
@@ -99,7 +99,7 @@ export function Navigation() {
         {isCompact ? (
           <NavigationLink
             isCompact={isCompact}
-            isActive={activeNavLink === "search"}
+            isActive={pathname?.includes("search")}
             svgInfo={searchSvgInfo}
             handleOnClick={() => {
               setActiveNavLink("search");
@@ -113,7 +113,7 @@ export function Navigation() {
 
         <NavigationLink
           isCompact={isCompact}
-          isActive={activeNavLink === "favourites"}
+          isActive={pathname?.includes("favourites")}
           svgInfo={
             activeNavLink === "favourites"
               ? bookmarkFillSvgInfo
@@ -128,7 +128,7 @@ export function Navigation() {
         </NavigationLink>
         <NavigationLink
           isCompact={isCompact}
-          isActive={activeNavLink === "settings"}
+          isActive={pathname?.includes("settings")}
           svgInfo={settingsSvgInfo}
           handleOnClick={() => {
             setActiveNavLink("settings");
@@ -150,7 +150,7 @@ export function Navigation() {
         )}
         <NavigationLink
           isCompact={isCompact}
-          isActive={activeNavLink === "football"}
+          isActive={pathname?.includes("football")}
           svgInfo={footballSvgInfo}
           handleOnClick={() => {
             setActiveNavLink("football");
@@ -161,7 +161,7 @@ export function Navigation() {
         </NavigationLink>
         <NavigationLink
           isCompact={isCompact}
-          isActive={activeNavLink === "basketball"}
+          isActive={pathname?.includes("basketball")}
           svgInfo={basketballSvgInfo}
           handleOnClick={() => {
             setActiveNavLink("basketball");
@@ -172,7 +172,7 @@ export function Navigation() {
         </NavigationLink>
         <NavigationLink
           isCompact={isCompact}
-          isActive={activeNavLink === "rugby"}
+          isActive={pathname?.includes("rugby")}
           svgInfo={rugbySvgInfo}
           handleOnClick={() => {
             setActiveNavLink("rugby");

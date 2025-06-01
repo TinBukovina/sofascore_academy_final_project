@@ -1,2 +1,2 @@
 // UI
-export { TopTornoments } from "./ui/TopTornoments";
+export { TopTornaments } from "./ui/TopTornaments";

@@ -18,13 +18,13 @@ export async function GET(
 
   try {
     const response = await fetch(
-      `https://academy-backend.sofascore.dev/event/${eventId}`
+      `https://academy-backend.sofascore.dev/event/${eventId}/incidents`
     );
 
     if (!response.ok) {
       const errorData = await response.json().catch(() => ({}));
       throw new Error(
-        `Error fetching event with id: ${eventId} from external API` +
+        `Error fetching event incidnets with id: ${eventId} from external API` +
           errorData.message
       );
     }

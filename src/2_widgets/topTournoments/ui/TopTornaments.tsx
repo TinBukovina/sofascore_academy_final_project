@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import { Box, Flex } from "../../../../styled-system/jsx";
-import { useTournomentById } from "@/4_entities/tournoment";
+import { useFirstNTournaments } from "@/4_entities/tournament";
 import Row from "./Row";
 import { dropDownArrow400SvgInfo, Icon } from "@/5_shared";
 
-export function TopTornoments() {
-  const { tournoment, isLoading, isError, error } = useTournomentById(1);
+export function TopTornaments() {
+  const { tournaments, isLoading, isError, error } = useFirstNTournaments(5);
 
   const [isButtonHovered, setIsButtonHovered] = useState<boolean>(false);
 
@@ -18,14 +18,14 @@ export function TopTornoments() {
     return <div>Error</div>;
   }
 
-  if (!tournoment) {
+  if (!tournaments || tournaments.length <= 0) {
     return <div>There is no tournoment</div>;
   }
 
   return (
     <Flex
       display={{ base: "none", sm: "flex" }}
-      maxW={"250px"}
+      maxW={"230px"}
       w={{ base: "fit-content", lg: "100%" }}
       h={"fit-content"}
       direction={"column"}
@@ -48,11 +48,12 @@ export function TopTornoments() {
         Top Tornoments
       </Box>
 
-      <Flex direction={"column"} gap={{ base: "1rem", lg: "0.5rem" }}>
-        <Row tournoment={tournoment} />
-        <Row tournoment={tournoment} />
-        <Row tournoment={tournoment} />
-        <Row tournoment={tournoment} />
+      <Flex direction={"column"} gap={{ base: "1rem", lg: "0.75rem" }}>
+        {tournaments.map((tournament, i) => {
+          if (!tournament) return <Box key={i} />;
+
+          return <Row tournoment={tournament} key={tournament?.id} />;
+        })}
       </Flex>
 
       <Flex

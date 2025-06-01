@@ -2,15 +2,15 @@ import React from "react";
 import { Box, Flex } from "../../../../styled-system/jsx";
 import Image from "next/image";
 import { css } from "../../../../styled-system/css";
-import { TournomentInterface } from "@/4_entities/event";
+import { TournamentInterface } from "@/4_entities/event";
 
 interface TournomentRowInfoInterface {
-  tournoment: TournomentInterface;
+  tournament: TournamentInterface;
   favouriteBtn: React.ReactNode;
 }
 
-export function TournomentRowInfo({
-  tournoment,
+export function TournamentRowInfo({
+  tournament,
   favouriteBtn,
 }: TournomentRowInfoInterface) {
   return (
@@ -20,7 +20,7 @@ export function TournomentRowInfo({
       borderBottom={"1px solid token(colors.border)"}
     >
       <Image
-        src={`/api/tournoment/${tournoment.id}/image`}
+        src={`/api/tournament/${tournament.id}/image`}
         width={32}
         height={32}
         style={{
@@ -30,9 +30,9 @@ export function TournomentRowInfo({
         alt="tournoment logo"
       />
       <Flex direction={"column"} gap={"0.25rem"} w={"100%"} lineHeight={"1"}>
-        <p>{tournoment.name}</p>
+        <p>{tournament.name}</p>
         <p className={css({ fontSize: "sm", color: "text.secondary" })}>
-          {tournoment.country.name}
+          {tournament.country.name}
         </p>
       </Flex>
       {favouriteBtn && <Box>{favouriteBtn}</Box>}

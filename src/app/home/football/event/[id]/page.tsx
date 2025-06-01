@@ -1,0 +1,130 @@
+"use client";
+
+import React from "react";
+import { Box, Flex } from "../../../../../../styled-system/jsx";
+import { useEventById } from "@/4_entities/event";
+import { FavouriteToggleBtn } from "@/3_features/favourites/ui/FavouriteToggleBtn";
+import Image from "next/image";
+import { Standings } from "@/2_widgets/standings";
+
+interface PageProps {
+  params: Promise<{
+    id: string;
+  }>;
+  status?: string;
+}
+
+export default function Page({ params, status = "Finished" }: PageProps) {
+  const resolvedParams = React.use(params);
+  const eventId = resolvedParams.id;
+
+  const { event, isLoading, isError, error } = useEventById(Number(eventId));
+
+  if (isLoading) return <div>Loading...</div>;
+
+  if (isError) {
+    console.log(error);
+    return <div>Error</div>;
+  }
+
+  if (!event) {
+    return <div>There is no event with that id.</div>;
+  }
+
+  return (
+    <Flex direction={"column"} color={"text.normal"} gap={"1rem"}>
+      <Flex
+        position={"relative"}
+        bg={"surface.s1"}
+        border={"1px solid transparent"}
+        borderColor={"primaryClr"}
+        borderRadius={"md"}
+        justifyContent={"center"}
+        gap={"1rem"}
+        p={"0.5rem"}
+        color={"primaryClr"}
+        fill={"primaryClr"}
+        fontSize={"md"}
+      >
+        <Flex
+          direction={"column"}
+          w={"fit-content"}
+          justifyContent={"center"}
+          alignItems={"center"}
+          gap={"0.5rem"}
+          p={"0.5rem"}
+          minW={"80px"}
+        >
+          <Box position={"absolute"} left={"0.5rem"} top={"0.5rem"}>
+            <FavouriteToggleBtn whatToAdd="team" item={event.homeTeam} />
+          </Box>
+          <Image
+            src={`/api/team/${event.homeTeam.id}/image`}
+            width={48}
+            height={48}
+            alt="home team"
+          />
+          <Box>{event.homeTeam.name}</Box>
+        </Flex>
+        <Flex
+          direction={"column"}
+          justifyContent={"center"}
+          alignItems={"center"}
+          w={"fit-content"}
+          color={"text.normal"}
+          fontWeight={"bold"}
+        >
+          <Box>
+            <Box
+              display={"inline-block"}
+              color={
+                event.homeScore.total < event.awayScore.total
+                  ? "text.secondary"
+                  : "inherit"
+              }
+            >
+              {event.homeScore.total}
+            </Box>
+            <span> - </span>
+            <Box
+              display={"inline-block"}
+              color={
+                event.awayScore.total < event.homeScore.total
+                  ? "text.secondary"
+                  : "inherit"
+              }
+            >
+              {event.awayScore.total}
+            </Box>
+          </Box>
+          <Box fontWeight={"normal"} fontSize={"xs"}>
+            {status}
+          </Box>
+        </Flex>
+        <Flex
+          direction={"column"}
+          justifyContent={"center"}
+          alignItems={"center"}
+          gap={"0.5rem"}
+          p={"0.5rem"}
+          minW={"80px"}
+        >
+          <Box position={"absolute"} right={"0.5rem"} top={"0.5rem"}>
+            <FavouriteToggleBtn whatToAdd="team" item={event.awayTeam} />
+          </Box>
+          <Image
+            src={`/api/team/${event.awayTeam.id}/image`}
+            width={48}
+            height={48}
+            alt="home team"
+          />
+          <Box>{event.awayTeam.name}</Box>
+        </Flex>
+      </Flex>
+
+      <Flex>
+        <Standings tournoment={event.tournament} />
+      </Flex>
+    </Flex>
+  );
+}

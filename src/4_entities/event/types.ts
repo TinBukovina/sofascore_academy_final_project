@@ -1,3 +1,4 @@
+import { PlayerInterface } from "../player";
 import { TeamInterface } from "../team";
 
 export interface ScoreInterface {
@@ -17,7 +18,7 @@ export interface SportInterface {
   slug: string;
 }
 
-export interface TournomentInterface {
+export interface TournamentInterface {
   id: number;
   name: string;
   slug: string;
@@ -28,7 +29,7 @@ export interface TournomentInterface {
 export interface EventInterface {
   id: number;
   slug: string;
-  tournament: TournomentInterface;
+  tournament: TournamentInterface;
   homeTeam: TeamInterface;
   awayTeam: TeamInterface;
   status: string;
@@ -37,4 +38,15 @@ export interface EventInterface {
   awayScore: ScoreInterface;
   winnerCode: string;
   round: number;
+}
+
+export interface IncidentsInterface {
+  player: PlayerInterface;
+  teamSide?: "home" | "away";
+  scoringTeam?: "home" | "away";
+  color: "yellow" | "yellowred" | "red";
+  id: number;
+  time: number;
+  type: "card" | "goal" | "period";
+  text?: string;
 }

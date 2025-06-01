@@ -2,9 +2,10 @@ import { NextResponse } from "next/server";
 
 export async function GET(
   request: Request,
-  { params }: { params: { id: string } }
+  context: { params: Promise<{ id: string }> }
 ) {
-  const tournomentId = params.id;
+  const resolvedParams = await context.params;
+  const tournomentId = resolvedParams.id;
 
   if (!tournomentId) {
     return NextResponse.json(

@@ -1,11 +1,11 @@
 import React from "react";
 import { Box, Flex } from "../../../../styled-system/jsx";
 import Image from "next/image";
-import { TournomentInterface } from "@/4_entities/event";
+import { TournamentInterface } from "@/4_entities/event";
 import { FavouriteToggleBtn } from "@/3_features/favourites/ui/FavouriteToggleBtn";
 
 interface RowProps {
-  tournoment: TournomentInterface;
+  tournoment: TournamentInterface;
 }
 export default function Row({ tournoment }: RowProps) {
   return (
@@ -13,13 +13,15 @@ export default function Row({ tournoment }: RowProps) {
       justifyContent={"space-between"}
       alignItems={"center"}
       w={{ base: "fit-content", lg: "100%" }}
+      fontSize={"15px"}
     >
       <Flex alignItems={"center"} gap={"0.5rem"}>
         <Image
-          src={`/api/tournoment/${tournoment.id}/image`}
-          width={32}
-          height={32}
+          src={`/api/tournament/${tournoment.id}/image`}
+          width={24}
+          height={24}
           alt="Tournoment image"
+          style={{ objectFit: "cover" }}
         />
         <Box
           display={{

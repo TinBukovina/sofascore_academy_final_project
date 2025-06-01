@@ -2,9 +2,10 @@ import { NextResponse } from "next/server";
 
 export async function GET(
   request: Request,
-  { params }: { params: { id: string } }
+  context: { params: Promise<{ id: string }> }
 ) {
-  const teamId = params.id;
+  const resolvedParams = await context.params;
+  const teamId = resolvedParams.id;
 
   if (!teamId) {
     return NextResponse.json(

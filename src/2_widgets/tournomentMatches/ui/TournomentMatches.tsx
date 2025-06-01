@@ -4,24 +4,29 @@ import { Flex } from "../../../../styled-system/jsx";
 import {
   EventInterface,
   EventItem,
-  TournomentInterface,
+  TournamentInterface,
 } from "@/4_entities/event";
 import { FavouriteToggleBtn } from "@/3_features/favourites/ui/FavouriteToggleBtn";
-import { TournomentRowInfo } from "@/4_entities/tournoment";
+import { TournamentRowInfo } from "@/4_entities/tournament";
 
 interface EventListProps {
-  tournoment: TournomentInterface;
+  tournament: TournamentInterface;
   events: EventInterface[];
   lastChild?: boolean;
+  handleOnClick?: () => void;
+  setSelectedEvent?: (event: EventInterface) => void;
 }
 
 export function TournomentMatches({
-  tournoment,
+  tournament,
   events,
   lastChild = false,
+  handleOnClick,
+  setSelectedEvent,
 }: EventListProps) {
+  console.log(events);
   const filteredEvents = events.filter(
-    (el) => el.tournament.id === tournoment.id
+    (el) => el.tournament.id === tournament.id
   );
   return (
     <Flex
@@ -32,10 +37,10 @@ export function TournomentMatches({
           : "1px solid transparent"
       }
     >
-      <TournomentRowInfo
-        tournoment={tournoment}
+      <TournamentRowInfo
+        tournament={tournament}
         favouriteBtn={
-          <FavouriteToggleBtn whatToAdd="tournoment" item={tournoment} />
+          <FavouriteToggleBtn whatToAdd="tournoment" item={tournament} />
         }
       />
       {filteredEvents.map((event: EventInterface, i) => (
@@ -44,6 +49,8 @@ export function TournomentMatches({
           event={event}
           key={event.id}
           lastChild={filteredEvents.length - 1 === i}
+          handleOnClick={handleOnClick}
+          setSelectedEvent={setSelectedEvent}
         />
       ))}
     </Flex>

@@ -5,15 +5,19 @@ import { Box, Flex } from "../../../../styled-system/jsx";
 import { useEventsFromSportAndDate } from "@/4_entities/event/hooks/useEventsFromSportAndDate";
 import { SomethingWentWrong, SpinnerLoader } from "@/5_shared";
 import { EventWidget } from "@/2_widgets/eventWidget";
-import { getDifferentTournomentFromListOfEvents } from "@/4_entities/tournoment/lib/utils";
+import { getDifferentTournomentFromListOfEvents } from "@/4_entities/tournament/lib/utils";
 import { useState } from "react";
 import { useFavourites } from "@/3_features/favourites/context/useFavourites";
-import { TopTornoments } from "@/2_widgets/topTournoments";
+import { TopTornaments } from "@/2_widgets/topTournoments";
 import { css } from "../../../../styled-system/css";
+import { EventPopup } from "@/2_widgets/eventPopup";
+import { EventInterface } from "@/4_entities/event";
 
 export default function Page() {
   const [currentDate, setCurrentDate] = useState<string>("2024-01-20");
   const [activeWindow, setActiveWindow] = useState<"all" | "favourites">("all");
+  const [isPopupDisplayed, setIsPopupDisplayed] = useState<boolean>(false);
+  const [popupEvent, setPopupEvent] = useState<EventInterface | null>(null);
 
   const { favouriteEvents } = useFavourites();
 
@@ -36,6 +40,10 @@ export default function Page() {
     const date = new Date(currentDate);
     date.setDate(date.getDate() + 1);
     setCurrentDate(date.toISOString().split("T")[0]);
+  };
+
+  const closePopupWindow = () => {
+    setIsPopupDisplayed(false);
   };
 
   if (isLoading)
@@ -101,8 +109,6 @@ export default function Page() {
     );
   }
 
-  console.log(activeWindow);
-  console.log(filteredEvents);
   if (!filteredEvents || filteredEvents.length <= 0) {
     return (
       <Box color={"white"} overflow={"auto"}>
@@ -127,17 +133,17 @@ export default function Page() {
     );
   }
 
-  const tournoments = getDifferentTournomentFromListOfEvents(filteredEvents);
+  const tournaments = getDifferentTournomentFromListOfEvents(filteredEvents);
 
-  console.log(events);
   return (
     <Flex
-      color={"white"}
+      color={"text.normal"}
       overflow={"auto"}
       gap={"1rem"}
+      p={"0"}
       className={css({
         "&::-webkit-scrollbar": {
-          width: "8px",
+          width: "0px",
         },
         "&::-webkit-scrollbar-track": {
           background: "transparent",
@@ -148,7 +154,6 @@ export default function Page() {
         },
       })}
     >
-      <TopTornoments />
       <EventWidget
         currentDate={currentDate}
         handleDateChange={handleDateChange}
@@ -157,15 +162,32 @@ export default function Page() {
         activeWindow={activeWindow}
         setActiveWindow={setActiveWindow}
       >
-        {tournoments.map((tournoment, i) => (
+        {tournaments.map((tournament, i) => (
           <TournomentMatches
-            key={tournoment.id}
-            tournoment={tournoment}
+            key={tournament.id}
+            tournament={tournament}
             events={filteredEvents}
-            lastChild={tournoments.length - 1 === i}
+            lastChild={tournaments.length - 1 === i}
+            handleOnClick={() => {
+              setIsPopupDisplayed((prev) => {
+                if (prev) {
+                  setTimeout(() => setIsPopupDisplayed(true), 200);
+                  return false;
+                }
+
+                return true;
+              });
+            }}
+            setSelectedEvent={setPopupEvent}
           />
         ))}
       </EventWidget>
+      <TopTornaments />
+      {isPopupDisplayed && popupEvent ? (
+        <EventPopup event={popupEvent} colsePopup={closePopupWindow} />
+      ) : (
+        <Box display={"none"} />
+      )}
     </Flex>
   );
 }

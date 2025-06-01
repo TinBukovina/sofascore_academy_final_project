@@ -5,12 +5,12 @@ export async function GET(
   context: { params: Promise<{ id: string }> }
 ) {
   const resolvedParams = await context.params;
-  const eventId = resolvedParams.id;
+  const tournomentId = resolvedParams.id;
 
-  if (!eventId) {
+  if (!tournomentId) {
     return NextResponse.json(
       {
-        error: "Event ID is required",
+        error: "Tournoment ID is required",
       },
       { status: 400 }
     );
@@ -18,13 +18,13 @@ export async function GET(
 
   try {
     const response = await fetch(
-      `https://academy-backend.sofascore.dev/event/${eventId}`
+      `https://academy-backend.sofascore.dev/tournament/${tournomentId}`
     );
 
     if (!response.ok) {
       const errorData = await response.json().catch(() => ({}));
       throw new Error(
-        `Error fetching event with id: ${eventId} from external API` +
+        `Error fetching tournoment standings with id: ${tournomentId} from external API` +
           errorData.message
       );
     }
@@ -37,7 +37,10 @@ export async function GET(
       error instanceof Error ? error.message : "Internal server error";
 
     return NextResponse.json(
-      { error: "Failed to fetch event data via proxy", details: errorMessage },
+      {
+        error: "Failed to fetch tournoment standings data via proxy",
+        details: errorMessage,
+      },
       { status: 500 }
     );
   }

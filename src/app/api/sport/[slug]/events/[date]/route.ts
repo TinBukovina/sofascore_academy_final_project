@@ -2,9 +2,10 @@ import { NextResponse } from "next/server";
 
 export async function GET(
   request: Request,
-  { params }: { params: { slug: string; date: string } }
+  context: { params: Promise<{ slug: string; date: string }> }
 ) {
-  const { slug: sportSlug, date } = params;
+  const resolvedParams = await context.params;
+  const { slug: sportSlug, date } = resolvedParams;
 
   if (!sportSlug || !date) {
     return NextResponse.json(
