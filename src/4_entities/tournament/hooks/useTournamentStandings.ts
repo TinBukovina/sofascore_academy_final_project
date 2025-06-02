@@ -1,8 +1,8 @@
 "use client";
 
 import useSWR from "swr";
-import { getTournamentById } from "../api/apiTournaments";
-import { TournamentInterface } from "../types";
+import { getTournamentStandings } from "../api/apiTournaments";
+import { TournamentStandingsInterface } from "../types";
 
 const getSWRKey = (
   tournamentId: number | string | null | undefined
@@ -13,30 +13,30 @@ const getSWRKey = (
   ) {
     return null;
   }
-  return [`/tournament`, String(tournamentId)];
+  return [`/tournament/standings`, String(tournamentId)];
 };
 
 const fetcher = async (
   keyParts: [string, string]
-): Promise<TournamentInterface | null> => {
+): Promise<TournamentStandingsInterface[]> => {
   const [, tournamentIdStr] = keyParts;
   const tournamentId = parseInt(tournamentIdStr, 10);
-  return getTournamentById(tournamentId);
+  return getTournamentStandings(tournamentId);
 };
 
-export function useTournamentById(
+export function useTournamentStandings(
   tournamentId: number | string | null | undefined
 ) {
   const {
-    data: tournament,
+    data: tournamentStandings,
     error,
     isLoading,
     isValidating,
     mutate,
-  } = useSWR<TournamentInterface | null>(getSWRKey(tournamentId), fetcher);
+  } = useSWR<TournamentStandingsInterface[]>(getSWRKey(tournamentId), fetcher);
 
   return {
-    tournament,
+    tournamentStandings,
     isLoading,
     isError: !!error,
     error,

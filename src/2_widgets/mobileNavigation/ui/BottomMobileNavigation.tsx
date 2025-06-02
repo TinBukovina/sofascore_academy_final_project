@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React from "react";
 import { Flex } from "../../../../styled-system/jsx";
 import { NavigationIconBtn } from "@/5_shared";
 import {
@@ -9,16 +9,11 @@ import {
   search400SvgInfo,
   settings300SvgInfo,
 } from "@/5_shared/lib/svgPaths";
-import { ActiveLinksType } from "@/2_widgets/navigation/ui/Navigation";
 import { usePathname, useRouter } from "next/navigation";
 
 export function BottomMobileNavigation() {
   const pathname = usePathname();
   const router = useRouter();
-
-  const [activeNavLink, setActiveNavLink] = useState<ActiveLinksType>(
-    pathname?.split("/")[pathname.split("/").length - 1] as ActiveLinksType
-  );
 
   const bookmarkFillSvgInfo = bookmarkFill300SvgInfo();
   const calendarSvgInfo = calendar400SvgInfo();
@@ -45,9 +40,8 @@ export function BottomMobileNavigation() {
         svgW="32px"
         boxPx="8px"
         boxPy="8px"
-        isActive={activeNavLink === "favourites"}
+        isActive={pathname?.includes("favourites")}
         handleOnClick={() => {
-          setActiveNavLink("favourites");
           router.push("/favourites");
         }}
       />
@@ -58,12 +52,11 @@ export function BottomMobileNavigation() {
         boxPx="8px"
         boxPy="8px"
         isActive={
-          activeNavLink === "football" ||
-          activeNavLink === "basketball" ||
-          activeNavLink === "rugby"
+          pathname?.includes("football") ||
+          pathname?.includes("basketball") ||
+          pathname?.includes("rugby")
         }
         handleOnClick={() => {
-          setActiveNavLink("football");
           router.push("/home/football");
         }}
       />
@@ -73,9 +66,8 @@ export function BottomMobileNavigation() {
         svgW="32px"
         boxPx="8px"
         boxPy="8px"
-        isActive={activeNavLink === "search"}
+        isActive={pathname?.includes("search")}
         handleOnClick={() => {
-          setActiveNavLink("search");
           router.push("/search");
         }}
       />
@@ -85,9 +77,8 @@ export function BottomMobileNavigation() {
         svgW="32px"
         boxPx="8px"
         boxPy="8px"
-        isActive={activeNavLink === "settings"}
+        isActive={pathname?.includes("settings")}
         handleOnClick={() => {
-          setActiveNavLink("settings");
           router.push("/settings");
         }}
       />

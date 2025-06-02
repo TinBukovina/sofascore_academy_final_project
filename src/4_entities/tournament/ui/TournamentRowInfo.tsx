@@ -2,7 +2,8 @@ import React from "react";
 import { Box, Flex } from "../../../../styled-system/jsx";
 import Image from "next/image";
 import { css } from "../../../../styled-system/css";
-import { TournamentInterface } from "@/4_entities/event";
+import { TournamentInterface } from "../types";
+import { useRouter } from "next/navigation";
 
 interface TournomentRowInfoInterface {
   tournament: TournamentInterface;
@@ -13,11 +14,20 @@ export function TournamentRowInfo({
   tournament,
   favouriteBtn,
 }: TournomentRowInfoInterface) {
+  const router = useRouter();
+
   return (
     <Flex
       p={"1rem 1rem"}
       gap={"1rem"}
       borderBottom={"1px solid token(colors.border)"}
+      _hover={{
+        bg: "surface.s1",
+        cursor: "pointer",
+      }}
+      onClick={() => {
+        router.push(`/home/football/tournament/${tournament.id}`);
+      }}
     >
       <Image
         src={`/api/tournament/${tournament.id}/image`}

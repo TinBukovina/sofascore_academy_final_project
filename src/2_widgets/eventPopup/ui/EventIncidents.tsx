@@ -4,30 +4,22 @@ import React from "react";
 import { Box, Flex } from "../../../../styled-system/jsx";
 import { EventInterface } from "@/4_entities/event";
 import { useEventIncidents } from "@/4_entities/event/hooks/useEventIncidents";
-import SpinnerLoader from "@/app/Loader";
 import { css } from "../../../../styled-system/css";
 import { EventIncidentRow } from "./EventIncidentRow";
+import LoadingPage from "@/app/_ui/LoadingPage";
 
 interface EventEventsProps {
   event: EventInterface;
+  styles?: React.CSSProperties;
 }
 
-export function EventIncidents({ event }: EventEventsProps) {
+export function EventIncidents({ event, styles }: EventEventsProps) {
   const { eventIncident, isLoading, isError, error } = useEventIncidents(
     event.id
   );
 
   if (isLoading) {
-    return (
-      <Flex
-        justifyContent={"center"}
-        alignItems={"center"}
-        w={"100%"}
-        minH={"120px"}
-      >
-        <SpinnerLoader />
-      </Flex>
-    );
+    return <LoadingPage />;
   }
 
   if (isError) {
@@ -63,11 +55,13 @@ export function EventIncidents({ event }: EventEventsProps) {
       direction={"column"}
       gap={"0.75rem"}
       p={"0.5rem"}
-      maxH={"250px"}
+      h={"fit-content"}
       bg={"surface.s0"}
       border={"1px solid transparent"}
       borderColor={"border"}
       borderRadius={"md"}
+      color={"text.normal"}
+      fill={"text.normal"}
       overflow={"auto"}
       className={css({
         "&::-webkit-scrollbar": {
@@ -81,8 +75,11 @@ export function EventIncidents({ event }: EventEventsProps) {
           borderRadius: "4px",
         },
       })}
+      style={styles}
     >
-      <Box>Events</Box>
+      <Box p={"0 0.5rem"} pt={"0.75rem"}>
+        Events
+      </Box>
       <Flex direction={"column"} gap={"0.5rem"} p={"0.5rem"} fontSize={"sm"}>
         <Flex gap={"0.5rem"} alignItems={"center"}>
           <Box w={"100%"} h={"2px"} bg={"border"}></Box>

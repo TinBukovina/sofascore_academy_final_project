@@ -2,15 +2,16 @@ import { NextResponse } from "next/server";
 
 export async function GET(
   request: Request,
-  context: { params: Promise<{ id: string }> }
+  context: { params: Promise<{ id: string; page: string }> }
 ) {
   const resolvedParams = await context.params;
-  const tournomentId = resolvedParams.id;
+  const tournamentId = resolvedParams.id;
+  const dataPage = resolvedParams.page;
 
-  if (!tournomentId) {
+  if (!tournamentId || !dataPage) {
     return NextResponse.json(
       {
-        error: "Tournoment ID is required",
+        error: "Tournoment ID or page is not valid.",
       },
       { status: 400 }
     );
@@ -18,13 +19,13 @@ export async function GET(
 
   try {
     const response = await fetch(
-      `https://academy-backend.sofascore.dev/tournament/${tournomentId}/standings`
+      `https://academy-backend.sofascore.dev/tournament/${tournamentId}/events/last/${dataPage}`
     );
 
     if (!response.ok) {
       const errorData = await response.json().catch(() => ({}));
       throw new Error(
-        `Error fetching tournoment standings with id: ${tournomentId} from external API` +
+        `Error fetching tournament events on page ${dataPage} with tournament ID: ${tournamentId} from external API` +
           errorData.message
       );
     }
@@ -38,7 +39,7 @@ export async function GET(
 
     return NextResponse.json(
       {
-        error: "Failed to fetch tournoment standings data via proxy",
+        error: "Failed to fetch tournament events data via proxy",
         details: errorMessage,
       },
       { status: 500 }

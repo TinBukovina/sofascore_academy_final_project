@@ -31,8 +31,17 @@ export const colors: SemanticTokens["colors"] = {
     postive: {
       value: { base: "#82E59D" },
     },
+    positive2: {
+      value: { base: "#0AA480" },
+    },
     negative: {
       value: { base: "#E5829D" },
+    },
+    negative2: {
+      value: { base: "#D82222" },
+    },
+    waring: {
+      value: { base: "#F5743C" },
     },
   },
   input: {

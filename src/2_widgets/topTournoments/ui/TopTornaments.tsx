@@ -3,6 +3,7 @@ import { Box, Flex } from "../../../../styled-system/jsx";
 import { useFirstNTournaments } from "@/4_entities/tournament";
 import Row from "./Row";
 import { dropDownArrow400SvgInfo, Icon } from "@/5_shared";
+import LoadingPage from "@/app/_ui/LoadingPage";
 
 export function TopTornaments() {
   const { tournaments, isLoading, isError, error } = useFirstNTournaments(5);
@@ -10,7 +11,7 @@ export function TopTornaments() {
   const [isButtonHovered, setIsButtonHovered] = useState<boolean>(false);
 
   if (isLoading) {
-    return <div>Loading...</div>;
+    return <LoadingPage />;
   }
 
   if (isError) {

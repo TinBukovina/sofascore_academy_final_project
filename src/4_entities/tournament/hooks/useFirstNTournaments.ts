@@ -1,8 +1,8 @@
 "use client";
 
-import { TournamentInterface } from "@/4_entities/event";
 import useSWR from "swr";
 import { getTournamentById } from "../api/apiTournaments";
+import { TournamentInterface } from "../types";
 
 const getSWRKey = (
   numberoOfTournaments: number | null | undefined

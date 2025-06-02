@@ -6,6 +6,8 @@ import { useEventById } from "@/4_entities/event";
 import { FavouriteToggleBtn } from "@/3_features/favourites/ui/FavouriteToggleBtn";
 import Image from "next/image";
 import { Standings } from "@/2_widgets/standings";
+import { EventIncidents } from "@/2_widgets/eventPopup/ui/EventIncidents";
+import LoadingPage from "@/app/_ui/LoadingPage";
 
 interface PageProps {
   params: Promise<{
@@ -20,7 +22,7 @@ export default function Page({ params, status = "Finished" }: PageProps) {
 
   const { event, isLoading, isError, error } = useEventById(Number(eventId));
 
-  if (isLoading) return <div>Loading...</div>;
+  if (isLoading) return <LoadingPage text="Učitavanje događaja..." />;
 
   if (isError) {
     console.log(error);
@@ -122,8 +124,17 @@ export default function Page({ params, status = "Finished" }: PageProps) {
         </Flex>
       </Flex>
 
-      <Flex>
-        <Standings tournoment={event.tournament} />
+      <Flex direction={{ base: "column-reverse", md: "row" }} gap={"1rem"}>
+        <Box flex={2}>
+          <Standings
+            tournament={event.tournament}
+            homeTeamId={event.homeTeam.id}
+            awayTeamId={event.awayTeam.id}
+          />
+        </Box>
+        <Box flex={1}>
+          <EventIncidents event={event} styles={{ maxHeight: "640px" }} />
+        </Box>
       </Flex>
     </Flex>
   );

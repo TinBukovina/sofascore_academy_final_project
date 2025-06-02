@@ -16,6 +16,7 @@ export function EventIncidentRow({ incident, type }: EventIncidentRowProps) {
       justifyContent={type === "home" ? "start" : "end"}
       gap={"0.5rem"}
       alignItems={"center"}
+      fontSize={{ base: "xs", lg: "sm" }}
     >
       {type === "home" ? (
         <>

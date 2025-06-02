@@ -1,5 +1,6 @@
 import { PlayerInterface } from "../player";
 import { TeamInterface } from "../team";
+import { TournamentInterface } from "../tournament";
 
 export interface ScoreInterface {
   total: number;
@@ -16,14 +17,6 @@ export interface SportInterface {
   id: number;
   name: string;
   slug: string;
-}
-
-export interface TournamentInterface {
-  id: number;
-  name: string;
-  slug: string;
-  sport: SportInterface;
-  country: CountryInterface;
 }
 
 export interface EventInterface {

@@ -1,13 +1,12 @@
 import React from "react";
 import { Flex } from "../../../../styled-system/jsx";
 
-import {
-  EventInterface,
-  EventItem,
-  TournamentInterface,
-} from "@/4_entities/event";
+import { EventInterface, EventItem } from "@/4_entities/event";
 import { FavouriteToggleBtn } from "@/3_features/favourites/ui/FavouriteToggleBtn";
-import { TournamentRowInfo } from "@/4_entities/tournament";
+import {
+  TournamentInterface,
+  TournamentRowInfo,
+} from "@/4_entities/tournament";
 
 interface EventListProps {
   tournament: TournamentInterface;

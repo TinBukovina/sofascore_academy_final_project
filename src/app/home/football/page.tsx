@@ -3,7 +3,7 @@
 import { TournomentMatches } from "@/2_widgets/tournomentMatches";
 import { Box, Flex } from "../../../../styled-system/jsx";
 import { useEventsFromSportAndDate } from "@/4_entities/event/hooks/useEventsFromSportAndDate";
-import { SomethingWentWrong, SpinnerLoader } from "@/5_shared";
+import { SomethingWentWrong } from "@/5_shared";
 import { EventWidget } from "@/2_widgets/eventWidget";
 import { getDifferentTournomentFromListOfEvents } from "@/4_entities/tournament/lib/utils";
 import { useState } from "react";
@@ -12,6 +12,7 @@ import { TopTornaments } from "@/2_widgets/topTournoments";
 import { css } from "../../../../styled-system/css";
 import { EventPopup } from "@/2_widgets/eventPopup";
 import { EventInterface } from "@/4_entities/event";
+import LoadingPage from "@/app/_ui/LoadingPage";
 
 export default function Page() {
   const [currentDate, setCurrentDate] = useState<string>("2024-01-20");
@@ -57,18 +58,7 @@ export default function Page() {
           activeWindow={activeWindow}
           setActiveWindow={setActiveWindow}
         >
-          <Flex
-            justifyContent={"center"}
-            alignItems={"center"}
-            w={"100%"}
-            minH={"220px"}
-            direction={"column"}
-            gap={"3rem"}
-          >
-            {" "}
-            <SpinnerLoader />
-            <p>Učitavanje početnih događaja...</p>
-          </Flex>
+          <LoadingPage text="Loading events" />
         </EventWidget>
       </Box>
     );

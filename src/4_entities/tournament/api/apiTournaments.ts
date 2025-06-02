@@ -1,8 +1,12 @@
-import { TournamentInterface } from "@/4_entities/event";
+import {
+  TournamentEventsInterface,
+  TournamentInterface,
+  TournamentStandingsInterface,
+} from "../types";
 
 export const getTournamentById = async (
   tournamentId: number
-): Promise<TournamentInterface | null> => {
+): Promise<TournamentInterface> => {
   if (!tournamentId) {
     throw new Error(`Wrong tournoment ID passed: ${tournamentId}`);
   }
@@ -11,7 +15,48 @@ export const getTournamentById = async (
 
   if (!response.ok) {
     throw new Error(
-      "There was a error catching event with id: " + tournamentId
+      "There was a error catching tournament with id: " + tournamentId
+    );
+  }
+
+  return response.json();
+};
+
+export const getTournamentStandings = async (
+  tournamentId: number
+): Promise<TournamentStandingsInterface[]> => {
+  if (!tournamentId) {
+    throw new Error(`Wrong tournament ID passed: ${tournamentId}`);
+  }
+
+  const response = await fetch(`/api/tournament/${tournamentId}/standings`);
+
+  if (!response.ok) {
+    throw new Error(
+      "There was a error catching tournament with id: " + tournamentId
+    );
+  }
+
+  return response.json();
+};
+
+export const getTournamentEvents = async (
+  tournamentId: number,
+  page: number = 0
+): Promise<TournamentEventsInterface[]> => {
+  if (!tournamentId) {
+    throw new Error(
+      `Wrong tournament ID or page passed: ${tournamentId}, ${page}`
+    );
+  }
+
+  const response = await fetch(
+    `/api/tournament/${tournamentId}/events/last/${page}`
+  );
+
+  if (!response.ok) {
+    throw new Error(
+      `There was a error catching tournoment events with tournament id: ${tournamentId}, and page: ${page}`
     );
   }
 

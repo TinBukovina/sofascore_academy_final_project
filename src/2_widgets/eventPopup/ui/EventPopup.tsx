@@ -30,15 +30,15 @@ export function EventPopup({ event, colsePopup }: EventPopupProps) {
       right={"0"}
       bottom={"0"}
       direction={"column"}
-      color={"text.normal"}
-      fill={"text.normal"}
+      gap={"1rem"}
+      p={"0.5rem"}
       w={"400px"}
       bg={"surface.s1"}
       border={"1px solid transparent"}
       borderColor={"border"}
       borderTopRadius={"md"}
-      p={"0.5rem"}
-      gap={"1rem"}
+      color={"text.normal"}
+      fill={"text.normal"}
     >
       <Flex justifyContent={"space-between"}>
         <Flex gap={"0.5rem"}>
@@ -74,7 +74,7 @@ export function EventPopup({ event, colsePopup }: EventPopupProps) {
             awayTeam={event.awayTeam}
             awayScore={event.awayScore}
           />
-          <EventIncidents event={event} />
+          <EventIncidents event={event} styles={{ maxHeight: "250px" }} />
           <Button
             handleOnClick={() => {
               router.push(`/home/football/event/${event.id}`);
