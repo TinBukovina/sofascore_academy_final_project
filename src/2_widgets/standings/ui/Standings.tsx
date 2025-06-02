@@ -15,12 +15,14 @@ interface StandingsProps {
   tournament: TournamentInterface;
   homeTeamId?: number;
   awayTeamId?: number;
+  disableHeroLink?: boolean;
 }
 
 export function Standings({
   tournament,
   homeTeamId,
   awayTeamId,
+  disableHeroLink = false,
 }: StandingsProps) {
   const router = useRouter();
 
@@ -99,12 +101,17 @@ export function Standings({
         p={"0.5rem 1rem 1rem 1rem"}
         borderBottom={"1px solid transparent"}
         borderColor={"primaryClr"}
-        _hover={{
-          bg: "surface.s1",
-          cursor: "pointer",
-        }}
+        _hover={
+          !disableHeroLink
+            ? {
+                bg: "surface.s1",
+                cursor: "pointer",
+              }
+            : {}
+        }
         onClick={() => {
-          router.push(`/home/football/tournament/${tournament.id}`);
+          if (!disableHeroLink)
+            router.push(`/home/football/tournament/${tournament.id}`);
         }}
       >
         <Flex gap={"0.75rem"}>
@@ -127,7 +134,7 @@ export function Standings({
             </Box>
           </Flex>
         </Flex>
-        <FavouriteToggleBtn whatToAdd="tournoment" item={tournament} />
+        <FavouriteToggleBtn whatToAdd="tournament" item={tournament} />
       </Flex>
 
       <Flex

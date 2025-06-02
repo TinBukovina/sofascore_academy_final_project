@@ -1,3 +1,5 @@
+"use client";
+
 import React from "react";
 import { Box, Flex } from "../../../../styled-system/jsx";
 import Image from "next/image";
@@ -8,11 +10,13 @@ import { useRouter } from "next/navigation";
 interface TournomentRowInfoInterface {
   tournament: TournamentInterface;
   favouriteBtn: React.ReactNode;
+  disableLink?: boolean;
 }
 
 export function TournamentRowInfo({
   tournament,
   favouriteBtn,
+  disableLink = false,
 }: TournomentRowInfoInterface) {
   const router = useRouter();
 
@@ -20,13 +24,18 @@ export function TournamentRowInfo({
     <Flex
       p={"1rem 1rem"}
       gap={"1rem"}
-      borderBottom={"1px solid token(colors.border)"}
-      _hover={{
-        bg: "surface.s1",
-        cursor: "pointer",
-      }}
+      borderBottom={"1px solid transparent"}
+      _hover={
+        !disableLink
+          ? {
+              bg: "surface.s1",
+              cursor: "pointer",
+            }
+          : {}
+      }
       onClick={() => {
-        router.push(`/home/football/tournament/${tournament.id}`);
+        if (!disableLink)
+          router.push(`/home/football/tournament/${tournament.id}`);
       }}
     >
       <Image

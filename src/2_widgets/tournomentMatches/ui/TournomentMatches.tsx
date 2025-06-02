@@ -1,5 +1,5 @@
 import React from "react";
-import { Flex } from "../../../../styled-system/jsx";
+import { Box, Flex } from "../../../../styled-system/jsx";
 
 import { EventInterface, EventItem } from "@/4_entities/event";
 import { FavouriteToggleBtn } from "@/3_features/favourites/ui/FavouriteToggleBtn";
@@ -36,12 +36,14 @@ export function TournomentMatches({
           : "1px solid transparent"
       }
     >
-      <TournamentRowInfo
-        tournament={tournament}
-        favouriteBtn={
-          <FavouriteToggleBtn whatToAdd="tournoment" item={tournament} />
-        }
-      />
+      <Box borderBottom={"1px solid transparent"} borderColor={"border"}>
+        <TournamentRowInfo
+          tournament={tournament}
+          favouriteBtn={
+            <FavouriteToggleBtn whatToAdd="tournament" item={tournament} />
+          }
+        />
+      </Box>
       {filteredEvents.map((event: EventInterface, i) => (
         <EventItem
           favouriteBtn={<FavouriteToggleBtn whatToAdd="event" item={event} />}

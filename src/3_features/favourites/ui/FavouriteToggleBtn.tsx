@@ -7,15 +7,16 @@ import {
   bookmark400SvgInfo,
   bookmarkFill300SvgInfo,
 } from "@/5_shared/lib/svgPaths";
-import { EventInterface, TournomentInterface } from "@/4_entities/event";
+import { EventInterface } from "@/4_entities/event";
 import { TeamInterface } from "@/4_entities/team";
 import { PlayerInterface } from "@/4_entities/player";
 import { useFavourites } from "../context/useFavourites";
+import { TournamentInterface } from "@/4_entities/tournament";
 
 interface FavouriteToggleBtnProps {
   styles?: React.CSSProperties;
-  whatToAdd: "event" | "team" | "tournoment" | "player";
-  item: EventInterface | TeamInterface | TournomentInterface | PlayerInterface;
+  whatToAdd: "event" | "team" | "tournament" | "player";
+  item: EventInterface | TeamInterface | TournamentInterface | PlayerInterface;
 }
 
 export function FavouriteToggleBtn({
@@ -46,7 +47,7 @@ export function FavouriteToggleBtn({
       setIsAlreadyFavourite(isEventAlreadyFavourite(item.id));
     } else if (whatToAdd === "team") {
       setIsAlreadyFavourite(isTeamAlreadyFavourite(item.id));
-    } else if (whatToAdd === "tournoment") {
+    } else if (whatToAdd === "tournament") {
       setIsAlreadyFavourite(isTournomentAlreadyFavourite(item.id));
     } else if (whatToAdd === "player") {
       setIsAlreadyFavourite(isPlayerAlreadyFavourite(item.id));
@@ -90,11 +91,11 @@ export function FavouriteToggleBtn({
           } else {
             addTeamToFavourites(item as TeamInterface);
           }
-        } else if (whatToAdd === "tournoment") {
+        } else if (whatToAdd === "tournament") {
           if (isAlreadyFavourite) {
             removeTournomentFromFavourites(item.id);
           } else {
-            addTournomentToFavourites(item as TournomentInterface);
+            addTournomentToFavourites(item as TournamentInterface);
           }
         } else if (whatToAdd === "player") {
           if (isAlreadyFavourite) {

@@ -50,13 +50,50 @@ export const getTournamentEvents = async (
     );
   }
 
+  const isNegative = page < 0;
+
+  let newPage;
+  if (page < 0) {
+    newPage = page * -1;
+  } else newPage = page;
+
   const response = await fetch(
-    `/api/tournament/${tournamentId}/events/last/${page}`
+    `/api/tournament/${tournamentId}/events/${isNegative ? "next" : "last"}/${newPage}`
   );
 
   if (!response.ok) {
     throw new Error(
       `There was a error catching tournoment events with tournament id: ${tournamentId}, and page: ${page}`
+    );
+  }
+
+  return response.json();
+};
+
+export const getFutureTournamentEvents = async (
+  tournamentId: number,
+  page: number = 0
+): Promise<TournamentEventsInterface[]> => {
+  if (!tournamentId) {
+    throw new Error(
+      `Wrong tournament ID or page passed: ${tournamentId}, ${page}`
+    );
+  }
+
+  const isNegative = page < 0;
+
+  let newPage;
+  if (page < 0) {
+    newPage = page * -1;
+  } else newPage = page;
+
+  const response = await fetch(
+    `/api/tournament/${tournamentId}/events/${isNegative ? "next" : "last"}/${newPage}`
+  );
+
+  if (!response.ok) {
+    throw new Error(
+      `There was a error catching tournoment events (next) with tournament id: ${tournamentId}, and page: ${page}`
     );
   }
 

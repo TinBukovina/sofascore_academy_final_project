@@ -18,7 +18,7 @@ const getSWRKey = (
 
 const fetcher = async (
   keyParts: [string, string]
-): Promise<TournamentInterface | null> => {
+): Promise<TournamentInterface> => {
   const [, tournamentIdStr] = keyParts;
   const tournamentId = parseInt(tournamentIdStr, 10);
   return getTournamentById(tournamentId);
@@ -33,7 +33,7 @@ export function useTournamentById(
     isLoading,
     isValidating,
     mutate,
-  } = useSWR<TournamentInterface | null>(getSWRKey(tournamentId), fetcher);
+  } = useSWR<TournamentInterface>(getSWRKey(tournamentId), fetcher);
 
   return {
     tournament,

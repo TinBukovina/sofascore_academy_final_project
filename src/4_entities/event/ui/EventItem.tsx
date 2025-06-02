@@ -6,11 +6,13 @@ import { PlayingEventItem } from "./PlayingEventItem";
 import { Box } from "../../../../styled-system/jsx";
 import { useWindowWidth } from "@/5_shared/lib/hooks/useWindowWidth";
 import { useRouter } from "next/navigation";
+import { SmallFinishedEventItem } from "./SmallFinishedEventItem";
 
 interface EventItemProps {
   event: EventInterface;
   favouriteBtn: React.ReactNode;
   type?: "finished" | "playing" | "toBePlayed";
+  widthType?: "normal" | "small";
   lastChild?: boolean;
   handleOnClick?: () => void;
   setSelectedEvent?: (event: EventInterface) => void;
@@ -19,6 +21,7 @@ interface EventItemProps {
 export function EventItem({
   event,
   type = "finished",
+  widthType = "normal",
   favouriteBtn,
   lastChild = false,
   handleOnClick,
@@ -34,25 +37,43 @@ export function EventItem({
           router.push(`/home/football/event/${event.id}`);
           return;
         }
+
         if (setSelectedEvent) setSelectedEvent(event);
         if (handleOnClick) handleOnClick();
+
+        if (!setSelectedEvent && !handleOnClick)
+          router.push(`/home/football/event/${event.id}`);
       }}
       _hover={{ bg: "surface.s1", cursor: "pointer" }}
     >
       {type === "playing" ? (
-        <PlayingEventItem
-          event={event}
-          favouriteBtn={favouriteBtn}
-          lastChild={lastChild}
-        />
+        widthType === "normal" ? (
+          <PlayingEventItem
+            event={event}
+            favouriteBtn={favouriteBtn}
+            lastChild={lastChild}
+          />
+        ) : (
+          <Box></Box>
+        )
       ) : type === "toBePlayed" ? (
-        <ToBePlayedEventItem
+        widthType === "normal" ? (
+          <ToBePlayedEventItem
+            event={event}
+            favouriteBtn={favouriteBtn}
+            lastChild={lastChild}
+          />
+        ) : (
+          <Box></Box>
+        )
+      ) : widthType === "normal" ? (
+        <FinishedEventItem
           event={event}
           favouriteBtn={favouriteBtn}
           lastChild={lastChild}
         />
       ) : (
-        <FinishedEventItem
+        <SmallFinishedEventItem
           event={event}
           favouriteBtn={favouriteBtn}
           lastChild={lastChild}
