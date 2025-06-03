@@ -7,15 +7,14 @@ const getSWRKey = (
   teamId: number | string | null | undefined
 ): [string, string] | null => {
   if (!teamId || (typeof teamId === "string" && isNaN(parseInt(teamId, 10)))) {
+    console.log("Vraceno null");
     return null;
   }
 
-  return [`/teamImage`, String(teamId)];
+  return [`/team/image`, String(teamId)];
 };
 
-const teamImageFetcher = async (
-  keyParts: [string, string]
-): Promise<string | null> => {
+const fetcher = async (keyParts: [string, string]): Promise<string | null> => {
   const [, teamId] = keyParts;
   const eventIdNum = parseInt(teamId, 10);
   return getTeamImageWithTeamId(eventIdNum);
@@ -28,7 +27,7 @@ export function useTeamImage(eventId: number | string | null | undefined) {
     isLoading,
     isValidating,
     mutate,
-  } = useSWR(getSWRKey(eventId), teamImageFetcher);
+  } = useSWR(getSWRKey(eventId), fetcher);
 
   return {
     teamImage,

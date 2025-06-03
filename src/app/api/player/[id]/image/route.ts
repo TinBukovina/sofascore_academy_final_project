@@ -5,12 +5,12 @@ export async function GET(
   context: { params: Promise<{ id: string }> }
 ) {
   const resolvedParams = await context.params;
-  const teamId = resolvedParams.id;
+  const playerId = resolvedParams.id;
 
-  if (!teamId) {
+  if (!playerId) {
     return NextResponse.json(
       {
-        error: "Team ID is required",
+        error: "Player ID is required",
       },
       { status: 400 }
     );
@@ -18,13 +18,28 @@ export async function GET(
 
   try {
     const response = await fetch(
-      `https://academy-backend.sofascore.dev/team/${teamId}/image`
+      `https://academy-backend.sofascore.dev/player/${playerId}/image`
     );
 
+    if (response.status === 404) {
+      return new NextResponse(null, {
+        status: 404,
+      });
+    }
+
     if (!response.ok) {
-      const errorData = await response.json().catch(() => ({}));
-      throw new Error(
-        `Error fetching team image with ID: ${teamId}.\n` + errorData.message
+      let errorDetails = `Upstream status: ${response.status}`;
+      try {
+        // Pokušajte pročitati tijelo odgovora za više detalja o grešci
+        const errorText = await response.text();
+        errorDetails += `, Body: ${errorText.substring(0, 200)}`; // Ograničite duljinu
+      } catch (e) {
+        console.log(e);
+      }
+
+      return new NextResponse(
+        `Failed to fetch image from upstream: ${errorDetails}`,
+        { status: 502 }
       );
     }
 
@@ -54,7 +69,10 @@ export async function GET(
       error instanceof Error ? error.message : "Internal server error";
 
     return NextResponse.json(
-      { error: "Failed to fetch team image via proxy", details: errorMessage },
+      {
+        error: "Failed to fetch player image via proxy",
+        details: errorMessage,
+      },
       { status: 500 }
     );
   }

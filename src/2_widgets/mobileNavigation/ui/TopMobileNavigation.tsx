@@ -11,7 +11,6 @@ import {
 } from "@/5_shared/lib/svgPaths";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
-import { getActiveLinkFromUrl } from "@/5_shared/lib/utils";
 import { css } from "../../../../styled-system/css";
 
 const activeLinkStyles = {
@@ -30,8 +29,6 @@ export function TopMobileNavigation() {
   if (!pathname) {
     throw new Error("There is no pathname.");
   }
-
-  const activeNavLink = getActiveLinkFromUrl(pathname);
 
   return (
     <Flex
@@ -61,7 +58,7 @@ export function TopMobileNavigation() {
             padding: "0.25rem 0.5rem",
           }}
           className={css(
-            activeNavLink === "football"
+            pathname.includes("football")
               ? activeLinkStyles
               : { borderColor: "white" }
           )}
@@ -81,7 +78,7 @@ export function TopMobileNavigation() {
             padding: "0.25rem 0.5rem",
           }}
           className={css(
-            activeNavLink === "basketball"
+            pathname.includes("basketball")
               ? activeLinkStyles
               : { borderColor: "white" }
           )}
@@ -101,7 +98,7 @@ export function TopMobileNavigation() {
             padding: "0.25rem 0.5rem",
           }}
           className={css(
-            activeNavLink === "rugby"
+            pathname.includes("rugby")
               ? activeLinkStyles
               : { borderColor: "white" }
           )}

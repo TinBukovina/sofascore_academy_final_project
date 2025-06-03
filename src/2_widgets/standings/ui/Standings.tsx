@@ -49,7 +49,7 @@ export function Standings({
         overflow={"hidden"}
         style={styles}
       >
-        <LoadingPage />;
+        <LoadingPage />
       </Flex>
     );
 

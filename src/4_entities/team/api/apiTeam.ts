@@ -1,6 +1,7 @@
 import { TournamentInterface } from "@/4_entities/tournament";
 import { TeamInterface } from "../types";
 import { EventInterface } from "@/4_entities/event";
+import { PlayerInterface } from "@/4_entities/player";
 
 export const getTeamImageWithTeamId = async (
   teamId: number
@@ -68,9 +69,6 @@ export const getTeamEvents = async (
     newPage = page * -1;
   } else newPage = page;
 
-  console.log(
-    `/api/team/${teamId}/events/${isNegative ? "next" : "last"}/${newPage}`
-  );
   const response = await fetch(
     `/api/team/${teamId}/events/${isNegative ? "next" : "last"}/${newPage}`
   );
@@ -78,6 +76,24 @@ export const getTeamEvents = async (
   if (!response.ok) {
     throw new Error(
       `There was a error catching team events with team id: ${teamId}, and page: ${page}`
+    );
+  }
+
+  return response.json();
+};
+
+export const getTeamPlayers = async (
+  teamId: number
+): Promise<PlayerInterface[]> => {
+  if (!teamId) {
+    throw new Error(`Passed team ID is invalid: ${teamId}`);
+  }
+
+  const response = await fetch(`/api/team/${teamId}/players`);
+
+  if (!response.ok) {
+    throw new Error(
+      `There was a error catching team players with team id: ${teamId}`
     );
   }
 

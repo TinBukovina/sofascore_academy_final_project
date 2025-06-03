@@ -10,7 +10,7 @@ interface MatchesEventsProps {
 
 export function MatchesEvents({ events, windowType }: MatchesEventsProps) {
   return (
-    <Box>
+    <Box w={"100%"}>
       {events.map((event: EventInterface, i) => (
         <EventItem
           favouriteBtn={<FavouriteToggleBtn whatToAdd="event" item={event} />}

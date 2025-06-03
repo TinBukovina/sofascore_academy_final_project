@@ -10,6 +10,7 @@ import { Standings } from "@/2_widgets/standings";
 import { useTeamTournaments } from "@/4_entities/team/hooks/useTeamTorunaments";
 import { useWindowWidth } from "@/5_shared/lib/hooks/useWindowWidth";
 import { ChangeEventsRow, Matches, MatchesEvents } from "@/2_widgets/matches";
+import { Players } from "@/2_widgets/players";
 
 interface PageProps {
   params: Promise<{ id: number }>;
@@ -95,13 +96,19 @@ export default function Page({ params }: PageProps) {
       </Flex>
       {/*CONTENT*/}
       <Flex direction={windowWidth < 1050 ? "column" : "row"} gap={"1rem"}>
-        <Box flex={windowWidth < 1050 ? "unset" : "7"} h={"fit-content"}>
+        <Flex
+          flex={windowWidth < 1050 ? "usnet" : "7"}
+          direction={"column"}
+          gap={"1rem"}
+          h={"fit-content"}
+        >
           <Standings
             tournament={tournament}
             homeTeamId={team.id}
             disableHeroLink={true}
           />
-        </Box>
+          <Players teamId={team.id} />
+        </Flex>
 
         <Matches tournament={tournament} styles={{ flex: "4" }}>
           <ChangeEventsRow
@@ -118,17 +125,6 @@ export default function Page({ params }: PageProps) {
             windowType={windowWidth < 1050 ? "normal" : "small"}
           />
         </Matches>
-        {/* <Matches
-          tournament={tournament}
-          teamId={team.id}
-          fetchedPage={fetchedPage}
-          handleLeftBtnClick={() => {
-            setFetchedPage((prev) => prev + 1);
-          }}
-          handleRightBtnClick={() => {
-            setFetchedPage((prev) => prev - 1);
-          }}
-        /> */}
       </Flex>
     </Flex>
   );

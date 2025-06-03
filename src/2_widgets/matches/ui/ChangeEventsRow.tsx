@@ -23,6 +23,7 @@ export function ChangeEventsRow({
       alignItems={"center"}
       p={"0.75rem 1rem"}
       pt={"0"}
+      w={"100%"}
       borderBottom={"1px solid transparent"}
       borderColor={"primaryClr"}
       fontSize={"ms"}

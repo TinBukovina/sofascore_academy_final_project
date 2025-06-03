@@ -1,38 +1,38 @@
 "use client";
 
 import useSWR from "swr";
-import { getTeamTournaments } from "../api/apiTeam";
-import { TournamentInterface } from "@/4_entities/tournament";
+import { getTeamPlayers } from "../api/apiTeam";
+import { PlayerInterface } from "@/4_entities/player";
 
 const getSWRKey = (
   teamId: number | string | null | undefined
 ): [string, string] | null => {
   if (!teamId || (typeof teamId === "string" && isNaN(parseInt(teamId, 10)))) {
-    console.log("Vraceno null");
+    console.log("Vraceno null", teamId);
     return null;
   }
-  return [`/team/tournaments`, String(teamId)];
+  return [`/team/players`, String(teamId)];
 };
 
 const fetcher = async (
   keyParts: [string, string]
-): Promise<TournamentInterface[]> => {
+): Promise<PlayerInterface[]> => {
   const [, teamIdStr] = keyParts;
   const teamId = parseInt(teamIdStr, 10);
-  return getTeamTournaments(teamId);
+  return getTeamPlayers(teamId);
 };
 
-export function useTeamTournaments(teamId: number | string | null | undefined) {
+export function useTeamPlayers(teamId: number | string | null | undefined) {
   const {
-    data: teamTournaments,
+    data: teamPlayers,
     error,
     isLoading,
     isValidating,
     mutate,
-  } = useSWR<TournamentInterface[]>(getSWRKey(teamId), fetcher);
+  } = useSWR<PlayerInterface[]>(getSWRKey(teamId), fetcher);
 
   return {
-    teamTournaments,
+    teamPlayers,
     isLoading,
     isError: !!error,
     error,

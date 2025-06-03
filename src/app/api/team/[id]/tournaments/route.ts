@@ -24,7 +24,7 @@ export async function GET(
     if (!response.ok) {
       const errorData = await response.json().catch(() => ({}));
       throw new Error(
-        `Error fetching team with id: ${teamId} from external API` +
+        `Error fetching team tournaments with team id: ${teamId} from external API` +
           errorData.message
       );
     }
