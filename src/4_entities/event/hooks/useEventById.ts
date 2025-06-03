@@ -16,7 +16,7 @@ const getSWRKey = (
   return [`/event`, String(eventId)];
 };
 
-const eventFetcher = async (
+const fetcher = async (
   keyParts: [string, string]
 ): Promise<EventInterface | null> => {
   const [, eventIdStr] = keyParts;
@@ -31,7 +31,7 @@ export function useEventById(eventId: number | string | null | undefined) {
     isLoading,
     isValidating,
     mutate,
-  } = useSWR<EventInterface | null>(getSWRKey(eventId), eventFetcher);
+  } = useSWR<EventInterface | null>(getSWRKey(eventId), fetcher);
 
   return {
     event,

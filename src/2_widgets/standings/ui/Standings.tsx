@@ -9,13 +9,14 @@ import {
 } from "@/4_entities/tournament";
 import { StandingsRow } from "./StandingsRow";
 import { useLastNTournamentEvents } from "@/4_entities/tournament/hooks/useLastNTournamentEvents";
-import SpinnerLoader from "@/app/Loader";
 import { useRouter } from "next/navigation";
+import LoadingPage from "@/app/_ui/LoadingPage";
 interface StandingsProps {
   tournament: TournamentInterface;
   homeTeamId?: number;
   awayTeamId?: number;
   disableHeroLink?: boolean;
+  styles?: React.CSSProperties;
 }
 
 export function Standings({
@@ -23,6 +24,7 @@ export function Standings({
   homeTeamId,
   awayTeamId,
   disableHeroLink = false,
+  styles,
 }: StandingsProps) {
   const router = useRouter();
 
@@ -39,17 +41,15 @@ export function Standings({
   if (isLoading || isLoadingEvent)
     return (
       <Flex
-        justifyContent={"center"}
-        alignItems={"center"}
-        gap={"3rem"}
-        w={"100%"}
-        minH={"220px"}
         direction={"column"}
-        color={"text.normal"}
+        w={"100%"}
+        border={"1px solid transparent"}
+        borderColor={"border"}
+        borderRadius={"md"}
+        overflow={"hidden"}
+        style={styles}
       >
-        {" "}
-        <SpinnerLoader />
-        <p>Učitavanje početnih događaja...</p>
+        <LoadingPage />;
       </Flex>
     );
 
@@ -85,6 +85,7 @@ export function Standings({
       borderColor={"border"}
       borderRadius={"md"}
       overflow={"hidden"}
+      style={styles}
     >
       <Box
         p={"1rem 1rem 0.5rem 1rem"}

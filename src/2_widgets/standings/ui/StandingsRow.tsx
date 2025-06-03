@@ -6,6 +6,7 @@ import React from "react";
 import { Box, Flex } from "../../../../styled-system/jsx";
 import Image from "next/image";
 import { MatchBox } from "./MatchBox";
+import { useRouter } from "next/navigation";
 
 interface StandingsRowInterface {
   standingRowData: StandingRowInterface;
@@ -20,6 +21,8 @@ export function StandingsRow({
   status,
   pastMatches,
 }: StandingsRowInterface) {
+  const router = useRouter();
+
   const team = standingRowData.team;
 
   const performances: ("W" | "L" | "D")[] = [];
@@ -51,6 +54,13 @@ export function StandingsRow({
       w={"100%"}
       bg={"surface.s1"}
       fontSize={"sm"}
+      _hover={{
+        bg: "surface.s0",
+        cursor: "pointer",
+      }}
+      onClick={() => {
+        router.push(`/home/football/team/${team.id}`);
+      }}
     >
       <Flex alignItems={"center"} gap={"1rem"}>
         <Flex
