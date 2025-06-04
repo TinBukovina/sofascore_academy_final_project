@@ -1,1 +1,1 @@
-export { TournomentMatches } from "./ui/TournomentMatches";
+export { TournamentMatches } from "./ui/TournamentMatches";

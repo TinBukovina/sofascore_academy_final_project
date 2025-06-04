@@ -105,7 +105,7 @@ export default function Page({ params }: PageProps) {
           <Standings
             tournament={tournament}
             homeTeamId={team.id}
-            disableHeroLink={true}
+            disableHeroLink={false}
           />
           <Players teamId={team.id} />
         </Flex>
@@ -117,7 +117,7 @@ export default function Page({ params }: PageProps) {
               setFetchedPage((prev) => prev + 1);
             }}
             handleRightBtnClick={() => {
-              setFetchedPage((prev) => prev + 1);
+              setFetchedPage((prev) => prev - 1);
             }}
           />
           <MatchesEvents

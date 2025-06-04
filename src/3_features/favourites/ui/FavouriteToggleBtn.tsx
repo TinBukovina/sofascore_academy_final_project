@@ -78,7 +78,8 @@ export function FavouriteToggleBtn({
       style={{ ...styles }}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
-      onClick={() => {
+      onClick={(e) => {
+        e.stopPropagation();
         if (whatToAdd === "event") {
           if (isAlreadyFavourite) {
             removeEventFromFavourites(item.id);

@@ -8,6 +8,7 @@ import {
 import { FavouritesProvider } from "@/3_features/favourites/context/FavouritesProvider";
 import { Box, Flex } from "../../../styled-system/jsx";
 import Image from "next/image";
+import { SettingsProvider } from "@/3_features/settings/context/SettingsProvider";
 
 export default function ClientLayoutWrapper({
   children,
@@ -26,29 +27,32 @@ export default function ClientLayoutWrapper({
         bg: "surface.s0",
       })}
     >
-      <FavouritesProvider>
-        <Navigation />
-        <TopMobileNavigation />
-        <Flex
-          direction={"column"}
-          p={"16px"}
-          pt={"34px"}
-          gap={"32px"}
-          overflow={"auto"}
-          scrollbarWidth={"none"}
-        >
-          <Box display={{ base: "none", md: "flex" }}>
-            <Image
-              src={"/images/sofascore_logo_small.png"}
-              width={160}
-              height={26}
-              alt="Sofascore logo"
-            />
-          </Box>
-          {children}
-        </Flex>
-        <BottomMobileNavigation />
-      </FavouritesProvider>
+      <SettingsProvider>
+        <FavouritesProvider>
+          <Navigation />
+          <TopMobileNavigation />
+          <Flex
+            direction={"column"}
+            p={"16px"}
+            pt={"34px"}
+            gap={"32px"}
+            overflow={"auto"}
+            scrollbarWidth={"none"}
+          >
+            <Box display={{ base: "none", md: "flex" }}>
+              <Image
+                src={"/images/sofascore_logo_small.png"}
+                width={160}
+                height={26}
+                alt="Sofascore logo"
+                priority={true}
+              />
+            </Box>
+            {children}
+          </Flex>
+          <BottomMobileNavigation />
+        </FavouritesProvider>
+      </SettingsProvider>
     </body>
   );
 }

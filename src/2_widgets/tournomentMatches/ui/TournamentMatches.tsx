@@ -16,14 +16,13 @@ interface EventListProps {
   setSelectedEvent?: (event: EventInterface) => void;
 }
 
-export function TournomentMatches({
+export function TournamentMatches({
   tournament,
   events,
   lastChild = false,
   handleOnClick,
   setSelectedEvent,
 }: EventListProps) {
-  console.log(events);
   const filteredEvents = events.filter(
     (el) => el.tournament.id === tournament.id
   );

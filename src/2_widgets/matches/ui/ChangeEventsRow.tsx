@@ -38,6 +38,7 @@ export function ChangeEventsRow({
         <Box>{text}</Box>
       </Flex>
       <Box
+        visibility={text === "Finished" ? "hidden" : "unset"}
         _hover={{ fill: "primaryClr", cursor: "pointer" }}
         onClick={handleRightBtnClick}
       >

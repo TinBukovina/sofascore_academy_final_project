@@ -26,7 +26,7 @@ export function EventPopup({ event, colsePopup }: EventPopupProps) {
   return (
     <Flex
       display={{ base: "none", md: "flex" }}
-      position={"absolute"}
+      position={"fixed"}
       right={"0"}
       bottom={"0"}
       direction={"column"}

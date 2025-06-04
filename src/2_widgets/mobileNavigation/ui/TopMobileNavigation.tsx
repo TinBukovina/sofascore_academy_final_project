@@ -113,6 +113,7 @@ export function TopMobileNavigation() {
         width={48}
         height={48}
         alt="Logo image"
+        priority={true}
       />
     </Flex>
   );

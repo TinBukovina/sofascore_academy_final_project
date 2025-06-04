@@ -9,7 +9,6 @@ interface PlayersProps {
 }
 
 export function Players({ teamId }: PlayersProps) {
-  console.log("PLAYERS: " + teamId);
   const { teamPlayers, isLoading, isError, error } = useTeamPlayers(teamId);
 
   if (isLoading) return <LoadingPage />;
@@ -53,7 +52,9 @@ export function Players({ teamId }: PlayersProps) {
             {teamPlayers
               .filter((player) => player.position === "C")
               .map((player) => (
-                <PlayerCard key={player.id} player={player} />
+                <Box key={player.id}>
+                  <PlayerCard key={player.id} player={player} />
+                </Box>
               ))}
           </Flex>
         </Flex>
@@ -72,7 +73,9 @@ export function Players({ teamId }: PlayersProps) {
             {teamPlayers
               .filter((player) => player.position === "F")
               .map((player) => (
-                <PlayerCard key={player.id} player={player} />
+                <Box key={player.id}>
+                  <PlayerCard key={player.id} player={player} />
+                </Box>
               ))}
           </Flex>
         </Flex>
@@ -91,7 +94,9 @@ export function Players({ teamId }: PlayersProps) {
             {teamPlayers
               .filter((player) => player.position === "M")
               .map((player) => (
-                <PlayerCard key={player.id} player={player} />
+                <Box key={player.id}>
+                  <PlayerCard key={player.id} player={player} />
+                </Box>
               ))}
           </Flex>
         </Flex>
@@ -110,7 +115,9 @@ export function Players({ teamId }: PlayersProps) {
             {teamPlayers
               .filter((player) => player.position === "D")
               .map((player) => (
-                <PlayerCard key={player.id} player={player} />
+                <Box key={player.id}>
+                  <PlayerCard player={player} />
+                </Box>
               ))}
           </Flex>
         </Flex>
@@ -129,7 +136,9 @@ export function Players({ teamId }: PlayersProps) {
             {teamPlayers
               .filter((player) => player.position === "G")
               .map((player) => (
-                <PlayerCard key={player.id} player={player} />
+                <Box key={player.id}>
+                  <PlayerCard key={player.id} player={player} />
+                </Box>
               ))}
           </Flex>
         </Flex>

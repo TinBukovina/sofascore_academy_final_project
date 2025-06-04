@@ -4,7 +4,12 @@ import Link from "next/link";
 
 export function SomethingWentWrong() {
   return (
-    <Flex direction={"column"} gap={"1rem"}>
+    <Flex
+      direction={"column"}
+      gap={"1rem"}
+      color={"text.normal"}
+      fill={"text.normal"}
+    >
       <Box>
         <p>Something went wrong</p>
         <p>Try again</p>

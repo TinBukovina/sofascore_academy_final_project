@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { Box, Flex } from "../../../../styled-system/jsx";
 import {
   basketball300SvgInfo,
@@ -15,7 +15,7 @@ import NavigationLink from "./NavigationLink";
 import { NavigationIconBtn } from "../../../5_shared";
 import NavigationResizeBtn from "./NavigationResizeBtn";
 import { usePathname, useRouter } from "next/navigation";
-import { getActiveLinkFromUrl } from "@/5_shared/lib/utils";
+import { useSettings } from "@/3_features/settings";
 
 export type ActiveLinksType =
   | "football"
@@ -29,9 +29,8 @@ export function Navigation() {
   const router = useRouter();
   const pathname = usePathname();
 
-  const [activeNavLink, setActiveNavLink] = useState<ActiveLinksType>(
-    pathname?.split("/")[pathname.split("/").length - 1] as ActiveLinksType
-  );
+  const { areOptionsDisplayed, setAreOptionsDisplayed } = useSettings();
+
   const [navigationWidthState, setNavigationWidthState] = useState<
     "normal" | "compact"
   >("normal");
@@ -44,12 +43,6 @@ export function Navigation() {
   const bookmarkSvgInfo = bookmark400SvgInfo();
   const bookmarkFillSvgInfo = bookmarkFill300SvgInfo();
   const settingsSvgInfo = settings300SvgInfo();
-
-  useEffect(() => {
-    if (!pathname) return;
-
-    setActiveNavLink(getActiveLinkFromUrl(pathname));
-  }, [pathname]);
 
   const isCompact = navigationWidthState === "compact";
 
@@ -85,9 +78,7 @@ export function Navigation() {
           <NavigationIconBtn
             isActive={pathname?.includes("search")}
             svgInfo={searchSvgInfo}
-            handleOnClick={() => {
-              setActiveNavLink("search");
-            }}
+            handleOnClick={() => {}}
           />
         ) : (
           <Box></Box>
@@ -99,11 +90,9 @@ export function Navigation() {
         {isCompact ? (
           <NavigationLink
             isCompact={isCompact}
-            isActive={pathname?.includes("search")}
+            isActive={!areOptionsDisplayed && pathname?.includes("search")}
             svgInfo={searchSvgInfo}
-            handleOnClick={() => {
-              setActiveNavLink("search");
-            }}
+            handleOnClick={() => {}}
           >
             Search
           </NavigationLink>
@@ -113,14 +102,13 @@ export function Navigation() {
 
         <NavigationLink
           isCompact={isCompact}
-          isActive={pathname?.includes("favourites")}
+          isActive={!areOptionsDisplayed && pathname?.includes("favourites")}
           svgInfo={
-            activeNavLink === "favourites"
+            !areOptionsDisplayed && pathname?.includes("favourites")
               ? bookmarkFillSvgInfo
               : bookmarkSvgInfo
           }
           handleOnClick={() => {
-            setActiveNavLink("favourites");
             router.push("/favourites");
           }}
         >
@@ -128,11 +116,10 @@ export function Navigation() {
         </NavigationLink>
         <NavigationLink
           isCompact={isCompact}
-          isActive={pathname?.includes("settings")}
+          isActive={areOptionsDisplayed || pathname?.includes("settings")}
           svgInfo={settingsSvgInfo}
           handleOnClick={() => {
-            setActiveNavLink("settings");
-            router.push("/settings");
+            if (!pathname?.includes("settings")) setAreOptionsDisplayed(true);
           }}
         >
           Settings
@@ -150,10 +137,9 @@ export function Navigation() {
         )}
         <NavigationLink
           isCompact={isCompact}
-          isActive={pathname?.includes("football")}
+          isActive={!areOptionsDisplayed && pathname?.includes("football")}
           svgInfo={footballSvgInfo}
           handleOnClick={() => {
-            setActiveNavLink("football");
             router.push("/home/football");
           }}
         >
@@ -161,10 +147,9 @@ export function Navigation() {
         </NavigationLink>
         <NavigationLink
           isCompact={isCompact}
-          isActive={pathname?.includes("basketball")}
+          isActive={!areOptionsDisplayed && pathname?.includes("basketball")}
           svgInfo={basketballSvgInfo}
           handleOnClick={() => {
-            setActiveNavLink("basketball");
             router.push("/home/basketball");
           }}
         >
@@ -172,10 +157,9 @@ export function Navigation() {
         </NavigationLink>
         <NavigationLink
           isCompact={isCompact}
-          isActive={pathname?.includes("rugby")}
+          isActive={!areOptionsDisplayed && pathname?.includes("rugby")}
           svgInfo={rugbySvgInfo}
           handleOnClick={() => {
-            setActiveNavLink("rugby");
             router.push("/home/rugby");
           }}
         >

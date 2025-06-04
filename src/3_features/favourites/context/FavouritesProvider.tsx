@@ -1,13 +1,21 @@
 "use client";
 
-import { EventInterface, TournomentInterface } from "@/4_entities/event";
+import { EventInterface } from "@/4_entities/event";
 import { PlayerInterface } from "@/4_entities/player";
 import { TeamInterface } from "@/4_entities/team";
 import { ReactNode, useCallback, useEffect, useState } from "react";
 import { FavouritesContext } from "./FavouritesContext";
+import { TournamentInterface } from "@/4_entities/tournament";
 
 interface FavouritesProviderProps {
   children: ReactNode;
+}
+
+interface LoaclStorageObject {
+  events: EventInterface[];
+  teams: TeamInterface[];
+  tournaments: TournamentInterface[];
+  players: PlayerInterface[];
 }
 
 const LOCAL_STORAGE_KEY = "sofascore_favourites";
@@ -17,8 +25,8 @@ export const FavouritesProvider: React.FC<FavouritesProviderProps> = ({
 }) => {
   const [favouriteEvents, setFavouriteEvents] = useState<EventInterface[]>([]);
   const [favouriteTeams, setFavouriteTeams] = useState<TeamInterface[]>([]);
-  const [favouriteTournoments, setFavouriteTournoments] = useState<
-    TournomentInterface[]
+  const [favouriteTournaments, setFavouriteTournaments] = useState<
+    TournamentInterface[]
   >([]);
   const [favouritePlayers, setFavouritePlayers] = useState<PlayerInterface[]>(
     []
@@ -27,17 +35,42 @@ export const FavouritesProvider: React.FC<FavouritesProviderProps> = ({
   useEffect(() => {
     const savedFavouritesString = localStorage.getItem(LOCAL_STORAGE_KEY);
 
-    if (!savedFavouritesString) {
-      console.log("There no saved favourite items in local storage.");
-      return;
+    if (savedFavouritesString) {
+      try {
+        const savedFavourites = JSON.parse(
+          savedFavouritesString
+        ) as Partial<LoaclStorageObject>;
+
+        setFavouriteEvents(
+          Array.isArray(savedFavourites.events) ? savedFavourites.events : []
+        );
+        setFavouriteTeams(
+          Array.isArray(savedFavourites.teams) ? savedFavourites.teams : []
+        );
+        setFavouriteTournaments(
+          Array.isArray(savedFavourites.tournaments)
+            ? savedFavourites.tournaments
+            : []
+        );
+        setFavouritePlayers(
+          Array.isArray(savedFavourites.players) ? savedFavourites.players : []
+        );
+      } catch (error) {
+        console.error("Failed to parse favourites from localStorage:", error);
+        setFavouriteEvents([]);
+        setFavouriteTeams([]);
+        setFavouriteTournaments([]);
+        setFavouritePlayers([]);
+      }
+    } else {
+      console.log(
+        "No saved favourite items in local storage. Initializing with empty arrays."
+      );
+      setFavouriteEvents([]);
+      setFavouriteTeams([]);
+      setFavouriteTournaments([]);
+      setFavouritePlayers([]);
     }
-
-    const savedFavourites = JSON.parse(savedFavouritesString);
-
-    setFavouriteEvents(savedFavourites.events);
-    setFavouriteTeams(savedFavourites.teams);
-    setFavouriteTournoments(savedFavourites.tournoments);
-    setFavouritePlayers(savedFavourites.players);
   }, []);
 
   useEffect(() => {
@@ -46,11 +79,11 @@ export const FavouritesProvider: React.FC<FavouritesProviderProps> = ({
       JSON.stringify({
         events: favouriteEvents,
         teams: favouriteTeams,
-        tournoments: favouriteTournoments,
+        tournaments: favouriteTournaments,
         players: favouritePlayers,
       })
     );
-  }, [favouriteEvents, favouriteTeams, favouriteTournoments, favouritePlayers]);
+  }, [favouriteEvents, favouriteTeams, favouriteTournaments, favouritePlayers]);
 
   const addEventToFavourites = useCallback((event: EventInterface) => {
     setFavouriteEvents((prev) => [...prev, event]);
@@ -71,15 +104,15 @@ export const FavouritesProvider: React.FC<FavouritesProviderProps> = ({
   }, []);
 
   const addTournomentToFavourites = useCallback(
-    (tournoment: TournomentInterface) => {
-      setFavouriteTournoments((prev) => [...prev, tournoment]);
+    (tournament: TournamentInterface) => {
+      setFavouriteTournaments((prev) => [...prev, tournament]);
     },
     []
   );
 
   const removeTournomentFromFavourites = useCallback(
     (tournomentIdToRemove: number) => {
-      setFavouriteTournoments((prev) =>
+      setFavouriteTournaments((prev) =>
         prev.filter((el) => el.id !== tournomentIdToRemove)
       );
     },
@@ -98,25 +131,25 @@ export const FavouritesProvider: React.FC<FavouritesProviderProps> = ({
 
   const isEventAlreadyFavourite = useCallback(
     (eventId: number): boolean => {
-      return favouriteEvents.some((el) => el.id === eventId);
+      return favouriteEvents?.some((el) => el.id === eventId);
     },
     [favouriteEvents]
   );
   const isTeamAlreadyFavourite = useCallback(
     (teamtId: number): boolean => {
-      return favouriteTeams.some((el) => el.id === teamtId);
+      return favouriteTeams?.some((el) => el.id === teamtId);
     },
     [favouriteTeams]
   );
   const isTournomentAlreadyFavourite = useCallback(
     (tournomentId: number): boolean => {
-      return favouriteTournoments.some((el) => el.id === tournomentId);
+      return favouriteTournaments?.some((el) => el.id === tournomentId);
     },
-    [favouriteTournoments]
+    [favouriteTournaments]
   );
   const isPlayerAlreadyFavourite = useCallback(
     (playerId: number): boolean => {
-      return favouritePlayers.some((el) => el.id === playerId);
+      return favouritePlayers?.some((el) => el.id === playerId);
     },
     [favouritePlayers]
   );
@@ -126,7 +159,7 @@ export const FavouritesProvider: React.FC<FavouritesProviderProps> = ({
       value={{
         favouriteEvents,
         favouriteTeams,
-        favouriteTournoments,
+        favouriteTournaments,
         favouritePlayers,
         addEventToFavourites,
         addTeamToFavourites,

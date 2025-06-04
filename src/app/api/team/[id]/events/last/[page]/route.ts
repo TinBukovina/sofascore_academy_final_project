@@ -17,7 +17,6 @@ export async function GET(
     );
   }
 
-  console.log(teamId);
   try {
     const response = await fetch(
       `https://academy-backend.sofascore.dev/team/${teamId}/events/last/${dataPage}`

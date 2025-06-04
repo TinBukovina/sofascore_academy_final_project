@@ -1,6 +1,5 @@
 "use client";
 
-import { TournomentMatches } from "@/2_widgets/tournomentMatches";
 import { Box, Flex } from "../../../../styled-system/jsx";
 import { useEventsFromSportAndDate } from "@/4_entities/event/hooks/useEventsFromSportAndDate";
 import { SomethingWentWrong } from "@/5_shared";
@@ -13,6 +12,8 @@ import { css } from "../../../../styled-system/css";
 import { EventPopup } from "@/2_widgets/eventPopup";
 import { EventInterface } from "@/4_entities/event";
 import LoadingPage from "@/app/_ui/LoadingPage";
+import { SettingsWindow, useSettings } from "@/3_features/settings";
+import { TournamentMatches } from "@/2_widgets/tournomentMatches";
 
 export default function Page() {
   const [currentDate, setCurrentDate] = useState<string>("2024-01-20");
@@ -21,6 +22,7 @@ export default function Page() {
   const [popupEvent, setPopupEvent] = useState<EventInterface | null>(null);
 
   const { favouriteEvents } = useFavourites();
+  const { areOptionsDisplayed, setAreOptionsDisplayed } = useSettings();
 
   const { events, isLoading, isError, error } = useEventsFromSportAndDate(
     "football",
@@ -127,10 +129,17 @@ export default function Page() {
 
   return (
     <Flex
-      color={"text.normal"}
-      overflow={"auto"}
       gap={"1rem"}
       p={"0"}
+      border={"1px solid transparent"}
+      color={"text.normal"}
+      overflow={"auto"}
+      _focus={{
+        outline: "none",
+        border: "1px solid transparent",
+        borderColor: "primaryClr",
+        borderRadius: "md",
+      }}
       className={css({
         "&::-webkit-scrollbar": {
           width: "0px",
@@ -153,7 +162,7 @@ export default function Page() {
         setActiveWindow={setActiveWindow}
       >
         {tournaments.map((tournament, i) => (
-          <TournomentMatches
+          <TournamentMatches
             key={tournament.id}
             tournament={tournament}
             events={filteredEvents}
@@ -178,6 +187,12 @@ export default function Page() {
       ) : (
         <Box display={"none"} />
       )}
+      <SettingsWindow
+        isOpen={areOptionsDisplayed}
+        onClose={() => {
+          setAreOptionsDisplayed(false);
+        }}
+      />
     </Flex>
   );
 }

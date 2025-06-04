@@ -1,4 +1,5 @@
 import { CountryInterface } from "../event";
+import { TeamInterface } from "../team";
 
 export interface PlayerInterface {
   id: number;
@@ -6,4 +7,5 @@ export interface PlayerInterface {
   name: string;
   position: string;
   slug: string;
+  team: TeamInterface;
 }

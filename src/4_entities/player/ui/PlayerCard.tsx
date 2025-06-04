@@ -3,12 +3,16 @@ import { PlayerInterface } from "../types";
 import { Box, Flex } from "../../../../styled-system/jsx";
 import Image from "next/image";
 import { getCountryISO2 } from "../lib/utils";
+import { useRouter } from "next/navigation";
+import { FavouriteToggleBtn } from "@/3_features/favourites/ui/FavouriteToggleBtn";
 
 interface PlayerCardProps {
   player: PlayerInterface;
 }
 
 export function PlayerCard({ player }: PlayerCardProps) {
+  const router = useRouter();
+
   const inistialPlayerSrc = `/api/player/${player.id}/image`;
   const fallbackAvatarSrc = `/images/avatar.png`;
 
@@ -36,11 +40,20 @@ export function PlayerCard({ player }: PlayerCardProps) {
       alignItems={"center"}
       w={"155px"}
       h={"fit-content"}
+      bg={"surface.s0"}
       border={"2px solid transparent"}
       borderColor={"border"}
       borderRadius={"md"}
       overflow={"hidden"}
+      _hover={{
+        bg: "surface.s1",
+        cursor: "pointer",
+      }}
+      onClick={() => {
+        router.push(`/home/football/player/${player.id}`);
+      }}
     >
+      {/*TOP PART*/}
       <Flex
         position={"relative"}
         direction={"column"}
@@ -50,7 +63,7 @@ export function PlayerCard({ player }: PlayerCardProps) {
         p={"0.5rem 1rem"}
         w={"100%"}
         h={"150px"}
-        bg={"surface.s0"}
+        bg={"transparent"}
       >
         <Box position={"relative"}>
           <Box
@@ -93,10 +106,15 @@ export function PlayerCard({ player }: PlayerCardProps) {
           </Flex>
         </Box>
 
+        <Box position={"absolute"} top={"0.75rem"} right={"0.5rem"}>
+          <FavouriteToggleBtn whatToAdd="player" item={player} />
+        </Box>
+
         <Box textAlign={"center"} fontSize={"sm"}>
           {player.name}
         </Box>
       </Flex>
+      {/*BOTTOM PART*/}
       <Flex
         p={"0.5rem 0.75rem"}
         w={"100%"}
@@ -105,6 +123,7 @@ export function PlayerCard({ player }: PlayerCardProps) {
         borderColor={"primaryClr"}
         justifyContent={"space-between"}
       >
+        {/*PLAYER POSITION*/}
         <Flex
           justifyContent={"center"}
           alignItems={"center"}
@@ -117,6 +136,7 @@ export function PlayerCard({ player }: PlayerCardProps) {
         >
           {player.position}
         </Flex>
+        {/*PLAYER COUNTRY*/}
         <Flex alignItems={"center"} gap={"0.5rem"}>
           <Box
             position={"relative"}

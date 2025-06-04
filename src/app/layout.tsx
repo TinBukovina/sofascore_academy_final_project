@@ -15,7 +15,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="dark">
-      <ClientLayoutWrapper>{children}</ClientLayoutWrapper>
+      <ClientLayoutWrapper>
+        {children}
+        <div id="portal-root"></div>
+      </ClientLayoutWrapper>
     </html>
   );
 }

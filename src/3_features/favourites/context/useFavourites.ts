@@ -6,7 +6,7 @@ export const useFavourites = (): FavouritesContextType => {
   const context = useContext(FavouritesContext);
 
   if (!context) {
-    throw new Error("useFavourites must be used within a Favourites");
+    throw new Error("useFavourites must be used within a Favourites provider");
   }
 
   return context;
