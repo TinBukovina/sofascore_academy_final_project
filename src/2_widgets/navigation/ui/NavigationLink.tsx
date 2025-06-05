@@ -1,7 +1,8 @@
-import { SvgReturnType } from "@/5_shared/lib/svgPaths";
-import Icon from "@/5_shared/ui/Icon";
 import React, { ReactNode } from "react";
-import { Flex } from "../../../../styled-system/jsx";
+import { Flex } from "@styled-system/jsx";
+
+import { SvgReturnType } from "@/5_shared/lib/svgPaths";
+import { Icon } from "@/5_shared";
 
 interface NavigationLinkProps {
   children: ReactNode;

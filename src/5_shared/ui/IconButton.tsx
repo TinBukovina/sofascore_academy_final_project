@@ -1,7 +1,7 @@
 import { SvgReturnType } from "@/5_shared/lib/svgPaths";
 import React from "react";
 import { Flex } from "../../../styled-system/jsx";
-import Icon from "./Icon";
+import { Icon } from "./Icon";
 
 interface NavigationIconBtnProps {
   svgInfo: SvgReturnType;

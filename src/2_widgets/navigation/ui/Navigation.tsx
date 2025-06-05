@@ -1,7 +1,9 @@
 "use client";
 
 import React, { useState } from "react";
-import { Box, Flex } from "../../../../styled-system/jsx";
+import { Box, Flex } from "@styled-system/jsx";
+import { usePathname, useRouter } from "next/navigation";
+
 import {
   basketball300SvgInfo,
   bookmark400SvgInfo,
@@ -12,9 +14,8 @@ import {
   settings300SvgInfo,
 } from "@/5_shared/lib/svgPaths";
 import NavigationLink from "./NavigationLink";
-import { NavigationIconBtn } from "../../../5_shared";
+import { NavigationIconBtn } from "@/5_shared";
 import NavigationResizeBtn from "./NavigationResizeBtn";
-import { usePathname, useRouter } from "next/navigation";
 import { useSettings } from "@/3_features/settings";
 import { useTranslations } from "next-intl";
 

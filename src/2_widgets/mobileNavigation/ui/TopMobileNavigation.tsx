@@ -1,17 +1,18 @@
 "use client";
 
 import React from "react";
-import { Flex } from "../../../../styled-system/jsx";
+import { Flex } from "@styled-system/jsx";
+import { css } from "@styled-system/css";
 import Link from "next/link";
-import Icon from "@/5_shared/ui/Icon";
+import Image from "next/image";
+import { usePathname } from "next/navigation";
+
+import { Icon } from "@/5_shared";
 import {
   basketball300SvgInfo,
   football300SvgInfo,
   rugby300SvgInfo,
-} from "@/5_shared/lib/svgPaths";
-import Image from "next/image";
-import { usePathname } from "next/navigation";
-import { css } from "../../../../styled-system/css";
+} from "@/5_shared";
 
 const activeLinkStyles = {
   color: "primaryClr",

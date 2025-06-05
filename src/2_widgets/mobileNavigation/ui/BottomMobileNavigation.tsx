@@ -1,7 +1,9 @@
 "use client";
 
 import React from "react";
-import { Flex } from "../../../../styled-system/jsx";
+import { Flex } from "@styled-system/jsx";
+import { usePathname, useRouter } from "next/navigation";
+
 import { NavigationIconBtn } from "@/5_shared";
 import {
   bookmarkFill300SvgInfo,
@@ -9,7 +11,6 @@ import {
   search400SvgInfo,
   settings300SvgInfo,
 } from "@/5_shared/lib/svgPaths";
-import { usePathname, useRouter } from "next/navigation";
 
 export function BottomMobileNavigation() {
   const pathname = usePathname();

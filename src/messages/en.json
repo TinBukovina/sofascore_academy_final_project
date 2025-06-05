@@ -20,13 +20,15 @@
   },
   "error": {
     "no_events_for_sport": "There is no events for this sport.",
+    "no_events_for_sport_and_date": "There is no events for this sport on this date.",
     "no_tornaments": "There is no torunaments.",
     "no_incidents_for_event": "There is no incidents for this event.",
     "no_event_for_id": "There is no event with that ID.",
     "error": "Error",
     "no_tournament_standings_for_id": "There is no tournament standings with that ID.",
     "no_tournament_events_for_id": "There is no tournament events with that ID.",
-    "no_players_for_team": "There is no players for this team"
+    "no_players_for_team": "There is no players for this team.",
+    "no_favourite_events": "There is no favourite events."
   },
   "top_tournametns": {
     "title": "Top Tournaments",
@@ -61,5 +63,10 @@
     "position_defender": "Defender",
     "position_goalkeeper": "Goalkeeper",
     "position_coach": "Coach"
+  },
+  "errorPage": {
+    "message": "Something went wrong!",
+    "sub_message": "Try again",
+    "action_button": "Go home"
   }
 }

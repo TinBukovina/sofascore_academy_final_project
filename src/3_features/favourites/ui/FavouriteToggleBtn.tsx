@@ -1,8 +1,9 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import { Box } from "../../../../styled-system/jsx";
-import Icon from "@/5_shared/ui/Icon";
+import { Box } from "@styled-system/jsx";
+
+import { Icon } from "@/5_shared";
 import {
   bookmark400SvgInfo,
   bookmarkFill300SvgInfo,
@@ -10,8 +11,8 @@ import {
 import { EventInterface } from "@/4_entities/event";
 import { TeamInterface } from "@/4_entities/team";
 import { PlayerInterface } from "@/4_entities/player";
-import { useFavourites } from "../context/useFavourites";
 import { TournamentInterface } from "@/4_entities/tournament";
+import { useFavourites } from "../context/useFavourites";
 
 interface FavouriteToggleBtnProps {
   styles?: React.CSSProperties;

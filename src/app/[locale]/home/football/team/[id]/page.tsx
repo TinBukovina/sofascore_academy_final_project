@@ -1,64 +1,28 @@
-"use client";
-
-import React, { useState } from "react";
+import React from "react";
 import Image from "next/image";
 import { FavouriteToggleBtn } from "@/3_features/favourites/ui/FavouriteToggleBtn";
-import { useTeamEvents, useTeamWithId } from "@/4_entities/team";
-import LoadingPage from "@/app/_ui/LoadingPage";
 import { Standings } from "@/2_widgets/standings";
-import { useTeamTournaments } from "@/4_entities/team/hooks/useTeamTorunaments";
-import { useWindowWidth } from "@/5_shared/lib/hooks/useWindowWidth";
-import { ChangeEventsRow, Matches, MatchesEvents } from "@/2_widgets/matches";
 import { Players } from "@/2_widgets/players";
-import { Box, Center, Flex } from "@styled-system/jsx";
+import { Box, Flex } from "@styled-system/jsx";
+import TeamPageClient from "./teamPageClient";
+import { getTeamByIdFromServer } from "@/app/api/_actions/getTeamByIdFromServer";
+import { redirect } from "@/navigation";
+import { getLocale } from "next-intl/server";
+import { getTeamTournamentsFromServer } from "@/app/api/_actions/getTeamTournamentsFromServer";
 
 interface PageProps {
   params: Promise<{ id: number }>;
 }
 
-export default function Page({ params }: PageProps) {
-  const windowWidth = useWindowWidth();
+export default async function Page({ params }: PageProps) {
+  const teamId = (await params).id;
 
-  const resolvedParams = React.use(params);
-  const teamId = resolvedParams.id;
+  const team = await getTeamByIdFromServer(teamId);
+  const teamTournaments = await getTeamTournamentsFromServer(teamId);
 
-  const [fetchedPage, setFetchedPage] = useState<number>(0);
-
-  const { team, isLoading, isError, error } = useTeamWithId(teamId);
-  const {
-    teamTournaments,
-    isLoading: isLoadingTournaments,
-    isError: isErrorTournaments,
-    error: errorTournaments,
-  } = useTeamTournaments(teamId);
-
-  const { teamEvents, isLoading: isLoadingTeamEvents } = useTeamEvents(
-    team?.id,
-    fetchedPage
-  );
-
-  if (isLoading || isLoadingTournaments || isLoadingTeamEvents) {
-    return <LoadingPage />;
-  }
-
-  if (isError || isErrorTournaments) {
-    console.log(error);
-    console.log(errorTournaments);
-    return <Center>Error</Center>;
-  }
-
-  if (!team) {
-    return <Center>There is no team with that ID.</Center>;
-  }
-
-  if (!teamTournaments || teamTournaments.length <= 0) {
-    return <Center>There is no team tournamets for this team.</Center>;
-  }
-
-  const tournament = teamTournaments.at(0);
-
-  if (!tournament || !teamEvents) {
-    return <Center>There is no team tournamets for this team.</Center>;
+  if (!team || !teamTournaments) {
+    redirect({ href: "/error", locale: await getLocale() });
+    return;
   }
 
   return (
@@ -95,37 +59,18 @@ export default function Page({ params }: PageProps) {
         </Flex>
       </Flex>
       {/*CONTENT*/}
-      <Flex direction={windowWidth < 1050 ? "column" : "row"} gap={"1rem"}>
-        <Flex
-          flex={windowWidth < 1050 ? "usnet" : "7"}
-          direction={"column"}
-          gap={"1rem"}
-          h={"fit-content"}
-        >
+      <TeamPageClient params={params} team={team}>
+        {teamTournaments.length <= 0 ? (
+          <Box display={"none"}></Box>
+        ) : (
           <Standings
-            tournament={tournament}
+            tournament={teamTournaments.at(0)!}
             homeTeamId={team.id}
             disableHeroLink={false}
           />
-          <Players teamId={team.id} />
-        </Flex>
-
-        <Matches tournament={tournament} styles={{ flex: "4" }}>
-          <ChangeEventsRow
-            text={fetchedPage >= 0 ? "Played" : "Finished"}
-            handleLeftBtnClick={() => {
-              setFetchedPage((prev) => prev + 1);
-            }}
-            handleRightBtnClick={() => {
-              setFetchedPage((prev) => prev - 1);
-            }}
-          />
-          <MatchesEvents
-            events={teamEvents}
-            windowType={windowWidth < 1050 ? "normal" : "small"}
-          />
-        </Matches>
-      </Flex>
+        )}
+        <Players teamId={team.id} />
+      </TeamPageClient>
     </Flex>
   );
 }

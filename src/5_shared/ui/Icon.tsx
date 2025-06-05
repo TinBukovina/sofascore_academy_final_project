@@ -10,7 +10,7 @@ interface IconTemplateProps {
   svgContent?: React.ReactNode;
 }
 
-const Icon: React.FC<IconTemplateProps> = ({
+export const Icon: React.FC<IconTemplateProps> = ({
   svgInfo,
   styles = {},
   width = "100%",
@@ -31,5 +31,3 @@ const Icon: React.FC<IconTemplateProps> = ({
     </svg>
   );
 };
-
-export default Icon;

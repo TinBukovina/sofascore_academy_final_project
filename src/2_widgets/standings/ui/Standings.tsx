@@ -1,3 +1,5 @@
+"use client";
+
 import React from "react";
 import { Box, Flex } from "../../../../styled-system/jsx";
 import Image from "next/image";
@@ -10,8 +12,9 @@ import {
 import { StandingsRow } from "./StandingsRow";
 import { useLastNTournamentEvents } from "@/4_entities/tournament/hooks/useLastNTournamentEvents";
 import { useRouter } from "next/navigation";
-import LoadingPage from "@/app/_ui/LoadingPage";
 import { useTranslations } from "next-intl";
+import { css } from "@styled-system/css";
+
 interface StandingsProps {
   tournament: TournamentInterface;
   homeTeamId?: number;
@@ -44,17 +47,51 @@ export function Standings({
 
   if (isLoading || isLoadingEvent)
     return (
-      <Flex
-        direction={"column"}
+      <Box
         w={"100%"}
+        h={"100%"}
+        bg={"surface.s1"}
         border={"1px solid transparent"}
         borderColor={"border"}
         borderRadius={"md"}
         overflow={"hidden"}
-        style={styles}
       >
-        <LoadingPage />
-      </Flex>
+        <Box w={"100%"} h={"52px"} bg={"surface.s0"}></Box>
+        <Box w={"100%"} h={"72px"} bg={"surface.s0"}></Box>
+        <Flex direction={"column"} gap={"0.75rem"} p={"1rem"}>
+          {[...Array(12)].map((_, i) => (
+            <Box
+              key={i}
+              h={"24px"}
+              w={"100%"}
+              borderRadius={"sm"}
+              className={css({
+                backgroundColor: "surface.s0",
+                position: "relative",
+                overflow: "hidden",
+                _before: {
+                  content: '""',
+                  position: "absolute",
+                  top: 0,
+                  left: 0,
+                  width: "100%",
+                  height: "100%",
+                  backgroundImage: `linear-gradient(
+                                  90deg,
+                                  transparent 25%,
+                                  token(colors.surface.s1) 50%,
+                                  transparent 75%
+                                )`,
+                  animationName: "shimmerSlide",
+                  animationDuration: "1.5s",
+                  animationIterationCount: "infinite",
+                  animationTimingFunction: "linear",
+                },
+              })}
+            />
+          ))}
+        </Flex>
+      </Box>
     );
 
   if (isError || isErrorEvent) {

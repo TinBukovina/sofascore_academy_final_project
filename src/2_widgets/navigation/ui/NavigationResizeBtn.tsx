@@ -1,11 +1,12 @@
+import React, { useState } from "react";
+import { Box } from "@styled-system/jsx";
+
 import {
   leftArrow300SvgInfo,
   rightArrow300SvgInfo,
   sidenavigation300SvgInfo,
-} from "@/5_shared/lib/svgPaths";
-import React, { useState } from "react";
-import { Box } from "../../../../styled-system/jsx";
-import Icon from "@/5_shared/ui/Icon";
+} from "@/5_shared";
+import { Icon } from "@/5_shared";
 
 interface NavigationIconBtnProps {
   currentNavigationWidthState: "normal" | "compact";

@@ -1,6 +1,6 @@
-// src/app/[locale]/layout.tsx
 import { NextIntlClientProvider } from "next-intl";
-import { getMessages } from "next-intl/server"; // Za dohvaćanje poruka na serveru
+import { getMessages } from "next-intl/server";
+
 import ClientLayoutWrapper from "../_ui/ClientLayoutWrapper";
 
 export default async function LocaleLayout({

@@ -1,3 +1,5 @@
+"use client";
+
 import React from "react";
 import { Box, Center, Flex } from "../../../../styled-system/jsx";
 import { useTeamPlayers } from "@/4_entities/team/hooks/useTeamPlayers";

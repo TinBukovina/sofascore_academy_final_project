@@ -6,8 +6,9 @@ import { EventInterface } from "@/4_entities/event";
 import { useEventIncidents } from "@/4_entities/event/hooks/useEventIncidents";
 import { css } from "../../../../styled-system/css";
 import { EventIncidentRow } from "./EventIncidentRow";
-import LoadingPage from "@/app/_ui/LoadingPage";
+
 import { useTranslations } from "next-intl";
+import EventIncidentLoader from "./EventIncidentLoader";
 
 interface EventEventsProps {
   event: EventInterface;
@@ -23,7 +24,7 @@ export function EventIncidents({ event, styles }: EventEventsProps) {
   );
 
   if (isLoading) {
-    return <LoadingPage />;
+    return <EventIncidentLoader />;
   }
 
   if (isError) {

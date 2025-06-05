@@ -1,3 +1,5 @@
+"use client";
+
 import { createContext } from "react";
 import { SettingsContextInterface } from "../modal/contextTypes";
 

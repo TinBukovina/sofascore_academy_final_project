@@ -114,4 +114,16 @@ export const keyframes = defineKeyframes({
         `-1.8em -1.8em 0 0em rgba(${spinnerColor}, 0.7)`,
     },
   },
+  shimmer: {
+    "0%": { backgroundPosition: "-200% 0" },
+    "100%": { backgroundPosition: "200% 0" },
+  },
+  shimmerSlide: {
+    "0%": {
+      transform: "translateX(-100%)",
+    },
+    "100%": {
+      transform: "translateX(100%)",
+    },
+  },
 });

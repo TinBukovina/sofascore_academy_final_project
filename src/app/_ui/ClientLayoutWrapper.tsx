@@ -1,14 +1,15 @@
 import React, { ReactNode } from "react";
-import { css } from "../../../styled-system/css";
+import { css } from "@styled-system/css";
+import { Box, Flex } from "@styled-system/jsx";
+
 import { Navigation } from "@/2_widgets/navigation";
 import {
   BottomMobileNavigation,
   TopMobileNavigation,
 } from "@/2_widgets/mobileNavigation";
-import { FavouritesProvider } from "@/3_features/favourites/context/FavouritesProvider";
-import { Box, Flex } from "../../../styled-system/jsx";
 import Image from "next/image";
-import { SettingsProvider } from "@/3_features/settings/context/SettingsProvider";
+import { FavouritesProvider } from "@/3_features/favourites";
+import { SettingsProvider } from "@/3_features/settings";
 
 export default function ClientLayoutWrapper({
   children,
