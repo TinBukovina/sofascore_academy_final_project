@@ -16,7 +16,7 @@ export default function ClientLayoutWrapper({
   children: ReactNode;
 }) {
   return (
-    <body
+    <div
       className={css({
         display: "grid",
         gridTemplateColumns: { base: "unset", md: "auto 1fr" },
@@ -53,6 +53,6 @@ export default function ClientLayoutWrapper({
           <BottomMobileNavigation />
         </FavouritesProvider>
       </SettingsProvider>
-    </body>
+    </div>
   );
 }

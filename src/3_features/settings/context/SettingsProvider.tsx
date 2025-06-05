@@ -2,6 +2,8 @@
 
 import { ReactNode, useEffect, useState } from "react";
 import { SettingsContext } from "./SettingContext";
+import { usePathname, useRouter } from "@/navigation";
+import { useLocale } from "next-intl";
 
 interface SettingsProviderProps {
   children: ReactNode;
@@ -16,6 +18,13 @@ export type ThemeType = "dark" | "light" | "system" | null;
 
 export type LanguageType = "england" | "croatia" | "spain" | "france";
 
+const langugaePrefixes = {
+  england: "en",
+  croatia: "hr",
+  spain: "es",
+  france: "fr",
+};
+
 const LOCAL_STORAGE_KEY = "sofascore_settings";
 
 export const SettingsProvider: React.FC<SettingsProviderProps> = ({
@@ -26,6 +35,10 @@ export const SettingsProvider: React.FC<SettingsProviderProps> = ({
   const [language, setLanguage] = useState<LanguageType | null>(null);
   const [theme, setTheme] = useState<ThemeType>(null);
   const [isLoading, setIsLoading] = useState<boolean>(true);
+
+  const router = useRouter();
+  const pathname = usePathname();
+  const activeNextIntlLocale = useLocale();
 
   // Loading setting from local storage
   useEffect(() => {
@@ -117,9 +130,17 @@ export const SettingsProvider: React.FC<SettingsProviderProps> = ({
     };
   }, [theme, isLoading]);
 
+  // Changing language of the app based on language state
+  useEffect(() => {
+    if (isLoading || !language || language === activeNextIntlLocale) {
+      return;
+    }
+
+    router.push(pathname, { locale: langugaePrefixes[language] });
+  }, [language, activeNextIntlLocale, pathname, router, isLoading]);
+
   // actions
   const changeTheme = (value: ThemeType) => {
-    console.log(`Tema je promijenjena iz: ${theme} u: ${value}!`);
     setTheme(value);
   };
 

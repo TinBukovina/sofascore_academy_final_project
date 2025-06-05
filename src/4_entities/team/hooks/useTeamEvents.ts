@@ -9,7 +9,6 @@ const getSWRKey = (
   page: number | string | null | undefined
 ): [string, string, string] | null => {
   if (!teamId || (typeof teamId === "string" && isNaN(parseInt(teamId, 10)))) {
-    console.log("Vraceno null");
     return null;
   }
 
@@ -17,7 +16,6 @@ const getSWRKey = (
     page !== 0 &&
     (!page || (typeof page === "string" && isNaN(parseInt(page, 10))))
   ) {
-    console.log("Vraceno null");
     return null;
   }
 

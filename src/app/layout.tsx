@@ -1,7 +1,5 @@
 import type { Metadata } from "next";
-
 import "@/app/index.css";
-import ClientLayoutWrapper from "./_ui/ClientLayoutWrapper";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -14,11 +12,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="dark">
-      <ClientLayoutWrapper>
-        {children}
-        <div id="portal-root"></div>
-      </ClientLayoutWrapper>
+    <html lang="en">
+      <body>{children}</body>
     </html>
   );
 }

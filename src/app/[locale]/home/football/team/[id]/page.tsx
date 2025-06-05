@@ -1,7 +1,6 @@
 "use client";
 
 import React, { useState } from "react";
-import { Box, Center, Flex } from "../../../../../../styled-system/jsx";
 import Image from "next/image";
 import { FavouriteToggleBtn } from "@/3_features/favourites/ui/FavouriteToggleBtn";
 import { useTeamEvents, useTeamWithId } from "@/4_entities/team";
@@ -11,6 +10,7 @@ import { useTeamTournaments } from "@/4_entities/team/hooks/useTeamTorunaments";
 import { useWindowWidth } from "@/5_shared/lib/hooks/useWindowWidth";
 import { ChangeEventsRow, Matches, MatchesEvents } from "@/2_widgets/matches";
 import { Players } from "@/2_widgets/players";
+import { Box, Center, Flex } from "@styled-system/jsx";
 
 interface PageProps {
   params: Promise<{ id: number }>;

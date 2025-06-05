@@ -8,7 +8,6 @@ const getSWRKey = (
   teamId: number | string | null | undefined
 ): [string, string] | null => {
   if (!teamId || (typeof teamId === "string" && isNaN(parseInt(teamId, 10)))) {
-    console.log("Vraceno null", teamId);
     return null;
   }
   return [`/team/players`, String(teamId)];

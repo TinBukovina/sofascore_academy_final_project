@@ -1,0 +1,65 @@
+{
+  "favouritesPage": {
+    "title": "title"
+  },
+  "homePage": {
+    "title": "english"
+  },
+  "searchPage": {
+    "title": "title"
+  },
+  "settingsPage": {
+    "title": "title"
+  },
+  "navigation": {
+    "favourite": "Favourite",
+    "settings": "Settings",
+    "football": "Football",
+    "basketball": "Basketball",
+    "rugby": "Rugby"
+  },
+  "error": {
+    "no_events_for_sport": "There is no events for this sport.",
+    "no_tornaments": "There is no torunaments.",
+    "no_incidents_for_event": "There is no incidents for this event.",
+    "no_event_for_id": "There is no event with that ID.",
+    "error": "Error",
+    "no_tournament_standings_for_id": "There is no tournament standings with that ID.",
+    "no_tournament_events_for_id": "There is no tournament events with that ID.",
+    "no_players_for_team": "There is no players for this team"
+  },
+  "top_tournametns": {
+    "title": "Top Tournaments",
+    "show_more": "Show more"
+  },
+  "event_widget": {
+    "all": "All",
+    "favourite": "Favourites"
+  },
+  "event_popup": {
+    "status_finished": "Finished",
+    "button": "FULL PAGE VIEW"
+  },
+  "event_incidents": {
+    "title": "Events"
+  },
+  "event_page": {
+    "event_status_finished": "Finished"
+  },
+  "standings": {
+    "title": "Standings"
+  },
+  "matches": {
+    "text_played": "Played",
+    "text_finished": "Finished",
+    "no_events": "There are no events."
+  },
+  "players": {
+    "title": "Players",
+    "position_forward": "Forward",
+    "position_midfilder": "Midfilder",
+    "position_defender": "Defender",
+    "position_goalkeeper": "Goalkeeper",
+    "position_coach": "Coach"
+  }
+}

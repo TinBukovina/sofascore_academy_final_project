@@ -1,0 +1,65 @@
+{
+  "favouritesPage": {
+    "title": "Favoris"
+  },
+  "homePage": {
+    "title": "Accueil"
+  },
+  "searchPage": {
+    "title": "Recherche"
+  },
+  "settingsPage": {
+    "title": "Paramètres"
+  },
+  "navigation": {
+    "favourite": "Favoris",
+    "settings": "Paramètres",
+    "football": "Football",
+    "basketball": "Basket-ball",
+    "rugby": "Rugby"
+  },
+  "error": {
+    "no_events_for_sport": "Aucun événement pour ce sport.",
+    "no_tornaments": "Aucun tournoi.",
+    "no_incidents_for_event": "Aucun incident pour cet événement.",
+    "no_event_for_id": "Aucun événement avec cet ID.",
+    "error": "Erreur",
+    "no_tournament_standings_for_id": "Aucun classement de tournoi avec cet ID.",
+    "no_tournament_events_for_id": "Aucun événement de tournoi avec cet ID.",
+    "no_players_for_team": "Aucun joueur pour cette équipe."
+  },
+  "top_tournametns": {
+    "title": "Meilleurs Tournois",
+    "show_more": "Afficher plus"
+  },
+  "event_widget": {
+    "all": "Tous",
+    "favourite": "Favoris"
+  },
+  "event_popup": {
+    "status_finished": "Terminé",
+    "button": "VOIR LA PAGE COMPLÈTE"
+  },
+  "event_incidents": {
+    "title": "Événements"
+  },
+  "event_page": {
+    "event_status_finished": "Terminé"
+  },
+  "standings": {
+    "title": "Classements"
+  },
+  "matches": {
+    "text_played": "Joué",
+    "text_finished": "Terminé",
+    "no_events": "Aucun événement."
+  },
+  "players": {
+    "title": "Joueurs",
+    "position_forward": "Attaquant",
+    "position_midfilder": "Milieu de terrain",
+    "position_defender": "Défenseur",
+    "position_goalkeeper": "Gardien de but",
+    "position_coach": "Entraîneur"
+  }
+}

@@ -1,13 +1,14 @@
 "use client";
 
 import React from "react";
-import { Box, Flex } from "../../../../../../styled-system/jsx";
 import { useEventById } from "@/4_entities/event";
 import { FavouriteToggleBtn } from "@/3_features/favourites/ui/FavouriteToggleBtn";
 import Image from "next/image";
 import { Standings } from "@/2_widgets/standings";
 import { EventIncidents } from "@/2_widgets/eventPopup/ui/EventIncidents";
 import LoadingPage from "@/app/_ui/LoadingPage";
+import { Box, Flex } from "@styled-system/jsx";
+import { useTranslations } from "next-intl";
 
 interface PageProps {
   params: Promise<{
@@ -20,17 +21,20 @@ export default function Page({ params, status = "Finished" }: PageProps) {
   const resolvedParams = React.use(params);
   const eventId = resolvedParams.id;
 
+  const tEventPage = useTranslations("event_page");
+  const tError = useTranslations("error");
+
   const { event, isLoading, isError, error } = useEventById(Number(eventId));
 
   if (isLoading) return <LoadingPage text="Učitavanje događaja..." />;
 
   if (isError) {
     console.log(error);
-    return <div>Error</div>;
+    return <div>{tError("error")}</div>;
   }
 
   if (!event) {
-    return <div>There is no event with that id.</div>;
+    return <div>{tError("no_event_for_id")}</div>;
   }
 
   return (
@@ -100,7 +104,7 @@ export default function Page({ params, status = "Finished" }: PageProps) {
             </Box>
           </Box>
           <Box fontWeight={"normal"} fontSize={"xs"}>
-            {status}
+            {status === "Finished" ? tEventPage("event_status_finished") : "x"}
           </Box>
         </Flex>
         <Flex

@@ -5,6 +5,7 @@ import {
   leftShortArrow400SvgInfo,
   rightShortArrow400SvgInfo,
 } from "@/5_shared";
+import { useTranslations } from "next-intl";
 
 interface ChangeEventsRowProps {
   text: "Played" | "Finished";
@@ -17,6 +18,8 @@ export function ChangeEventsRow({
   handleLeftBtnClick,
   handleRightBtnClick,
 }: ChangeEventsRowProps) {
+  const tMatches = useTranslations("matches");
+
   return (
     <Flex
       justifyContent={"space-between"}
@@ -35,7 +38,11 @@ export function ChangeEventsRow({
         <Icon width="20px" height="20px" svgInfo={leftShortArrow400SvgInfo()} />
       </Box>
       <Flex w={"fit-content"} borderRadius={"sm"}>
-        <Box>{text}</Box>
+        <Box>
+          {text === "Played"
+            ? tMatches("text_played")
+            : tMatches("text_finished")}
+        </Box>
       </Flex>
       <Box
         visibility={text === "Finished" ? "hidden" : "unset"}

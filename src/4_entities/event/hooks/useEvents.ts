@@ -57,7 +57,6 @@ export function useEvents(
   const { data, error, isLoading, isValidating, mutate, size, setSize } =
     useSWRInfinite<EventInterface[]>(getKey, eventsBatchFetcher, swrOptions);
 
-  console.log("data\n", data);
   const events = data ? data.flat() : [];
 
   const isEmpty = data?.[0]?.length === 0;

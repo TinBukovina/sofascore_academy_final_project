@@ -7,6 +7,7 @@ import { useEventIncidents } from "@/4_entities/event/hooks/useEventIncidents";
 import { css } from "../../../../styled-system/css";
 import { EventIncidentRow } from "./EventIncidentRow";
 import LoadingPage from "@/app/_ui/LoadingPage";
+import { useTranslations } from "next-intl";
 
 interface EventEventsProps {
   event: EventInterface;
@@ -14,6 +15,9 @@ interface EventEventsProps {
 }
 
 export function EventIncidents({ event, styles }: EventEventsProps) {
+  const tEventIncidents = useTranslations("event_incidents");
+  const tError = useTranslations("error");
+
   const { eventIncident, isLoading, isError, error } = useEventIncidents(
     event.id
   );
@@ -24,24 +28,24 @@ export function EventIncidents({ event, styles }: EventEventsProps) {
 
   if (isError) {
     console.log(error);
-    return <Box>There was a error while getting incidents.</Box>;
+    return <Box>{tError("no_incidents_for_event")}</Box>;
   }
 
   if (!eventIncident || eventIncident.length <= 0) {
-    return <Box>There is no incidents for this event.</Box>;
+    return <Box>{tError("no_incidents_for_event")}</Box>;
   }
 
   const periodIncidents = eventIncident.filter((el) => el.text);
 
   if (periodIncidents.length < 2) {
-    return <Box>There is no incidents for this event.</Box>;
+    return <Box>{tError("no_incidents_for_event")}</Box>;
   }
 
   const halfTimeObj = periodIncidents.at(0);
   const fullTimeObj = periodIncidents.at(1);
 
   if (!halfTimeObj || !fullTimeObj) {
-    return <Box>There is no incidents for this event.</Box>;
+    return <Box>{tError("no_incidents_for_event")}</Box>;
   }
 
   const firstHalfIncidents = eventIncident.filter(
@@ -78,7 +82,7 @@ export function EventIncidents({ event, styles }: EventEventsProps) {
       style={styles}
     >
       <Box p={"0 0.5rem"} pt={"0.75rem"}>
-        Events
+        {tEventIncidents("title")}
       </Box>
       <Flex direction={"column"} gap={"0.5rem"} p={"0.5rem"} fontSize={"sm"}>
         <Flex gap={"0.5rem"} alignItems={"center"}>

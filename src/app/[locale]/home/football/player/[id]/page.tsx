@@ -9,7 +9,7 @@ import { getCountryISO2 } from "@/4_entities/player/lib/utils";
 import { useTeamTournaments } from "@/4_entities/team";
 import { ChangeEventsRow, Matches, MatchesEvents } from "@/2_widgets/matches";
 import { usePlayerEvents } from "@/4_entities/player/hooks/usePlayerEvents";
-import { Box, Center, Flex } from "../../../../../../styled-system/jsx";
+import { Box, Center, Flex } from "@styled-system/jsx";
 
 interface PageProps {
   params: Promise<{ id: string; playerId: string }>;
@@ -21,7 +21,6 @@ export default function Page({ params }: PageProps) {
 
   const [fetchedPage, setFetchedPage] = useState<number>(0);
 
-  console.log(fetchedPage);
   const { player, isLoading, isError, error } = usePlayerById(playerId);
 
   const {

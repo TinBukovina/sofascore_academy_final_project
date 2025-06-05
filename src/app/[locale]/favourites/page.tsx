@@ -1,8 +1,8 @@
 "use client";
 
 import { useFavourites } from "@/3_features/favourites/context/useFavourites";
-import { css } from "../../../styled-system/css";
-import { Box, Center, Flex } from "../../../styled-system/jsx";
+import { css } from "@styled-system/css";
+import { Box, Center, Flex } from "@styled-system/jsx";
 import { FavouriteWidget } from "@/2_widgets/favouriteWidget";
 import { useState } from "react";
 import { EventInterface, EventItem } from "@/4_entities/event";
@@ -33,7 +33,6 @@ export default function Page() {
     setIsPopupDisplayed(false);
   };
 
-  console.log(favouriteEvents);
   return (
     <Flex
       gap={"1rem"}

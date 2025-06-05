@@ -10,7 +10,6 @@ const getSWRKey = (
     !playerId ||
     (typeof playerId === "string" && isNaN(parseInt(playerId, 10)))
   ) {
-    console.log("Vraceno null");
     return null;
   }
 

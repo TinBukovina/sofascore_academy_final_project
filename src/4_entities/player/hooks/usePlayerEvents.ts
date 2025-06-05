@@ -12,7 +12,6 @@ const getSWRKey = (
     !playerId ||
     (typeof playerId === "string" && isNaN(parseInt(playerId, 10)))
   ) {
-    console.log("Vraceno null");
     return null;
   }
 
@@ -20,7 +19,6 @@ const getSWRKey = (
     page !== 0 &&
     (!page || (typeof page === "string" && isNaN(parseInt(page, 10))))
   ) {
-    console.log("Vraceno null");
     return null;
   }
 

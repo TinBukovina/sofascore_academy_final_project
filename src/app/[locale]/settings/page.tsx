@@ -1,7 +1,7 @@
 "use client";
 
-import { Flex } from "../../../styled-system/jsx";
 import { SettingsComponent } from "@/3_features/settings/ui/SettingsComponent";
+import { Flex } from "@styled-system/jsx";
 
 export default function Page() {
   return (

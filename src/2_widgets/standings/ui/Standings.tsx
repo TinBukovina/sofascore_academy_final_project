@@ -11,6 +11,7 @@ import { StandingsRow } from "./StandingsRow";
 import { useLastNTournamentEvents } from "@/4_entities/tournament/hooks/useLastNTournamentEvents";
 import { useRouter } from "next/navigation";
 import LoadingPage from "@/app/_ui/LoadingPage";
+import { useTranslations } from "next-intl";
 interface StandingsProps {
   tournament: TournamentInterface;
   homeTeamId?: number;
@@ -27,6 +28,9 @@ export function Standings({
   styles,
 }: StandingsProps) {
   const router = useRouter();
+
+  const tError = useTranslations("error");
+  const tStandings = useTranslations("standings");
 
   const { tournamentStandings, isLoading, isError, error } =
     useTournamentStandings(tournament.id);
@@ -60,11 +64,11 @@ export function Standings({
   }
 
   if (!tournamentStandings) {
-    return <div>There is no tournament standings with that id</div>;
+    return <div>{tError("no_tournament_standings_for_id")}</div>;
   }
 
   if (!tournamentEvents || tournamentEvents.length <= 0) {
-    return <div>There is no tournament events with that id and page</div>;
+    return <div>{tError("no_tournament_events_for_id")}</div>;
   }
 
   tournamentEvents.sort(
@@ -93,7 +97,7 @@ export function Standings({
         color={"primaryClr"}
         fontSize={"h6"}
       >
-        Standings
+        {tStandings("title")}
       </Box>
 
       <Flex

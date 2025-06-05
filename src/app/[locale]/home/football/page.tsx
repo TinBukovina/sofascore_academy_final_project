@@ -1,6 +1,5 @@
 "use client";
 
-import { Box, Flex } from "../../../../styled-system/jsx";
 import { useEventsFromSportAndDate } from "@/4_entities/event/hooks/useEventsFromSportAndDate";
 import { SomethingWentWrong } from "@/5_shared";
 import { EventWidget } from "@/2_widgets/eventWidget";
@@ -8,14 +7,18 @@ import { getDifferentTournomentFromListOfEvents } from "@/4_entities/tournament/
 import { useState } from "react";
 import { useFavourites } from "@/3_features/favourites/context/useFavourites";
 import { TopTornaments } from "@/2_widgets/topTournoments";
-import { css } from "../../../../styled-system/css";
 import { EventPopup } from "@/2_widgets/eventPopup";
 import { EventInterface } from "@/4_entities/event";
 import LoadingPage from "@/app/_ui/LoadingPage";
 import { SettingsWindow, useSettings } from "@/3_features/settings";
 import { TournamentMatches } from "@/2_widgets/tournomentMatches";
+import { Box, Flex } from "../../../../../styled-system/jsx";
+import { css } from "../../../../../styled-system/css";
+import { useTranslations } from "next-intl";
 
 export default function Page() {
+  const tError = useTranslations("error");
+
   const [currentDate, setCurrentDate] = useState<string>("2024-01-20");
   const [activeWindow, setActiveWindow] = useState<"all" | "favourites">("all");
   const [isPopupDisplayed, setIsPopupDisplayed] = useState<boolean>(false);
@@ -87,7 +90,7 @@ export default function Page() {
             w={"100%"}
             minH={"80px"}
           >
-            There is no events for that sport on that date.
+            {tError("no_events_for_sport")}
           </Flex>
         </EventWidget>
       </Box>
@@ -118,7 +121,7 @@ export default function Page() {
             w={"100%"}
             minH={"80px"}
           >
-            There is no events for that sport on that date.
+            {tError("no_events_for_sport")}
           </Flex>
         </EventWidget>
       </Box>

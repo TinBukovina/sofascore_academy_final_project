@@ -6,12 +6,12 @@ import {
 } from "@/4_entities/tournament";
 import LoadingPage from "@/app/_ui/LoadingPage";
 import React, { useState } from "react";
-import { Box, Center, Flex } from "../../../../../../styled-system/jsx";
 import Image from "next/image";
 import { FavouriteToggleBtn } from "@/3_features/favourites/ui/FavouriteToggleBtn";
 import { Standings } from "@/2_widgets/standings";
 import { useWindowWidth } from "@/5_shared/lib/hooks/useWindowWidth";
 import { ChangeEventsRow, Matches, MatchesEvents } from "@/2_widgets/matches";
+import { Box, Center, Flex } from "@styled-system/jsx";
 
 interface PageProps {
   params: Promise<{ id: number }>;

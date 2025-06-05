@@ -3,12 +3,16 @@ import { Box, Center, Flex } from "../../../../styled-system/jsx";
 import { useTeamPlayers } from "@/4_entities/team/hooks/useTeamPlayers";
 import LoadingPage from "@/app/_ui/LoadingPage";
 import { PlayerCard } from "@/4_entities/player";
+import { useTranslations } from "next-intl";
 
 interface PlayersProps {
   teamId: number;
 }
 
 export function Players({ teamId }: PlayersProps) {
+  const tError = useTranslations("error");
+  const tPlayers = useTranslations("players");
+
   const { teamPlayers, isLoading, isError, error } = useTeamPlayers(teamId);
 
   if (isLoading) return <LoadingPage />;
@@ -19,10 +23,8 @@ export function Players({ teamId }: PlayersProps) {
   }
 
   if (!teamPlayers || teamPlayers.length <= 0) {
-    return <Center>There is no players for this team.</Center>;
+    return <Center>{tError("no_players_for_team")}</Center>;
   }
-
-  console.log(teamPlayers);
 
   return (
     <Flex
@@ -35,7 +37,7 @@ export function Players({ teamId }: PlayersProps) {
       overflow={"hidden"}
     >
       <Box p={"1rem"} bg={"surface.s1"} color={"primaryClr"} fontSize={"h6"}>
-        Players
+        {tPlayers("title")}
       </Box>
       <Flex direction={"column"} gap={"1rem"} p={"1rem"} pt={"0"}>
         <Flex
@@ -47,7 +49,7 @@ export function Players({ teamId }: PlayersProps) {
               : "flex"
           }
         >
-          <Box>Coach</Box>
+          <Box>{tPlayers("position_coach")}</Box>
           <Flex wrap={"wrap"} gap={"1rem"} justifyContent={"center"}>
             {teamPlayers
               .filter((player) => player.position === "C")
@@ -68,7 +70,7 @@ export function Players({ teamId }: PlayersProps) {
               : "flex"
           }
         >
-          <Box>Forward</Box>
+          <Box>{tPlayers("position_forward")}</Box>
           <Flex wrap={"wrap"} gap={"1rem"} justifyContent={"center"}>
             {teamPlayers
               .filter((player) => player.position === "F")
@@ -89,7 +91,7 @@ export function Players({ teamId }: PlayersProps) {
               : "flex"
           }
         >
-          <Box>Midfilder</Box>
+          <Box>{tPlayers("position_midfilder")}</Box>
           <Flex wrap={"wrap"} gap={"1rem"} justifyContent={"center"}>
             {teamPlayers
               .filter((player) => player.position === "M")
@@ -110,7 +112,7 @@ export function Players({ teamId }: PlayersProps) {
               : "flex"
           }
         >
-          <Box>Defender</Box>
+          <Box>{tPlayers("position_defender")}</Box>
           <Flex wrap={"wrap"} gap={"1rem"} justifyContent={"center"}>
             {teamPlayers
               .filter((player) => player.position === "D")
@@ -131,7 +133,7 @@ export function Players({ teamId }: PlayersProps) {
               : "flex"
           }
         >
-          <Box>Goalkeeper</Box>
+          <Box>{tPlayers("position_goalkeeper")}</Box>
           <Flex wrap={"wrap"} gap={"1rem"} justifyContent={"center"}>
             {teamPlayers
               .filter((player) => player.position === "G")

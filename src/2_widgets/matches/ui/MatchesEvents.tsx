@@ -2,6 +2,7 @@ import React from "react";
 import { Box, Center } from "../../../../styled-system/jsx";
 import { EventInterface, EventItem } from "@/4_entities/event";
 import { FavouriteToggleBtn } from "@/3_features/favourites/ui/FavouriteToggleBtn";
+import { useTranslations } from "next-intl";
 
 interface MatchesEventsProps {
   events: EventInterface[];
@@ -12,6 +13,8 @@ export function MatchesEvents({
   events,
   windowType = "normal",
 }: MatchesEventsProps) {
+  const tMatches = useTranslations("matches");
+
   return (
     <Box w={"100%"}>
       {events.map((event: EventInterface, i) => (
@@ -24,7 +27,7 @@ export function MatchesEvents({
         />
       ))}
       {events.length <= 0 ? (
-        <Center p={"1rem"}>There are no events.</Center>
+        <Center p={"1rem"}>{tMatches("no_events")}</Center>
       ) : (
         <Box display={"hidden"}></Box>
       )}

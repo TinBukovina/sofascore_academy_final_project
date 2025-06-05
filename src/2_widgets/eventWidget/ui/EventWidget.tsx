@@ -8,6 +8,7 @@ import {
 import { Box, Flex } from "../../../../styled-system/jsx";
 import { EventWidgetLink } from "./EventWidgetLink";
 import { MyDateInput } from "./DateInput";
+import { useTranslations } from "next-intl";
 
 interface EventWidgetProps {
   children: React.ReactNode;
@@ -28,6 +29,8 @@ export function EventWidget({
   activeWindow,
   setActiveWindow,
 }: EventWidgetProps) {
+  const tEventWidget = useTranslations("event_widget");
+
   return (
     <Box
       border={"1px solid token(colors.border)"}
@@ -73,13 +76,13 @@ export function EventWidget({
             isActive={activeWindow === "all"}
             handleOnClick={() => setActiveWindow("all")}
           >
-            All
+            {tEventWidget("all")}
           </EventWidgetLink>
           <EventWidgetLink
             isActive={activeWindow === "favourites"}
             handleOnClick={() => setActiveWindow("favourites")}
           >
-            Favourites
+            {tEventWidget("favourite")}
           </EventWidgetLink>
         </Flex>
       </Flex>

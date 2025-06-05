@@ -12,7 +12,6 @@ export default function LanguageInputElement({
   lang,
   elementType = "selected",
 }: LanguageInputElementProps) {
-  console.log(lang);
   return (
     <Flex
       justifyContent={"space-between"}

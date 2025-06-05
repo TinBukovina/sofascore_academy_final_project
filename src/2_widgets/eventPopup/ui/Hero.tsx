@@ -4,6 +4,7 @@ import { FavouriteToggleBtn } from "@/3_features/favourites/ui/FavouriteToggleBt
 import { TeamInterface } from "@/4_entities/team";
 import Image from "next/image";
 import { ScoreInterface } from "@/4_entities/event";
+import { useTranslations } from "next-intl";
 
 interface HeroProps {
   homeTeam: TeamInterface;
@@ -20,6 +21,8 @@ export function Hero({
   awayScore,
   status = "Finished",
 }: HeroProps) {
+  const tEventPopup = useTranslations("event_popup");
+
   return (
     <Flex
       position={"relative"}
@@ -82,7 +85,7 @@ export function Hero({
           </Box>
         </Box>
         <Box fontWeight={"normal"} fontSize={"xs"}>
-          {status}
+          {status === "Finished" ? tEventPopup("status_finished") : "x"}
         </Box>
       </Flex>
       <Flex

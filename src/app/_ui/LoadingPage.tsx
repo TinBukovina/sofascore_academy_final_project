@@ -1,6 +1,6 @@
 import React from "react";
-import SpinnerLoader from "../Loader";
 import { Box, Flex } from "../../../styled-system/jsx";
+import SpinnerLoader from "../[locale]/Loader";
 
 interface LoadingPageProps {
   text?: string;

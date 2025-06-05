@@ -1,0 +1,65 @@
+{
+  "favouritesPage": {
+    "title": "Favoriti"
+  },
+  "homePage": {
+    "title": "Početna"
+  },
+  "searchPage": {
+    "title": "Pretraga"
+  },
+  "settingsPage": {
+    "title": "Postavke"
+  },
+  "navigation": {
+    "favourite": "Favoriti",
+    "settings": "Postavke",
+    "football": "Nogomet",
+    "basketball": "Košarka",
+    "rugby": "Ragbi"
+  },
+  "error": {
+    "no_events_for_sport": "Nema događaja za ovaj sport.",
+    "no_tornaments": "Nema turnira.",
+    "no_incidents_for_event": "Nema incidenata za ovaj događaj.",
+    "no_event_for_id": "Nema događaja s tim ID-om.",
+    "error": "Greška",
+    "no_tournament_standings_for_id": "Nema poretka turnira s tim ID-om.",
+    "no_tournament_events_for_id": "Nema događaja turnira s tim ID-om.",
+    "no_players_for_team": "Nema igrača za ovu momčad."
+  },
+  "top_tournametns": {
+    "title": "Top Turniri",
+    "show_more": "Prikaži više"
+  },
+  "event_widget": {
+    "all": "Svi",
+    "favourite": "Favoriti"
+  },
+  "event_popup": {
+    "status_finished": "Završeno",
+    "button": "PUNI PRIKAZ STRANICE"
+  },
+  "event_incidents": {
+    "title": "Događaji"
+  },
+  "event_page": {
+    "event_status_finished": "Završeno"
+  },
+  "standings": {
+    "title": "Poredak"
+  },
+  "matches": {
+    "text_played": "Odigrano",
+    "text_finished": "Završeno",
+    "no_events": "Nema događaja."
+  },
+  "players": {
+    "title": "Igrači",
+    "position_forward": "Napadač",
+    "position_midfilder": "Vezni igrač",
+    "position_defender": "Branič",
+    "position_goalkeeper": "Vratar",
+    "position_coach": "Trener"
+  }
+}

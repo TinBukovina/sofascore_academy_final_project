@@ -4,8 +4,12 @@ import { useFirstNTournaments } from "@/4_entities/tournament";
 import Row from "./Row";
 import { dropDownArrow400SvgInfo, Icon } from "@/5_shared";
 import LoadingPage from "@/app/_ui/LoadingPage";
+import { useTranslations } from "next-intl";
 
 export function TopTornaments() {
+  const tError = useTranslations("error");
+  const tTornaments = useTranslations("top_tournametns");
+
   const { tournaments, isLoading, isError, error } = useFirstNTournaments(5);
 
   const [isButtonHovered, setIsButtonHovered] = useState<boolean>(false);
@@ -20,7 +24,7 @@ export function TopTornaments() {
   }
 
   if (!tournaments || tournaments.length <= 0) {
-    return <div>There is no tournoment</div>;
+    return <div>{tError("no_tournaments")}</div>;
   }
 
   return (
@@ -46,7 +50,7 @@ export function TopTornaments() {
           lg: "inline-block",
         }}
       >
-        Top Tornoments
+        {tTornaments("title")}
       </Box>
 
       <Flex direction={"column"} gap={{ base: "1rem", lg: "0.75rem" }}>
@@ -77,7 +81,7 @@ export function TopTornaments() {
         onMouseEnter={() => setIsButtonHovered(true)}
         onMouseLeave={() => setIsButtonHovered(false)}
       >
-        <Box w={"fit-content"}>Show more</Box>
+        <Box w={"fit-content"}>{tTornaments("show_more")}</Box>
         <Icon width="24px" height="24px" svgInfo={dropDownArrow400SvgInfo()} />
       </Flex>
     </Flex>

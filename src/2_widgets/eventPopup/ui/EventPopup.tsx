@@ -12,6 +12,7 @@ import { EventInterface } from "@/4_entities/event";
 import { Hero } from "./Hero";
 import { EventIncidents } from "./EventIncidents";
 import { useRouter } from "next/navigation";
+import { useTranslations } from "next-intl";
 
 interface EventPopupProps {
   event: EventInterface;
@@ -20,6 +21,8 @@ interface EventPopupProps {
 
 export function EventPopup({ event, colsePopup }: EventPopupProps) {
   const router = useRouter();
+
+  const tEventPopup = useTranslations("event_popup");
 
   const [isShrinked, setIsShrinked] = useState<boolean>(false);
 
@@ -80,7 +83,7 @@ export function EventPopup({ event, colsePopup }: EventPopupProps) {
               router.push(`/home/football/event/${event.id}`);
             }}
           >
-            FULL PAGE VIEW
+            {tEventPopup("button")}
           </Button>
         </>
       ) : (

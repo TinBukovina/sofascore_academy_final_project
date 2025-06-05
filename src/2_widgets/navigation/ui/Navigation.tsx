@@ -16,6 +16,7 @@ import { NavigationIconBtn } from "../../../5_shared";
 import NavigationResizeBtn from "./NavigationResizeBtn";
 import { usePathname, useRouter } from "next/navigation";
 import { useSettings } from "@/3_features/settings";
+import { useTranslations } from "next-intl";
 
 export type ActiveLinksType =
   | "football"
@@ -28,6 +29,7 @@ export type ActiveLinksType =
 export function Navigation() {
   const router = useRouter();
   const pathname = usePathname();
+  const t = useTranslations("navigation");
 
   const { areOptionsDisplayed, setAreOptionsDisplayed } = useSettings();
 
@@ -94,7 +96,7 @@ export function Navigation() {
             svgInfo={searchSvgInfo}
             handleOnClick={() => {}}
           >
-            Search
+            {t("search")}
           </NavigationLink>
         ) : (
           <Box></Box>
@@ -112,7 +114,7 @@ export function Navigation() {
             router.push("/favourites");
           }}
         >
-          Favourites
+          {t("favourite")}
         </NavigationLink>
         <NavigationLink
           isCompact={isCompact}
@@ -122,7 +124,7 @@ export function Navigation() {
             if (!pathname?.includes("settings")) setAreOptionsDisplayed(true);
           }}
         >
-          Settings
+          {t("settings")}
         </NavigationLink>
       </Flex>
 
@@ -143,7 +145,7 @@ export function Navigation() {
             router.push("/home/football");
           }}
         >
-          Football
+          {t("football")}
         </NavigationLink>
         <NavigationLink
           isCompact={isCompact}
@@ -153,7 +155,7 @@ export function Navigation() {
             router.push("/home/basketball");
           }}
         >
-          Basketball
+          {t("basketball")}
         </NavigationLink>
         <NavigationLink
           isCompact={isCompact}
@@ -163,7 +165,7 @@ export function Navigation() {
             router.push("/home/rugby");
           }}
         >
-          Rugby
+          {t("rugby")}
         </NavigationLink>
       </Flex>
     </Flex>
