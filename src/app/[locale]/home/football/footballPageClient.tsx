@@ -11,7 +11,6 @@ import { getDifferentTournomentFromListOfEvents } from "@/4_entities/tournament"
 import { useFavourites } from "@/3_features/favourites/context/useFavourites";
 import { EventPopup } from "@/2_widgets/eventPopup";
 import { EventInterface } from "@/4_entities/event";
-import { SettingsWindow, useSettings } from "@/3_features/settings";
 import { TournamentMatches } from "@/2_widgets/tournomentMatches";
 
 interface FootballPageClientProps {
@@ -25,13 +24,12 @@ export default function FootballPageClient({
 
   const tError = useTranslations("error");
 
-  const [currentDate, setCurrentDate] = useState<string>("2024-01-20");
+  const [currentDate, setCurrentDate] = useState<string>("2025-05-04");
   const [activeWindow, setActiveWindow] = useState<"all" | "favourites">("all");
   const [isPopupDisplayed, setIsPopupDisplayed] = useState<boolean>(false);
   const [popupEvent, setPopupEvent] = useState<EventInterface | null>(null);
 
   const { favouriteEvents } = useFavourites();
-  const { areOptionsDisplayed, setAreOptionsDisplayed } = useSettings();
 
   const { events, isLoading, isError, error } = useEventsFromSportAndDate(
     "football",
@@ -181,12 +179,6 @@ export default function FootballPageClient({
       ) : (
         <Box display={"none"} />
       )}
-      <SettingsWindow
-        isOpen={areOptionsDisplayed}
-        onClose={() => {
-          setAreOptionsDisplayed(false);
-        }}
-      />
     </>
   );
 }

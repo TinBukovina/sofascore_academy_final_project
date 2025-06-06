@@ -81,6 +81,7 @@ export function FavouriteToggleBtn({
       onMouseLeave={() => setIsHovered(false)}
       onClick={(e) => {
         e.stopPropagation();
+        console.log(item);
         if (whatToAdd === "event") {
           if (isAlreadyFavourite) {
             removeEventFromFavourites(item.id);

@@ -20,14 +20,14 @@ export async function getTournamentByIdFromServer(
 
     if (!response.ok) {
       console.error(
-        `[Server Fetch] Greška pri dohvaćanju turnira s ID-om: ${tournamentId}. Status: ${response.status}`
+        `[Server Fetch] Error fetching tournament with ID: ${tournamentId}. Status: ${response.status}`
       );
       return null;
     }
     return (await response.json()) as TournamentInterface;
   } catch (error) {
     console.error(
-      `[Server Fetch] Greška u getTournamentByIdFromServer za ID ${tournamentId}:`,
+      `[Server Fetch] Error in getTournamentByIdFromServer for ID ${tournamentId}:`,
       error
     );
     return null;

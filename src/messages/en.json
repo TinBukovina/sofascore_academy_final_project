@@ -1,6 +1,10 @@
 {
   "favouritesPage": {
-    "title": "title"
+    "title": "Favourites",
+    "no_events": "There are no favourite events.",
+    "no_teams": "There are no favourite teams.",
+    "no_tournaments": "There are no favourite tournaments.",
+    "no_players": "There are no favourite players."
   },
   "homePage": {
     "title": "english"
@@ -58,15 +62,22 @@
   },
   "players": {
     "title": "Players",
-    "position_forward": "Forward",
-    "position_midfilder": "Midfilder",
-    "position_defender": "Defender",
-    "position_goalkeeper": "Goalkeeper",
-    "position_coach": "Coach"
+    "position_forward": "Forwards",
+    "position_midfilder": "Midfilders",
+    "position_defender": "Defenders",
+    "position_goalkeeper": "Goalkeepers",
+    "position_coach": "Coaches"
   },
   "errorPage": {
     "message": "Something went wrong!",
     "sub_message": "Try again",
     "action_button": "Go home"
+  },
+  "search": {
+    "title": "Search",
+    "teams": "Teams",
+    "tournaments": "Tournaments",
+    "players": "Players",
+    "no_results": "No results"
   }
 }

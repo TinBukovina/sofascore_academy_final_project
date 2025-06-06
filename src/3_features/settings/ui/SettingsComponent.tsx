@@ -1,38 +1,56 @@
+"use client";
+
 import React from "react";
 import { Box, Flex } from "../../../../styled-system/jsx";
+import { LanguageInput } from "./LanguageInput";
+import { ThemeInput } from "./ThemeInput";
+import { useSettings } from "../context/useSettings";
 
 interface SettingsComponentProps {
   text?: string;
 }
 
 export function SettingsComponent({}: SettingsComponentProps) {
+  const { theme, changeTheme, language, changeLanguage } = useSettings();
+
   return (
     <Flex
       direction={"column"}
-      gap={"1rem"}
-      p={"1rem"}
-      maxW={"500px"}
-      minW={"350px"}
-      maxH={"400px"}
+      gap={"0.75rem"}
       w={"100%"}
-      h={"fit-content"}
-      bg={"surface.s0"}
-      border={"1px solid transparent"}
-      borderColor={"border"}
-      borderRadius={"md"}
+      h={"100%"}
       color={"text.normal"}
       fill={"text.normal"}
     >
-      <Flex justifyContent={"start"}>
-        <Box color={"primaryClr"} fontSize={"h5"}>
-          Settings
+      {/*LANGUAGE*/}
+      <Flex
+        direction={"column"}
+        gap={"0.5rem"}
+        bg={"surface.s1"}
+        border={"1px solid transparent"}
+        borderColor={"border"}
+        borderRadius={"md"}
+      >
+        <Box p={"1rem"} pb={"0"} fontSize={"h6"}>
+          Language
         </Box>
+        <LanguageInput
+          initialValue={language || "england"}
+          handleValueChange={changeLanguage}
+        />
       </Flex>
-      <Flex direction={"column"} gap={"0.75rem"}>
-        <Flex direction={"column"} gap={"0.5rem"}>
-          <Box fontSize={"h6"}>Language</Box>
-          {/* <LanguageInput /> */}
-        </Flex>
+      {/*Theme*/}
+      <Flex
+        direction={"column"}
+        gap={"0.75rem"}
+        p={"1rem"}
+        bg={"surface.s1"}
+        border={"1px solid transparent"}
+        borderColor={"border"}
+        borderRadius={"md"}
+      >
+        <Box fontSize={"h6"}>Theme</Box>
+        <ThemeInput initialValue={theme} handleValueChange={changeTheme} />
       </Flex>
     </Flex>
   );

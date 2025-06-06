@@ -12,7 +12,7 @@ export const getPlayerById = async (
 
   if (!response.ok) {
     throw new Error(
-      `There was a error while fetcing player with ID: ${playerId}.`
+      `There was a error while fethcing player with ID: ${playerId}.`
     );
   }
 
@@ -28,7 +28,7 @@ export const getPlayerImage = async (playerId: number): Promise<string> => {
 
   if (!response.ok) {
     throw new Error(
-      `There was a error while fetcing player image with ID: ${playerId}.`
+      `There was a error while fetching player image with ID: ${playerId}.`
     );
   }
 
@@ -56,7 +56,7 @@ export const getPlayerEvents = async (
 
   if (!response.ok) {
     throw new Error(
-      `There was a error catching player events with team id: ${playerId}, and page: ${newPage}`
+      `There was a error fetching player events with team id: ${playerId}, and page: ${newPage}`
     );
   }
 

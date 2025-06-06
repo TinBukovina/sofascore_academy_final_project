@@ -7,7 +7,7 @@ export { getDifferentTournomentFromListOfEvents } from "./lib/utils";
 
 // UI
 export { TournamentRowInfo } from "./ui/TournamentRowInfo";
-export { TournamentCard } from "./ui/TournamentCard";
+export { TournamentSearchCard } from "./ui/TournamentSearchCard";
 export { TournamentHero } from "./ui/TournamentHero";
 
 // Types

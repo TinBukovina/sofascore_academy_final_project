@@ -60,16 +60,18 @@ export default async function Page({ params }: PageProps) {
       </Flex>
       {/*CONTENT*/}
       <TeamPageClient params={params} team={team}>
-        {teamTournaments.length <= 0 ? (
-          <Box display={"none"}></Box>
-        ) : (
-          <Standings
-            tournament={teamTournaments.at(0)!}
-            homeTeamId={team.id}
-            disableHeroLink={false}
-          />
-        )}
-        <Players teamId={team.id} />
+        <Flex direction={"column"} gap={"1rem"}>
+          {teamTournaments.length <= 0 ? (
+            <Box display={"none"}></Box>
+          ) : (
+            <Standings
+              tournament={teamTournaments.at(0)!}
+              homeTeamId={team.id}
+              disableHeroLink={false}
+            />
+          )}
+          <Players teamId={team.id} />
+        </Flex>
       </TeamPageClient>
     </Flex>
   );

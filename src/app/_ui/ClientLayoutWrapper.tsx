@@ -10,6 +10,9 @@ import {
 import Image from "next/image";
 import { FavouritesProvider } from "@/3_features/favourites";
 import { SettingsProvider } from "@/3_features/settings";
+import SettingsWindowCompoents from "@/3_features/settings/ui/SettingsWindowCompoents";
+import SearchWindowComponent from "@/3_features/search/ui/SearchWindowComponent";
+import { SearchProvider } from "@/3_features/search";
 
 export default function ClientLayoutWrapper({
   children,
@@ -29,30 +32,35 @@ export default function ClientLayoutWrapper({
       })}
     >
       <SettingsProvider>
-        <FavouritesProvider>
-          <Navigation />
-          <TopMobileNavigation />
-          <Flex
-            direction={"column"}
-            p={"16px"}
-            pt={"34px"}
-            gap={"32px"}
-            overflow={"auto"}
-            scrollbarWidth={"none"}
-          >
-            <Box display={{ base: "none", md: "flex" }}>
-              <Image
-                src={"/images/sofascore_logo_small.png"}
-                width={160}
-                height={26}
-                alt="Sofascore logo"
-                priority={true}
-              />
-            </Box>
-            {children}
-          </Flex>
-          <BottomMobileNavigation />
-        </FavouritesProvider>
+        <SearchProvider>
+          <FavouritesProvider>
+            <Navigation />
+            <TopMobileNavigation />
+            <Flex
+              direction={"column"}
+              p={"16px"}
+              pt={"34px"}
+              gap={"32px"}
+              overflow={"auto"}
+              scrollbarWidth={"none"}
+            >
+              <Box display={{ base: "none", md: "flex" }}>
+                <Image
+                  src={"/images/sofascore_logo_small.png"}
+                  width={160}
+                  height={26}
+                  alt="Sofascore logo"
+                  priority={true}
+                />
+              </Box>
+              {children}
+
+              <SettingsWindowCompoents />
+              <SearchWindowComponent />
+            </Flex>
+            <BottomMobileNavigation />
+          </FavouritesProvider>
+        </SearchProvider>
       </SettingsProvider>
     </div>
   );

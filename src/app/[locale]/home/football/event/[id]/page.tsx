@@ -1,40 +1,30 @@
-"use client";
-
 import React from "react";
-import { useEventById } from "@/4_entities/event";
 import { FavouriteToggleBtn } from "@/3_features/favourites/ui/FavouriteToggleBtn";
 import Image from "next/image";
 import { Standings } from "@/2_widgets/standings";
 import { EventIncidents } from "@/2_widgets/eventPopup/ui/EventIncidents";
-import LoadingPage from "@/app/_ui/LoadingPage";
 import { Box, Flex } from "@styled-system/jsx";
-import { useTranslations } from "next-intl";
+import { getLocale, getTranslations } from "next-intl/server";
+import { getEventByIdWithServer } from "@/app/api/_actions/getEventByIdFromServer";
+import { redirect } from "@/navigation";
 
 interface PageProps {
   params: Promise<{
-    id: string;
+    id: number;
   }>;
   status?: string;
 }
 
-export default function Page({ params, status = "Finished" }: PageProps) {
-  const resolvedParams = React.use(params);
-  const eventId = resolvedParams.id;
+export default async function Page({ params, status = "Finished" }: PageProps) {
+  const eventId = (await params).id;
 
-  const tEventPage = useTranslations("event_page");
-  const tError = useTranslations("error");
+  const tEventPage = await getTranslations("event_page");
 
-  const { event, isLoading, isError, error } = useEventById(Number(eventId));
-
-  if (isLoading) return <LoadingPage text="Učitavanje događaja..." />;
-
-  if (isError) {
-    console.log(error);
-    return <div>{tError("error")}</div>;
-  }
+  const event = await getEventByIdWithServer(eventId);
 
   if (!event) {
-    return <div>{tError("no_event_for_id")}</div>;
+    redirect({ href: "/error", locale: await getLocale() });
+    return <Box display={"none"}></Box>;
   }
 
   return (
@@ -127,7 +117,6 @@ export default function Page({ params, status = "Finished" }: PageProps) {
           <Box>{event.awayTeam.name}</Box>
         </Flex>
       </Flex>
-
       <Flex direction={{ base: "column-reverse", md: "row" }} gap={"1rem"}>
         <Box flex={2}>
           <Standings

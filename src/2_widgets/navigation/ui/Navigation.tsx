@@ -18,6 +18,7 @@ import { NavigationIconBtn } from "@/5_shared";
 import NavigationResizeBtn from "./NavigationResizeBtn";
 import { useSettings } from "@/3_features/settings";
 import { useTranslations } from "next-intl";
+import { useSearch } from "@/3_features/search";
 
 export type ActiveLinksType =
   | "football"
@@ -33,6 +34,7 @@ export function Navigation() {
   const t = useTranslations("navigation");
 
   const { areOptionsDisplayed, setAreOptionsDisplayed } = useSettings();
+  const { isSearchDisplayed, setIsSearchDisplayed } = useSearch();
 
   const [navigationWidthState, setNavigationWidthState] = useState<
     "normal" | "compact"
@@ -79,9 +81,12 @@ export function Navigation() {
         />
         {!isCompact ? (
           <NavigationIconBtn
-            isActive={pathname?.includes("search")}
+            isActive={isSearchDisplayed || pathname?.includes("search")}
             svgInfo={searchSvgInfo}
-            handleOnClick={() => {}}
+            handleOnClick={() => {
+              console.log(isSearchDisplayed);
+              setIsSearchDisplayed(true);
+            }}
           />
         ) : (
           <Box></Box>
@@ -93,11 +98,14 @@ export function Navigation() {
         {isCompact ? (
           <NavigationLink
             isCompact={isCompact}
-            isActive={!areOptionsDisplayed && pathname?.includes("search")}
+            isActive={isSearchDisplayed || pathname?.includes("search")}
             svgInfo={searchSvgInfo}
-            handleOnClick={() => {}}
+            handleOnClick={() => {
+              console.log(isSearchDisplayed);
+              setIsSearchDisplayed(true);
+            }}
           >
-            {t("search")}
+            Search
           </NavigationLink>
         ) : (
           <Box></Box>
@@ -105,7 +113,11 @@ export function Navigation() {
 
         <NavigationLink
           isCompact={isCompact}
-          isActive={!areOptionsDisplayed && pathname?.includes("favourites")}
+          isActive={
+            !areOptionsDisplayed &&
+            !isSearchDisplayed &&
+            pathname?.includes("favourites")
+          }
           svgInfo={
             !areOptionsDisplayed && pathname?.includes("favourites")
               ? bookmarkFillSvgInfo
@@ -140,7 +152,11 @@ export function Navigation() {
         )}
         <NavigationLink
           isCompact={isCompact}
-          isActive={!areOptionsDisplayed && pathname?.includes("football")}
+          isActive={
+            !areOptionsDisplayed &&
+            !isSearchDisplayed &&
+            pathname?.includes("football")
+          }
           svgInfo={footballSvgInfo}
           handleOnClick={() => {
             router.push("/home/football");
@@ -150,7 +166,11 @@ export function Navigation() {
         </NavigationLink>
         <NavigationLink
           isCompact={isCompact}
-          isActive={!areOptionsDisplayed && pathname?.includes("basketball")}
+          isActive={
+            !areOptionsDisplayed &&
+            !isSearchDisplayed &&
+            pathname?.includes("basketball")
+          }
           svgInfo={basketballSvgInfo}
           handleOnClick={() => {
             router.push("/home/basketball");
@@ -160,7 +180,11 @@ export function Navigation() {
         </NavigationLink>
         <NavigationLink
           isCompact={isCompact}
-          isActive={!areOptionsDisplayed && pathname?.includes("rugby")}
+          isActive={
+            !areOptionsDisplayed &&
+            !isSearchDisplayed &&
+            pathname?.includes("rugby")
+          }
           svgInfo={rugbySvgInfo}
           handleOnClick={() => {
             router.push("/home/rugby");

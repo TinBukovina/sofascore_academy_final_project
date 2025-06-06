@@ -9,7 +9,7 @@ export async function getTeamTournamentsFromServer(
   teamId: number
 ): Promise<TournamentInterface[] | null> {
   if (!teamId || isNaN(teamId) || teamId <= 0) {
-    console.error(`[Server Fetch] Pogrešan ID tima: ${teamId}`);
+    console.error(`[Server Fetch] Wrong team ID: ${teamId}`);
     return null;
   }
 
@@ -20,14 +20,14 @@ export async function getTeamTournamentsFromServer(
 
     if (!response.ok) {
       console.error(
-        `[Server Fetch] Greška pri dohvaćanju turnira od tima s ID-om: ${teamId}. Status: ${response.status}`
+        `[Server Fetch] Error fetching tournaments from a team with ID: ${teamId}. Status: ${response.status}`
       );
       return null;
     }
     return (await response.json()) as TournamentInterface[];
   } catch (error) {
     console.error(
-      `[Server Fetch] Greška u getTeamTournamentsFromServer za ID ${teamId}:`,
+      `[Server Fetch] Error in getTeamTournamentsFromServer for ID ${teamId}:`,
       error
     );
     return null;

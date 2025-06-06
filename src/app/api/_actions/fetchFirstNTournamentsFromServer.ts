@@ -7,9 +7,7 @@ export async function fetchFirstNTournamentsDataFromServer(
   count: number
 ): Promise<TournamentInterface[]> {
   if (isNaN(count) || count <= 0) {
-    console.log(
-      `[Server Fetch] Neispravan broj turnira za dohvaćanje: ${count}`
-    );
+    console.log(`[Server Fetch] Wrong number of tournaments entered: ${count}`);
     return [];
   }
   const tournamentIds = Array.from({ length: count }, (_, i) => i + 1);
@@ -23,7 +21,7 @@ export async function fetchFirstNTournamentsDataFromServer(
     return results.filter((t): t is TournamentInterface => t !== null);
   } catch (error) {
     console.error(
-      "[Server Fetch] Greška pri dohvaćanju više turnira u fetchFirstNTournamentsDataForServer:",
+      "[Server Fetch] Error fetching tournaments in fetchFirstNTournamentsDataForServer:",
       error
     );
     return [];

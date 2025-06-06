@@ -31,6 +31,7 @@ export const FavouritesProvider: React.FC<FavouritesProviderProps> = ({
   const [favouritePlayers, setFavouritePlayers] = useState<PlayerInterface[]>(
     []
   );
+  const [isMounted, setIsMounted] = useState<boolean>(false);
 
   useEffect(() => {
     const savedFavouritesString = localStorage.getItem(LOCAL_STORAGE_KEY);
@@ -41,20 +42,36 @@ export const FavouritesProvider: React.FC<FavouritesProviderProps> = ({
           savedFavouritesString
         ) as Partial<LoaclStorageObject>;
 
-        setFavouriteEvents(
-          Array.isArray(savedFavourites.events) ? savedFavourites.events : []
-        );
-        setFavouriteTeams(
-          Array.isArray(savedFavourites.teams) ? savedFavourites.teams : []
-        );
-        setFavouriteTournaments(
-          Array.isArray(savedFavourites.tournaments)
-            ? savedFavourites.tournaments
-            : []
-        );
-        setFavouritePlayers(
-          Array.isArray(savedFavourites.players) ? savedFavourites.players : []
-        );
+        console.log(savedFavourites);
+        setFavouriteEvents((prev) => {
+          if (!savedFavourites.events) {
+            return prev;
+          }
+
+          return [...savedFavourites.events];
+        });
+        setFavouriteTeams((prev) => {
+          if (!savedFavourites.teams) {
+            return prev;
+          }
+
+          return [...savedFavourites.teams];
+        });
+        setFavouriteTournaments((prev) => {
+          if (!savedFavourites.tournaments) {
+            return prev;
+          }
+
+          return [...savedFavourites.tournaments];
+        });
+        setFavouritePlayers((prev) => {
+          if (!savedFavourites.players) {
+            return prev;
+          }
+
+          return [...savedFavourites.players];
+        });
+        setIsMounted(true);
       } catch (error) {
         console.error("Failed to parse favourites from localStorage:", error);
         setFavouriteEvents([]);
@@ -74,6 +91,12 @@ export const FavouritesProvider: React.FC<FavouritesProviderProps> = ({
   }, []);
 
   useEffect(() => {
+    if (!isMounted) return;
+
+    console.log(
+      `Spremanje: ${favouriteEvents}, ${favouriteTeams},
+        ${favouriteTournaments}, ${favouritePlayers}`
+    );
     localStorage.setItem(
       LOCAL_STORAGE_KEY,
       JSON.stringify({
@@ -83,7 +106,13 @@ export const FavouritesProvider: React.FC<FavouritesProviderProps> = ({
         players: favouritePlayers,
       })
     );
-  }, [favouriteEvents, favouriteTeams, favouriteTournaments, favouritePlayers]);
+  }, [
+    favouriteEvents,
+    favouriteTeams,
+    favouriteTournaments,
+    favouritePlayers,
+    isMounted,
+  ]);
 
   const addEventToFavourites = useCallback((event: EventInterface) => {
     setFavouriteEvents((prev) => [...prev, event]);

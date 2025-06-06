@@ -3,9 +3,9 @@
 import React from "react";
 import { Box, Center, Flex } from "../../../../styled-system/jsx";
 import { useTeamPlayers } from "@/4_entities/team/hooks/useTeamPlayers";
-import LoadingPage from "@/app/_ui/LoadingPage";
 import { PlayerCard } from "@/4_entities/player";
 import { useTranslations } from "next-intl";
+import { css } from "@styled-system/css";
 
 interface PlayersProps {
   teamId: number;
@@ -17,7 +17,53 @@ export function Players({ teamId }: PlayersProps) {
 
   const { teamPlayers, isLoading, isError, error } = useTeamPlayers(teamId);
 
-  if (isLoading) return <LoadingPage />;
+  if (isLoading)
+    return (
+      <Flex
+        direction={"column"}
+        gap={"1rem"}
+        w={"100%"}
+        border={"1px solid transparent"}
+        borderColor={"border"}
+        borderRadius={"md"}
+        overflow={"hidden"}
+      >
+        <Box w={"100%"} h={"60px"} bg={"surface.s1"}></Box>
+        <Flex direction={"column"} gap={"0.75rem"} p={"1rem"}>
+          {[...Array(12)].map((_, i) => (
+            <Box
+              key={i}
+              h={"24px"}
+              w={"100%"}
+              borderRadius={"sm"}
+              className={css({
+                backgroundColor: "surface.s0",
+                position: "relative",
+                overflow: "hidden",
+                _before: {
+                  content: '""',
+                  position: "absolute",
+                  top: 0,
+                  left: 0,
+                  width: "100%",
+                  height: "100%",
+                  backgroundImage: `linear-gradient(
+                                          90deg,
+                                          transparent 25%,
+                                          token(colors.surface.s1) 50%,
+                                          transparent 75%
+                                        )`,
+                  animationName: "shimmerSlide",
+                  animationDuration: "1.5s",
+                  animationIterationCount: "infinite",
+                  animationTimingFunction: "linear",
+                },
+              })}
+            />
+          ))}
+        </Flex>
+      </Flex>
+    );
 
   if (isError) {
     console.log(error);
@@ -41,7 +87,7 @@ export function Players({ teamId }: PlayersProps) {
       <Box p={"1rem"} bg={"surface.s1"} color={"primaryClr"} fontSize={"h6"}>
         {tPlayers("title")}
       </Box>
-      <Flex direction={"column"} gap={"1rem"} p={"1rem"} pt={"0"}>
+      <Flex direction={"column"} gap={"2rem"} p={"1rem"} pt={"0"}>
         <Flex
           direction={"column"}
           gap={"0.5rem"}
@@ -51,7 +97,9 @@ export function Players({ teamId }: PlayersProps) {
               : "flex"
           }
         >
-          <Box>{tPlayers("position_coach")}</Box>
+          <Box textAlign={"center"} mb={"0.5rem"}>
+            {tPlayers("position_coach")}
+          </Box>
           <Flex wrap={"wrap"} gap={"1rem"} justifyContent={"center"}>
             {teamPlayers
               .filter((player) => player.position === "C")
@@ -72,7 +120,9 @@ export function Players({ teamId }: PlayersProps) {
               : "flex"
           }
         >
-          <Box>{tPlayers("position_forward")}</Box>
+          <Box textAlign={"center"} mb={"0.5rem"}>
+            {tPlayers("position_forward")}
+          </Box>
           <Flex wrap={"wrap"} gap={"1rem"} justifyContent={"center"}>
             {teamPlayers
               .filter((player) => player.position === "F")
@@ -93,7 +143,9 @@ export function Players({ teamId }: PlayersProps) {
               : "flex"
           }
         >
-          <Box>{tPlayers("position_midfilder")}</Box>
+          <Box textAlign={"center"} mb={"0.5rem"}>
+            {tPlayers("position_midfilder")}
+          </Box>
           <Flex wrap={"wrap"} gap={"1rem"} justifyContent={"center"}>
             {teamPlayers
               .filter((player) => player.position === "M")
@@ -114,7 +166,9 @@ export function Players({ teamId }: PlayersProps) {
               : "flex"
           }
         >
-          <Box>{tPlayers("position_defender")}</Box>
+          <Box textAlign={"center"} mb={"0.5rem"}>
+            {tPlayers("position_defender")}
+          </Box>
           <Flex wrap={"wrap"} gap={"1rem"} justifyContent={"center"}>
             {teamPlayers
               .filter((player) => player.position === "D")
@@ -135,7 +189,9 @@ export function Players({ teamId }: PlayersProps) {
               : "flex"
           }
         >
-          <Box>{tPlayers("position_goalkeeper")}</Box>
+          <Box textAlign={"center"} mb={"0.5rem"}>
+            {tPlayers("position_goalkeeper")}
+          </Box>
           <Flex wrap={"wrap"} gap={"1rem"} justifyContent={"center"}>
             {teamPlayers
               .filter((player) => player.position === "G")

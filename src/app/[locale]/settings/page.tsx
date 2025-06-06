@@ -10,6 +10,7 @@ export default function Page() {
       justifyContent={"center"}
       alignItems={"center"}
       w={"100%"}
+      h={"100%"}
     >
       <SettingsComponent />
     </Flex>

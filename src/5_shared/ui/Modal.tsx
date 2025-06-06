@@ -12,9 +12,20 @@ interface ModalProps {
   onClose: () => void;
   children: ReactNode;
   title: string;
+  mw?: string;
+  mh?: string;
+  h?: string;
 }
 
-export const Modal = ({ isOpen, onClose, children, title }: ModalProps) => {
+export const Modal = ({
+  isOpen,
+  onClose,
+  children,
+  title,
+  mw = "500px",
+  mh = "400px",
+  h = "fit-content",
+}: ModalProps) => {
   if (!isOpen) {
     return null;
   }
@@ -43,11 +54,11 @@ export const Modal = ({ isOpen, onClose, children, title }: ModalProps) => {
           gap={"1rem"}
           onClick={handleContentClick}
           p={"1rem"}
-          maxW={"500px"}
+          maxW={mw}
           minW={"350px"}
-          maxH={"400px"}
+          maxH={mh}
+          h={h}
           w={"100%"}
-          h={"fit-content"}
           bg={"surface.s0"}
           border={"1px solid transparent"}
           borderColor={"border"}
