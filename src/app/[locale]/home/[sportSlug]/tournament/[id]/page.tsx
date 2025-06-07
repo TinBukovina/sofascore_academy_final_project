@@ -7,14 +7,16 @@ import { redirect } from "@/navigation";
 import { getLocale } from "next-intl/server";
 import TournamentPageClient from "./tournamentPageClient";
 import { Standings } from "@/2_widgets/standings";
+import { AvailableSportsType } from "../../page";
 
 interface PageProps {
-  params: Promise<{ id: number }>;
+  params: Promise<{ sportSlug: AvailableSportsType; id: number }>;
 }
 
 export default async function Page({ params }: PageProps) {
   const resolvedParams = await params;
   const tournamentId = resolvedParams.id;
+  const sportSlug = resolvedParams.sportSlug;
   const locale = await getLocale();
 
   const tournament = await getTournamentByIdFromServer(tournamentId);
@@ -58,7 +60,11 @@ export default async function Page({ params }: PageProps) {
         </Flex>
       </Flex>
       <TournamentPageClient tournament={tournament} params={params}>
-        <Standings tournament={tournament} disableHeroLink={true} />
+        <Standings
+          sportSlug={sportSlug}
+          tournament={tournament}
+          disableHeroLink={true}
+        />
       </TournamentPageClient>
     </Flex>
   );

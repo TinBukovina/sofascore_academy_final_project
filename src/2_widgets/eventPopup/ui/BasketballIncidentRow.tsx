@@ -2,14 +2,16 @@ import React from "react";
 import { Box, Flex } from "../../../../styled-system/jsx";
 import { IncidentsInterface } from "@/4_entities/event";
 import Image from "next/image";
-import { football300SvgInfo, Icon } from "@/5_shared";
 
 interface EventIncidentRowProps {
   incident: IncidentsInterface;
   type: "home" | "away";
 }
 
-export function EventIncidentRow({ incident, type }: EventIncidentRowProps) {
+export function BasketballIncicentRow({
+  incident,
+  type,
+}: EventIncidentRowProps) {
   return (
     <Flex
       key={incident.id}
@@ -42,9 +44,27 @@ export function EventIncidentRow({ incident, type }: EventIncidentRowProps) {
               </Box>
             )
           ) : (
-            <Box>
-              <Icon width="24px" height="24px" svgInfo={football300SvgInfo()} />
-            </Box>
+            <Flex
+              justifyContent={"center"}
+              alignItems={"center"}
+              p={"0.5rem"}
+              pb={"0.6rem"}
+              bg={"surface.s1"}
+              w={"28px"}
+              h={"28px"}
+              borderRadius={"100%"}
+              border={"2px solid transparent"}
+              borderColor={"primaryClr"}
+              color={"primaryClr"}
+              fontSize={"md"}
+              fontWeight={"bold"}
+            >
+              {incident.goalType === "onepoint"
+                ? "1"
+                : incident.goalType === "twopoint"
+                  ? "2"
+                  : "3"}
+            </Flex>
           )}
 
           <Box>{incident?.player?.name || "Nema"}</Box>
@@ -59,7 +79,7 @@ export function EventIncidentRow({ incident, type }: EventIncidentRowProps) {
                   src={"/images/red_card.png"}
                   width={16}
                   height={16}
-                  alt="red cart" // Originalni alt tekst ostavljen kako jest
+                  alt="red cart"
                 />
               </Box>
             ) : (
@@ -68,14 +88,32 @@ export function EventIncidentRow({ incident, type }: EventIncidentRowProps) {
                   src={"/images/yellow_card.png"}
                   width={16}
                   height={16}
-                  alt="red cart" // Originalni alt tekst ostavljen kako jest
+                  alt="red cart"
                 />
               </Box>
             )
           ) : (
-            <Box>
-              <Icon width="24px" height="24px" svgInfo={football300SvgInfo()} />
-            </Box>
+            <Flex
+              justifyContent={"center"}
+              alignItems={"center"}
+              p={"0.5rem"}
+              pb={"0.6rem"}
+              bg={"surface.s1"}
+              w={"28px"}
+              h={"28px"}
+              borderRadius={"100%"}
+              border={"2px solid transparent"}
+              borderColor={"primaryClr"}
+              color={"primaryClr"}
+              fontSize={"md"}
+              fontWeight={"bold"}
+            >
+              {incident.goalType === "onepoint"
+                ? "1"
+                : incident.goalType === "twopoint"
+                  ? "2"
+                  : "3"}
+            </Flex>
           )}
           <Box>{incident.time + "'"}</Box>
         </>

@@ -9,13 +9,17 @@ import { EventIncidentRow } from "./EventIncidentRow";
 
 import { useTranslations } from "next-intl";
 import EventIncidentLoader from "./EventIncidentLoader";
+import { BasketballIncicentRow } from "./BasketballIncidentRow";
+import { AvailableSportsType } from "@/app/[locale]/home/[sportSlug]/page";
+import { RugbyIncidentRow } from "./RugyIncidentRow";
 
 interface EventEventsProps {
   event: EventInterface;
   styles?: React.CSSProperties;
+  sportSlug: AvailableSportsType;
 }
 
-export function EventIncidents({ event, styles }: EventEventsProps) {
+export function EventIncidents({ event, styles, sportSlug }: EventEventsProps) {
   const tEventIncidents = useTranslations("event_incidents");
   const tError = useTranslations("error");
 
@@ -36,7 +40,7 @@ export function EventIncidents({ event, styles }: EventEventsProps) {
     return <Box>{tError("no_incidents_for_event")}</Box>;
   }
 
-  const periodIncidents = eventIncident.filter((el) => el.text);
+  const periodIncidents = eventIncident.filter((el) => el.text)?.toReversed();
 
   if (periodIncidents.length < 2) {
     return <Box>{tError("no_incidents_for_event")}</Box>;
@@ -49,12 +53,7 @@ export function EventIncidents({ event, styles }: EventEventsProps) {
     return <Box>{tError("no_incidents_for_event")}</Box>;
   }
 
-  const firstHalfIncidents = eventIncident.filter(
-    (el) => el.time <= halfTimeObj.time && !el.text
-  );
-  const secondHalfIncidetns = eventIncident.filter(
-    (el) => el.time > halfTimeObj.time && !el.text
-  );
+  let lastPeriodTime = 0;
   return (
     <Flex
       direction={"column"}
@@ -86,57 +85,77 @@ export function EventIncidents({ event, styles }: EventEventsProps) {
         {tEventIncidents("title")}
       </Box>
       <Flex direction={"column"} gap={"0.5rem"} p={"0.5rem"} fontSize={"sm"}>
-        <Flex gap={"0.5rem"} alignItems={"center"}>
-          <Box w={"100%"} h={"2px"} bg={"border"}></Box>
-          <Box minW={"fit-content"}>{fullTimeObj.text}</Box>
-          <Box w={"100%"} h={"2px"} bg={"border"}></Box>
-        </Flex>
+        {periodIncidents.map((period) => {
+          const periodWithStartTime = { ...period, startTime: 0 };
+          return (
+            <React.Fragment key={period.id}>
+              <Flex gap={"0.5rem"} alignItems={"center"}>
+                <Box w={"100%"} h={"2px"} bg={"border"}></Box>
+                <Box minW={"fit-content"}>{period.text}</Box>
+                <Box w={"100%"} h={"2px"} bg={"border"}></Box>
+              </Flex>
 
-        {secondHalfIncidetns
-          .sort((a, b) => b.time - a.time)
-          .map((el) => (
-            <EventIncidentRow
-              key={el.id}
-              incident={el}
-              type={
-                !!el.teamSide
-                  ? el.teamSide === "home"
-                    ? "home"
-                    : "away"
-                  : !!el.scoringTeam
-                    ? el.scoringTeam === "home"
-                      ? "home"
-                      : "away"
-                    : "home"
-              }
-            />
-          ))}
-
-        <Flex gap={"0.5rem"} alignItems={"center"}>
-          <Box w={"100%"} h={"2px"} bg={"border"}></Box>
-          <Box minW={"fit-content"}>{halfTimeObj.text}</Box>
-          <Box w={"100%"} h={"2px"} bg={"border"}></Box>
-        </Flex>
-
-        {firstHalfIncidents
-          .sort((a, b) => b.time - a.time)
-          .map((el) => (
-            <EventIncidentRow
-              key={el.id}
-              incident={el}
-              type={
-                !!el.teamSide
-                  ? el.teamSide === "home"
-                    ? "home"
-                    : "away"
-                  : !!el.scoringTeam
-                    ? el.scoringTeam === "home"
-                      ? "home"
-                      : "away"
-                    : "home"
-              }
-            />
-          ))}
+              {eventIncident
+                .filter(
+                  (el) =>
+                    el.time <= periodWithStartTime.time &&
+                    el.time >= periodWithStartTime.startTime
+                )
+                .sort((a, b) => b.time - a.time)
+                .map((el) =>
+                  sportSlug === "football" ? (
+                    <EventIncidentRow
+                      key={el.id}
+                      incident={el}
+                      type={
+                        !!el.teamSide
+                          ? el.teamSide === "home"
+                            ? "home"
+                            : "away"
+                          : !!el.scoringTeam
+                            ? el.scoringTeam === "home"
+                              ? "home"
+                              : "away"
+                            : "home"
+                      }
+                    />
+                  ) : sportSlug === "basketball" ? (
+                    <BasketballIncicentRow
+                      key={el.id}
+                      incident={el}
+                      type={
+                        !!el.teamSide
+                          ? el.teamSide === "home"
+                            ? "home"
+                            : "away"
+                          : !!el.scoringTeam
+                            ? el.scoringTeam === "home"
+                              ? "home"
+                              : "away"
+                            : "home"
+                      }
+                    />
+                  ) : (
+                    <RugbyIncidentRow
+                      key={el.id}
+                      incident={el}
+                      type={
+                        !!el.teamSide
+                          ? el.teamSide === "home"
+                            ? "home"
+                            : "away"
+                          : !!el.scoringTeam
+                            ? el.scoringTeam === "home"
+                              ? "home"
+                              : "away"
+                            : "home"
+                      }
+                    />
+                  )
+                )}
+            </React.Fragment>
+          );
+        })}
       </Flex>
     </Flex>
   );

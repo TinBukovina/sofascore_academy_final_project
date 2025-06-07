@@ -241,7 +241,7 @@ const countryCodes: CountryCodeMap = {
   uganda: "UG",
   "united states minor outlying islands": "UM",
   "united nations": "UN",
-  "united states": "US",
+  usa: "US",
   alaska: "US-AK",
   alabama: "US-AL",
   arkansas: "US-AR",
@@ -317,6 +317,7 @@ export const getCountryISO2 = (
 ): string | null => {
   const normalizedCountryName = countryName.toLowerCase();
 
+  console.log(countryCodes);
   const isoCode = countryCodes[normalizedCountryName]?.toLocaleLowerCase();
 
   if (forName && isoCode?.startsWith("gb"))

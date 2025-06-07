@@ -42,4 +42,12 @@ export interface IncidentsInterface {
   time: number;
   type: "card" | "goal" | "period";
   text?: string;
+  goalType?:
+    | "onepoint"
+    | "twopoint"
+    | "threepoint"
+    | "touchdown"
+    | "fieldgoal"
+    | "two_point_conversion"
+    | "extrapoint";
 }

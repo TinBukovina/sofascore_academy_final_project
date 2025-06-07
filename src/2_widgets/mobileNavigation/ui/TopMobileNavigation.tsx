@@ -89,7 +89,7 @@ export function TopMobileNavigation() {
         </Link>
 
         <Link
-          href={"/home/rugby"}
+          href={"/home/american-football"}
           style={{
             borderBottomWidth: "1px",
             display: "flex",

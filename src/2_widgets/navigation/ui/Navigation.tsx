@@ -183,11 +183,11 @@ export function Navigation() {
           isActive={
             !areOptionsDisplayed &&
             !isSearchDisplayed &&
-            pathname?.includes("rugby")
+            pathname?.includes("america-football")
           }
           svgInfo={rugbySvgInfo}
           handleOnClick={() => {
-            router.push("/home/rugby");
+            router.push("/home/american-football");
           }}
         >
           {t("rugby")}

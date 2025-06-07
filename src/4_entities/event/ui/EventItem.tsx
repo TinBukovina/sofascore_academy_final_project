@@ -34,7 +34,7 @@ export function EventItem({
     <Box
       onClick={() => {
         if (windowWidth <= 768) {
-          router.push(`/home/football/event/${event.id}`);
+          router.push(`/home/${event.tournament.sport.slug}/event/${event.id}`);
           return;
         }
 
@@ -42,7 +42,7 @@ export function EventItem({
         if (handleOnClick) handleOnClick();
 
         if (!setSelectedEvent && !handleOnClick)
-          router.push(`/home/football/event/${event.id}`);
+          router.push(`/home/${event.tournament.sport.slug}/event/${event.id}`);
       }}
       _hover={{ bg: "surface.s1", cursor: "pointer" }}
     >

@@ -11,9 +11,10 @@ import { css } from "@styled-system/css";
 import { Box, Center, Flex } from "@styled-system/jsx";
 import { useLocale } from "next-intl";
 import React, { ReactNode, useState } from "react";
+import { AvailableSportsType } from "../../page";
 
 interface TournamentPageClientProps {
-  params: Promise<{ id: number }>;
+  params: Promise<{ sportSlug: AvailableSportsType; id: number }>;
   children: ReactNode;
   tournament: TournamentInterface;
 }
@@ -122,7 +123,7 @@ export default function TournamentPageClient({
       {/*TOURNAMENT MATCHES*/}
       <Matches tournament={tournament} styles={{ flex: "4" }}>
         <ChangeEventsRow
-          text={fetchedPage >= 0 ? "Played" : "Finished"}
+          text={tournamentEvents ? "Played" : "Finished"}
           handleLeftBtnClick={() => {
             setFetchedPage((prev) => prev + 1);
           }}

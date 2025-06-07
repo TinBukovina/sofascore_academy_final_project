@@ -7,12 +7,14 @@ import { useRouter } from "next/navigation";
 import { getCountryISO2 } from "@/4_entities/player/lib/utils";
 import { TeamInterface } from "../../types";
 import { Box, Flex } from "../../../../../styled-system/jsx";
+import { AvailableSportsType } from "@/app/[locale]/home/[sportSlug]/page";
 
 interface TeamItemProp {
   team: TeamInterface;
+  sportSlug: AvailableSportsType;
 }
 
-export function TeamItem({ team }: TeamItemProp) {
+export function TeamItem({ team, sportSlug }: TeamItemProp) {
   const router = useRouter();
 
   return (
@@ -30,7 +32,7 @@ export function TeamItem({ team }: TeamItemProp) {
         cursor: "pointer",
       }}
       onClick={() => {
-        router.push(`/home/football/team/${team.id}`);
+        router.push(`/home/${sportSlug}/team/${team.id}`);
       }}
     >
       <Flex alignItems={"center"} gap={"1rem"}>

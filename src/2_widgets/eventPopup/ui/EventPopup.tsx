@@ -13,19 +13,22 @@ import { Hero } from "./Hero";
 import { EventIncidents } from "./EventIncidents";
 import { useRouter } from "next/navigation";
 import { useTranslations } from "next-intl";
+import { AvailableSportsType } from "@/app/[locale]/home/[sportSlug]/page";
 
 interface EventPopupProps {
   event: EventInterface;
+  sportSlug: AvailableSportsType;
   colsePopup: () => void;
 }
 
-export function EventPopup({ event, colsePopup }: EventPopupProps) {
+export function EventPopup({ event, colsePopup, sportSlug }: EventPopupProps) {
   const router = useRouter();
 
   const tEventPopup = useTranslations("event_popup");
 
   const [isShrinked, setIsShrinked] = useState<boolean>(false);
 
+  console.log(sportSlug);
   return (
     <Flex
       display={{ base: "none", md: "flex" }}
@@ -77,10 +80,17 @@ export function EventPopup({ event, colsePopup }: EventPopupProps) {
             awayTeam={event.awayTeam}
             awayScore={event.awayScore}
           />
-          <EventIncidents event={event} styles={{ maxHeight: "250px" }} />
+          <EventIncidents
+            sportSlug={sportSlug}
+            event={event}
+            styles={{ maxHeight: "250px" }}
+          />
           <Button
             handleOnClick={() => {
-              router.push(`/home/football/event/${event.id}`);
+              console.log(
+                "going to the page: " + `/home/${sportSlug}/event/${event.id}`
+              );
+              router.push(`/home/${sportSlug}/event/${event.id}`);
             }}
           >
             {tEventPopup("button")}

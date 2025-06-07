@@ -12,10 +12,11 @@ import { css } from "@styled-system/css";
 import { Box, Center, Flex } from "@styled-system/jsx";
 import { useLocale } from "next-intl";
 import React, { ReactNode, useState } from "react";
+import { AvailableSportsType } from "../../page";
 
 interface TeamPageClientProps {
   children: ReactNode;
-  params: Promise<{ id: number }>;
+  params: Promise<{ sportSlug: AvailableSportsType; id: number }>;
   team: TeamInterface;
 }
 

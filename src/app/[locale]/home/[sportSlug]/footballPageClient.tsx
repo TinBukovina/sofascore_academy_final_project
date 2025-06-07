@@ -175,7 +175,11 @@ export default function FootballPageClient({
       </EventWidget>
       {children}
       {isPopupDisplayed && popupEvent ? (
-        <EventPopup event={popupEvent} colsePopup={closePopupWindow} />
+        <EventPopup
+          sportSlug="football"
+          event={popupEvent}
+          colsePopup={closePopupWindow}
+        />
       ) : (
         <Box display={"none"} />
       )}

@@ -2,8 +2,23 @@ import { TopTornaments } from "@/2_widgets/topTournoments";
 import FootballPageClient from "./footballPageClient";
 import { Flex } from "@styled-system/jsx";
 import { css } from "@styled-system/css";
+import React from "react";
+import BasketballPageClient from "./basketballPageClient";
+import RugbyPageClient from "./rugbyPageClient";
 
-export default function Page() {
+export type AvailableSportsType =
+  | "football"
+  | "basketball"
+  | "american-football";
+
+interface PageProps {
+  params: Promise<{ sportSlug: AvailableSportsType }>;
+}
+
+export default function Page({ params }: PageProps) {
+  const resolvedParams = React.use(params);
+  const sportSlug = resolvedParams.sportSlug;
+
   return (
     <Flex
       gap={"1rem"}
@@ -30,8 +45,15 @@ export default function Page() {
         },
       })}
     >
-      <FootballPageClient></FootballPageClient>
-      <TopTornaments />
+      {sportSlug === "football" ? (
+        <FootballPageClient></FootballPageClient>
+      ) : sportSlug === "basketball" ? (
+        <BasketballPageClient></BasketballPageClient>
+      ) : (
+        <RugbyPageClient></RugbyPageClient>
+      )}
+
+      <TopTornaments sportSlug={sportSlug} />
     </Flex>
   );
 }

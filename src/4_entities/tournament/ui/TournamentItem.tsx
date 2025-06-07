@@ -30,7 +30,9 @@ export function TournamentItem({ tournament }: TournamentItemProps) {
         cursor: "pointer",
       }}
       onClick={() => {
-        router.push(`/home/football/tournament/${tournament.id}`);
+        router.push(
+          `/home/${tournament.sport.slug}/tournament/${tournament.id}`
+        );
       }}
     >
       <Flex alignItems={"center"} gap={"1rem"}>

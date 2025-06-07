@@ -14,12 +14,14 @@ import { useLastNTournamentEvents } from "@/4_entities/tournament/hooks/useLastN
 import { useRouter } from "next/navigation";
 import { useTranslations } from "next-intl";
 import { css } from "@styled-system/css";
+import { AvailableSportsType } from "@/app/[locale]/home/[sportSlug]/page";
 
 interface StandingsProps {
   tournament: TournamentInterface;
   homeTeamId?: number;
   awayTeamId?: number;
   disableHeroLink?: boolean;
+  sportSlug: AvailableSportsType;
   styles?: React.CSSProperties;
 }
 
@@ -28,6 +30,7 @@ export function Standings({
   homeTeamId,
   awayTeamId,
   disableHeroLink = false,
+  sportSlug,
   styles,
 }: StandingsProps) {
   const router = useRouter();
@@ -153,7 +156,7 @@ export function Standings({
         }
         onClick={() => {
           if (!disableHeroLink)
-            router.push(`/home/football/tournament/${tournament.id}`);
+            router.push(`/home/${sportSlug}/tournament/${tournament.id}`);
         }}
       >
         <Flex gap={"0.75rem"}>
@@ -272,6 +275,7 @@ export function Standings({
                 : "noPass"
           }
           position={i + 1}
+          sportSlug={sportSlug}
           pastMatches={tournamentEvents.filter(
             (event) =>
               event.homeTeam.name === el.team.name ||

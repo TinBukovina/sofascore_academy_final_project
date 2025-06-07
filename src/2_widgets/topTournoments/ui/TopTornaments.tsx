@@ -4,10 +4,14 @@ import Row from "./Row";
 import { getTranslations } from "next-intl/server";
 import { TournamentInterface } from "@/4_entities/tournament";
 
-import { ShowMoreButton } from "./ShowMoreButton";
 import { fetchFirstNTournamentsDataFromServer } from "@/app/api/_actions/fetchFirstNTournamentsFromServer";
+import { AvailableSportsType } from "@/app/[locale]/home/[sportSlug]/page";
 
-export async function TopTornaments() {
+interface TopTournamentsProps {
+  sportSlug?: AvailableSportsType;
+}
+
+export async function TopTornaments({ sportSlug }: TopTournamentsProps) {
   const tTornaments = await getTranslations("top_tournametns");
 
   let tournaments: TournamentInterface[] = [];
@@ -21,6 +25,10 @@ export async function TopTornaments() {
   if (!tournaments || tournaments.length === 0) {
     return <Box display={"none"}></Box>;
   }
+
+  const filteredTournaments = tournaments.filter(
+    (tournament) => tournament.sport.slug === sportSlug || !sportSlug
+  );
 
   return (
     <Flex
@@ -49,14 +57,18 @@ export async function TopTornaments() {
       </Box>
 
       <Flex direction={"column"} gap={{ base: "1rem", lg: "0.75rem" }}>
-        {tournaments.map((tournament, i) => {
+        {filteredTournaments.map((tournament, i) => {
           if (!tournament) return <Box key={i} />;
 
-          return <Row tournoment={tournament} key={tournament?.id} />;
+          return (
+            <Row
+              sportSlug={sportSlug || "football"}
+              tournoment={tournament}
+              key={tournament?.id}
+            />
+          );
         })}
       </Flex>
-
-      <ShowMoreButton />
     </Flex>
   );
 }

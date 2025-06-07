@@ -11,12 +11,15 @@ import { redirect } from "@/navigation";
 interface PageProps {
   params: Promise<{
     id: number;
+    sportSlug: "football" | "basketball" | "rugby";
   }>;
   status?: string;
 }
 
 export default async function Page({ params, status = "Finished" }: PageProps) {
-  const eventId = (await params).id;
+  const resolvedParams = await params;
+  const eventId = resolvedParams.id;
+  const sportSlug = resolvedParams.sportSlug;
 
   const tEventPage = await getTranslations("event_page");
 
@@ -123,10 +126,15 @@ export default async function Page({ params, status = "Finished" }: PageProps) {
             tournament={event.tournament}
             homeTeamId={event.homeTeam.id}
             awayTeamId={event.awayTeam.id}
+            sportSlug={sportSlug}
           />
         </Box>
         <Box flex={1}>
-          <EventIncidents event={event} styles={{ maxHeight: "640px" }} />
+          <EventIncidents
+            sportSlug={sportSlug}
+            event={event}
+            styles={{ maxHeight: "640px" }}
+          />
         </Box>
       </Flex>
     </Flex>

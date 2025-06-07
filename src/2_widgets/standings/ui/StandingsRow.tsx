@@ -7,12 +7,15 @@ import { Box, Flex } from "../../../../styled-system/jsx";
 import Image from "next/image";
 import { MatchBox } from "./MatchBox";
 import { useRouter } from "next/navigation";
+import { usePathname } from "@/navigation";
+import { AvailableSportsType } from "@/app/[locale]/home/[sportSlug]/page";
 
 interface StandingsRowInterface {
   standingRowData: StandingRowInterface;
   position: number;
   status: "pass" | "noPass" | "selected";
   pastMatches: TournamentEventsInterface[];
+  sportSlug: AvailableSportsType;
 }
 
 export function StandingsRow({
@@ -20,8 +23,10 @@ export function StandingsRow({
   position,
   status,
   pastMatches,
+  sportSlug,
 }: StandingsRowInterface) {
   const router = useRouter();
+  const pathname = usePathname();
 
   const team = standingRowData.team;
 
@@ -59,7 +64,7 @@ export function StandingsRow({
         cursor: "pointer",
       }}
       onClick={() => {
-        router.push(`/home/football/team/${team.id}`);
+        router.push(`/home/${sportSlug}/team/${team.id}`);
       }}
     >
       <Flex alignItems={"center"} gap={"1rem"}>
@@ -145,13 +150,17 @@ export function StandingsRow({
         >
           {standingRowData.scoresFor - standingRowData.scoresAgainst}
         </Flex>
-        <Flex gap={"0.5rem"}>
+        <Flex justifyContent={"end"} gap={"0.5rem"} w={"152px"}>
           {performances.map((el, i) => (
-            <MatchBox key={i} type={el} last={i === 4} />
+            <MatchBox key={i} type={el} last={i === performances.length - 1} />
           ))}
         </Flex>
         <Box minW={"20px"} color={"primaryClr"} fontWeight={"bold"}>
-          {standingRowData.points}
+          {pathname.includes("football")
+            ? standingRowData.points
+            : pathname.includes("basketball")
+              ? standingRowData.percentage?.toFixed(2)
+              : "x"}
         </Box>
       </Flex>
     </Flex>

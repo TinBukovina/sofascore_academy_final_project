@@ -5,12 +5,14 @@ import { useRouter } from "next/navigation";
 import { FavouriteToggleBtn } from "@/3_features/favourites/ui/FavouriteToggleBtn";
 import { ImageBox } from "@/5_shared";
 import { useSearch } from "@/3_features/search";
+import { AvailableSportsType } from "@/app/[locale]/home/[sportSlug]/page";
 
 interface PlayerSearchCardProps {
   player: PlayerInterface;
+  sportSlug: AvailableSportsType;
 }
 
-export function PlayerSearchCard({ player }: PlayerSearchCardProps) {
+export function PlayerSearchCard({ player, sportSlug }: PlayerSearchCardProps) {
   const router = useRouter();
 
   const { setIsSearchDisplayed } = useSearch();
@@ -33,7 +35,7 @@ export function PlayerSearchCard({ player }: PlayerSearchCardProps) {
       }}
       onClick={() => {
         setIsSearchDisplayed(false);
-        router.push(`/home/football/player/${player.id}`);
+        router.push(`/home/${sportSlug}/player/${player.id}`);
       }}
     >
       {/*TOP PART*/}

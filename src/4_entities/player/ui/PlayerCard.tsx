@@ -4,18 +4,22 @@ import { Box, Flex } from "../../../../styled-system/jsx";
 import Image from "next/image";
 import { getCountryISO2 } from "../lib/utils";
 import { useRouter } from "next/navigation";
-import { FavouriteToggleBtn } from "@/3_features/favourites/ui/FavouriteToggleBtn";
+import { FavouriteToggleBtn } from "@/3_features/favourites";
+import { AvailableSportsType } from "@/app/[locale]/home/[sportSlug]/page";
 
 interface PlayerCardProps {
   player: PlayerInterface;
+  sportSlug: AvailableSportsType;
 }
 
-export function PlayerCard({ player }: PlayerCardProps) {
+export function PlayerCard({ player, sportSlug }: PlayerCardProps) {
   const router = useRouter();
 
   const inistialPlayerSrc = `/api/player/${player.id}/image`;
   const fallbackAvatarSrc = `/images/avatar.png`;
 
+  console.log(player.country.name);
+  console.log(getCountryISO2(player.country.name));
   const initialCountrySrc = `https://flagcdn.com/w80/${getCountryISO2(player.country.name)}.png`;
   const fallbackCountrySrc = "/images/imageFallback.svg";
 
@@ -34,6 +38,8 @@ export function PlayerCard({ player }: PlayerCardProps) {
     }
   };
 
+  console.log(player);
+
   return (
     <Flex
       direction={"column"}
@@ -50,7 +56,7 @@ export function PlayerCard({ player }: PlayerCardProps) {
         cursor: "pointer",
       }}
       onClick={() => {
-        router.push(`/home/football/player/${player.id}`);
+        router.push(`/home/${sportSlug}/player/${player.id}`);
       }}
     >
       {/*TOP PART*/}

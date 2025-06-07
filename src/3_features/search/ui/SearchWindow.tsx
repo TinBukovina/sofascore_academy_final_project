@@ -120,7 +120,11 @@ export function SearchWindow({ isOpen, onClose }: SearchWindowProp) {
                 <Box>{tSearch("teams")}</Box>
                 <Flex gap={"1rem"} w={"fit-content"}>
                   {filteredTeams.map((team) => (
-                    <TeamSearchCard key={team.id} team={team} />
+                    <TeamSearchCard
+                      key={team.id}
+                      team={team}
+                      sportSlug={"football"}
+                    />
                   ))}
                 </Flex>
               </Flex>
@@ -153,6 +157,7 @@ export function SearchWindow({ isOpen, onClose }: SearchWindowProp) {
                     <TournamentSearchCard
                       key={tournament.id}
                       tournament={tournament}
+                      sportSlug={"football"}
                     />
                   ))}
                 </Flex>
@@ -183,7 +188,11 @@ export function SearchWindow({ isOpen, onClose }: SearchWindowProp) {
                 <Box>{tSearch("players")}</Box>
                 <Flex gap={"1rem"} w={"fit-content"}>
                   {filteredPlayers.map((player) => (
-                    <PlayerSearchCard key={player.id} player={player} />
+                    <PlayerSearchCard
+                      key={player.id}
+                      player={player}
+                      sportSlug={"football"}
+                    />
                   ))}
                 </Flex>
               </Flex>

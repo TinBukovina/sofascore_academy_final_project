@@ -9,13 +9,16 @@ import { getTeamByIdFromServer } from "@/app/api/_actions/getTeamByIdFromServer"
 import { redirect } from "@/navigation";
 import { getLocale } from "next-intl/server";
 import { getTeamTournamentsFromServer } from "@/app/api/_actions/getTeamTournamentsFromServer";
+import { AvailableSportsType } from "../../page";
 
 interface PageProps {
-  params: Promise<{ id: number }>;
+  params: Promise<{ sportSlug: AvailableSportsType; id: number }>;
 }
 
 export default async function Page({ params }: PageProps) {
-  const teamId = (await params).id;
+  const resolvedParams = await params;
+  const teamId = resolvedParams.id;
+  const sportSlug = resolvedParams.sportSlug;
 
   const team = await getTeamByIdFromServer(teamId);
   const teamTournaments = await getTeamTournamentsFromServer(teamId);
@@ -68,9 +71,10 @@ export default async function Page({ params }: PageProps) {
               tournament={teamTournaments.at(0)!}
               homeTeamId={team.id}
               disableHeroLink={false}
+              sportSlug={sportSlug}
             />
           )}
-          <Players teamId={team.id} />
+          <Players sportSlug={sportSlug} teamId={team.id} />
         </Flex>
       </TeamPageClient>
     </Flex>

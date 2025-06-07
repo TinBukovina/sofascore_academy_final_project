@@ -12,7 +12,10 @@ import { usePlayerEvents } from "@/4_entities/player/hooks/usePlayerEvents";
 import { Box, Center, Flex } from "@styled-system/jsx";
 
 interface PageProps {
-  params: Promise<{ id: string; playerId: string }>;
+  params: Promise<{
+    id: string;
+    playerId: string;
+  }>;
 }
 
 export default function Page({ params }: PageProps) {

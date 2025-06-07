@@ -6,12 +6,14 @@ import { useTeamPlayers } from "@/4_entities/team/hooks/useTeamPlayers";
 import { PlayerCard } from "@/4_entities/player";
 import { useTranslations } from "next-intl";
 import { css } from "@styled-system/css";
+import { AvailableSportsType } from "@/app/[locale]/home/[sportSlug]/page";
 
 interface PlayersProps {
   teamId: number;
+  sportSlug: AvailableSportsType;
 }
 
-export function Players({ teamId }: PlayersProps) {
+export function Players({ teamId, sportSlug }: PlayersProps) {
   const tError = useTranslations("error");
   const tPlayers = useTranslations("players");
 
@@ -105,7 +107,11 @@ export function Players({ teamId }: PlayersProps) {
               .filter((player) => player.position === "C")
               .map((player) => (
                 <Box key={player.id}>
-                  <PlayerCard key={player.id} player={player} />
+                  <PlayerCard
+                    key={player.id}
+                    player={player}
+                    sportSlug={sportSlug}
+                  />
                 </Box>
               ))}
           </Flex>
@@ -128,7 +134,11 @@ export function Players({ teamId }: PlayersProps) {
               .filter((player) => player.position === "F")
               .map((player) => (
                 <Box key={player.id}>
-                  <PlayerCard key={player.id} player={player} />
+                  <PlayerCard
+                    key={player.id}
+                    player={player}
+                    sportSlug={sportSlug}
+                  />
                 </Box>
               ))}
           </Flex>
@@ -151,7 +161,11 @@ export function Players({ teamId }: PlayersProps) {
               .filter((player) => player.position === "M")
               .map((player) => (
                 <Box key={player.id}>
-                  <PlayerCard key={player.id} player={player} />
+                  <PlayerCard
+                    key={player.id}
+                    player={player}
+                    sportSlug={sportSlug}
+                  />
                 </Box>
               ))}
           </Flex>
@@ -174,7 +188,7 @@ export function Players({ teamId }: PlayersProps) {
               .filter((player) => player.position === "D")
               .map((player) => (
                 <Box key={player.id}>
-                  <PlayerCard player={player} />
+                  <PlayerCard player={player} sportSlug={sportSlug} />
                 </Box>
               ))}
           </Flex>
@@ -197,7 +211,11 @@ export function Players({ teamId }: PlayersProps) {
               .filter((player) => player.position === "G")
               .map((player) => (
                 <Box key={player.id}>
-                  <PlayerCard key={player.id} player={player} />
+                  <PlayerCard
+                    key={player.id}
+                    player={player}
+                    sportSlug={sportSlug}
+                  />
                 </Box>
               ))}
           </Flex>

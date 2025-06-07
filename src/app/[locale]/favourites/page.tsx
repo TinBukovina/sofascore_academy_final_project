@@ -33,6 +33,11 @@ export default function Page() {
     setIsPopupDisplayed(false);
   };
 
+  console.log(favouriteEvents);
+  console.log(favouritePlayers);
+  console.log(favouriteTeams);
+  console.log(favouriteTournaments);
+
   return (
     <Flex
       gap={"1rem"}
@@ -99,7 +104,7 @@ export default function Page() {
           favouriteTeams.length > 0 ? (
             <Flex direction={"column"} gap={"1rem"} p={"1rem"}>
               {favouriteTeams.map((team) => (
-                <TeamItem key={team.id} team={team} />
+                <TeamItem sportSlug="football" key={team.id} team={team} />
               ))}
             </Flex>
           ) : (
@@ -127,7 +132,11 @@ export default function Page() {
           favouritePlayers.length > 0 ? (
             <Flex gap={"1rem"} p={"1rem"} wrap={"wrap"}>
               {favouritePlayers.map((player) => (
-                <PlayerCard key={player.id} player={player} />
+                <PlayerCard
+                  sportSlug="football"
+                  key={player.id}
+                  player={player}
+                />
               ))}
             </Flex>
           ) : (
@@ -138,7 +147,11 @@ export default function Page() {
         )}
       </FavouriteWidget>
       {isPopupDisplayed && popupEvent ? (
-        <EventPopup event={popupEvent} colsePopup={closePopupWindow} />
+        <EventPopup
+          sportSlug="football"
+          event={popupEvent}
+          colsePopup={closePopupWindow}
+        />
       ) : (
         <Box display={"none"} />
       )}

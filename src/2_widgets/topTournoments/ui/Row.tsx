@@ -6,11 +6,13 @@ import Image from "next/image";
 import { TournamentInterface } from "@/4_entities/tournament";
 import { FavouriteToggleBtn } from "@/3_features/favourites/ui/FavouriteToggleBtn";
 import { useRouter } from "@/navigation";
+import { AvailableSportsType } from "@/app/[locale]/home/[sportSlug]/page";
 
 interface RowProps {
   tournoment: TournamentInterface;
+  sportSlug: AvailableSportsType;
 }
-export default function Row({ tournoment }: RowProps) {
+export default function Row({ tournoment, sportSlug }: RowProps) {
   const router = useRouter();
 
   return (
@@ -19,7 +21,9 @@ export default function Row({ tournoment }: RowProps) {
       alignItems={"center"}
       w={{ base: "fit-content", lg: "100%" }}
       fontSize={"15px"}
-      onClick={() => router.push(`/home/football/tournament/${tournoment.id}`)}
+      onClick={() =>
+        router.push(`/home/${sportSlug}/tournament/${tournoment.id}`)
+      }
       _hover={{
         color: "primaryClr",
         cursor: "pointer",

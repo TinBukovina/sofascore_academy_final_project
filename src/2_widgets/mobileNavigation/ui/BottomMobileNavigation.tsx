@@ -55,7 +55,7 @@ export function BottomMobileNavigation() {
         isActive={
           pathname?.includes("football") ||
           pathname?.includes("basketball") ||
-          pathname?.includes("rugby")
+          pathname?.includes("american-footabll")
         }
         handleOnClick={() => {
           router.push("/home/football");
