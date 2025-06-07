@@ -64,7 +64,7 @@ export function Navigation() {
       w={!isCompact ? "clamp(180px, 20vw, 230px)" : "fit-content"}
       maxW={!isCompact ? "230px" : "60px"}
       minW={!isCompact ? "180px" : "60px"}
-      bg={"surface.s0"}
+      bg={"navigation.bg"}
       color={"text.normal"}
       paddingRight={!isCompact ? "1rem" : "0rem"}
       /* transition={"all 2.5s ease"} */
@@ -155,7 +155,8 @@ export function Navigation() {
           isActive={
             !areOptionsDisplayed &&
             !isSearchDisplayed &&
-            pathname?.includes("football")
+            pathname?.includes("football") &&
+            !pathname.includes("american")
           }
           svgInfo={footballSvgInfo}
           handleOnClick={() => {
@@ -183,7 +184,7 @@ export function Navigation() {
           isActive={
             !areOptionsDisplayed &&
             !isSearchDisplayed &&
-            pathname?.includes("america-football")
+            pathname?.includes("american-football")
           }
           svgInfo={rugbySvgInfo}
           handleOnClick={() => {

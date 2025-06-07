@@ -25,13 +25,15 @@ export default function NavigationLink({
       px={"0.75rem"}
       py={"0.75rem"}
       w={!isCompact ? "100%" : "fit-content"}
-      fill={isActive ? "navLink.active.text" : "navLink.default.text"}
-      color={isActive ? "navLink.active.text" : "navLink.default.text"}
-      bg={isActive ? "rgba(288, 288, 288, 0.2)" : "transparent"}
+      fill={isActive ? "navLink.hover.text" : "navLink.default.text"}
+      color={isActive ? "navLink.hover.text" : "navLink.default.text"}
+      bg={isActive ? "navLink.hover.bg" : "transparent"}
       borderRightRadius={"md"}
       cursor={"pointer"}
       _hover={{
-        bg: "rgba(288, 288, 288, 0.2)",
+        bg: "navLink.hover.bg",
+        color: "navLink.hover.text",
+        fill: "navLink.hover.text",
       }}
       onClick={handleOnClick}
     >

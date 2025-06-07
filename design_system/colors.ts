@@ -2,24 +2,24 @@ import { SemanticTokens } from "@pandacss/dev";
 
 export const colors: SemanticTokens["colors"] = {
   surface: {
-    s0: { value: { base: "red", _dark: "#181A1E" } },
-    s1: { value: { base: "red", _dark: "#232120" } },
+    s0: { value: { base: "#FFFFFF", _dark: "#181A1E" } },
+    s1: { value: { base: "#FFFDF5", _dark: "#232120" } },
   },
   border: {
-    value: { base: "", _dark: "#5A5A5A " },
+    value: { base: "#E2E2DF ", _dark: "#5A5A5A " },
   },
   primaryClr: {
-    value: { base: "", _dark: "#F6D757" },
+    value: { base: "#F6D757", _dark: "#F6D757" },
   },
   text: {
     normal: {
-      value: { base: "", _dark: "#FFFFFF" },
+      value: { base: "#141414", _dark: "#FFFFFF" },
     },
     secondary: {
-      value: { base: "", _dark: "#90929F" },
+      value: { base: "#90929F", _dark: "#90929F" },
     },
     invert: {
-      value: { base: "", _dark: "#141414" },
+      value: { base: "#FFFFFF", _dark: "#141414" },
     },
   },
   base: {
@@ -43,6 +43,9 @@ export const colors: SemanticTokens["colors"] = {
     waring: {
       value: { base: "#F5743C" },
     },
+  },
+  navigation: {
+    bg: { value: { base: "#F6D757", _dark: "#181A1E" } },
   },
   input: {
     default: {
@@ -127,14 +130,14 @@ export const colors: SemanticTokens["colors"] = {
   },
   navLink: {
     default: {
-      bg: { value: { base: "", _dark: "#181A1E" } },
-      border: { value: { base: "", _dark: "#181A1E" } },
-      text: { value: { base: "", _dark: "#90929F" } },
+      bg: { value: { base: "#F6D757", _dark: "#181A1E" } },
+      border: { value: { base: "#F6D757", _dark: "#181A1E" } },
+      text: { value: { base: "#181A1E", _dark: "#90929F" } },
     },
     hover: {
-      bg: { value: { base: "", _dark: "rgba(228, 288, 288, 0.2)" } },
-      border: { value: { base: "", _dark: "rgba(228, 288, 288, 0.2)" } },
-      text: { value: { base: "", _dark: "#90929F" } },
+      bg: { value: { base: "#181A1E", _dark: "rgba(228, 288, 288, 0.2)" } },
+      border: { value: { base: "#181A1E", _dark: "rgba(228, 288, 288, 0.2)" } },
+      text: { value: { base: "#F6D757", _dark: "#F6D757" } },
     },
     focus: {
       bg: { value: { base: "", _dark: "" } },

@@ -9,7 +9,6 @@ interface RugbyIncidentRowProps {
 }
 
 export function RugbyIncidentRow({ incident, type }: RugbyIncidentRowProps) {
-  console.log(incident);
   return (
     <Flex
       key={incident.id}

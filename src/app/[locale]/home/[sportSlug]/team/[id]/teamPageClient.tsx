@@ -138,7 +138,7 @@ export default function TeamPageClient({
 
       <Matches tournament={tournament} styles={{ flex: "4" }}>
         <ChangeEventsRow
-          text={fetchedPage >= 0 ? "Played" : "Finished"}
+          text={teamEvents ? "Played" : "Finished"}
           handleLeftBtnClick={() => {
             setFetchedPage((prev) => prev + 1);
           }}

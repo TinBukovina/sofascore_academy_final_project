@@ -59,7 +59,7 @@ export function TopMobileNavigation() {
             padding: "0.25rem 0.5rem",
           }}
           className={css(
-            pathname.includes("football")
+            pathname.includes("football") && !pathname.includes("american")
               ? activeLinkStyles
               : { borderColor: "white" }
           )}
@@ -99,7 +99,7 @@ export function TopMobileNavigation() {
             padding: "0.25rem 0.5rem",
           }}
           className={css(
-            pathname.includes("rugby")
+            pathname.includes("american-football")
               ? activeLinkStyles
               : { borderColor: "white" }
           )}

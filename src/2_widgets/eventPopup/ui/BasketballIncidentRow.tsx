@@ -12,6 +12,7 @@ export function BasketballIncicentRow({
   incident,
   type,
 }: EventIncidentRowProps) {
+  console.log(incident);
   return (
     <Flex
       key={incident.id}

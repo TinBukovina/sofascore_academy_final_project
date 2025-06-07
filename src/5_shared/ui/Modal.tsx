@@ -78,6 +78,7 @@ export const Modal = ({
               borderRadius: "4px",
             },
           })}
+          style={{ maxWidth: mw }}
         >
           <Flex justifyContent={"space-between"}>
             <Box color={"primaryClr"} fontSize={"h5"}>

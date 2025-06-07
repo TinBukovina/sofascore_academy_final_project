@@ -35,7 +35,9 @@ export function TournamentRowInfo({
       }
       onClick={() => {
         if (!disableLink)
-          router.push(`/home/football/tournament/${tournament.id}`);
+          router.push(
+            `/home/${tournament.sport.slug}/tournament/${tournament.id}`
+          );
       }}
     >
       <Image

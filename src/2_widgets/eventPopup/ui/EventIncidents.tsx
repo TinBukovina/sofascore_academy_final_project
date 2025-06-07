@@ -53,7 +53,6 @@ export function EventIncidents({ event, styles, sportSlug }: EventEventsProps) {
     return <Box>{tError("no_incidents_for_event")}</Box>;
   }
 
-  let lastPeriodTime = 0;
   return (
     <Flex
       direction={"column"}
@@ -85,8 +84,15 @@ export function EventIncidents({ event, styles, sportSlug }: EventEventsProps) {
         {tEventIncidents("title")}
       </Box>
       <Flex direction={"column"} gap={"0.5rem"} p={"0.5rem"} fontSize={"sm"}>
-        {periodIncidents.map((period) => {
-          const periodWithStartTime = { ...period, startTime: 0 };
+        {periodIncidents.map((period, i) => {
+          console.log(i);
+          const periodWithStartTime = {
+            ...period,
+            startTime:
+              i >= periodIncidents.length - 1 ? 0 : periodIncidents[i + 1].time,
+          };
+
+          console.log(periodWithStartTime);
           return (
             <React.Fragment key={period.id}>
               <Flex gap={"0.5rem"} alignItems={"center"}>
@@ -99,7 +105,8 @@ export function EventIncidents({ event, styles, sportSlug }: EventEventsProps) {
                 .filter(
                   (el) =>
                     el.time <= periodWithStartTime.time &&
-                    el.time >= periodWithStartTime.startTime
+                    el.time >= periodWithStartTime.startTime &&
+                    !el.text
                 )
                 .sort((a, b) => b.time - a.time)
                 .map((el) =>

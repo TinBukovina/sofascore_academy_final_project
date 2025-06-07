@@ -1,7 +1,6 @@
 "use client";
 
 import { usePlayerById } from "@/4_entities/player/hooks/usePlayerById";
-import LoadingPage from "@/app/_ui/LoadingPage";
 import React, { useState } from "react";
 import { FavouriteToggleBtn } from "@/3_features/favourites/ui/FavouriteToggleBtn";
 import { ImageBox } from "@/5_shared";
@@ -10,6 +9,7 @@ import { useTeamTournaments } from "@/4_entities/team";
 import { ChangeEventsRow, Matches, MatchesEvents } from "@/2_widgets/matches";
 import { usePlayerEvents } from "@/4_entities/player/hooks/usePlayerEvents";
 import { Box, Center, Flex } from "@styled-system/jsx";
+import SkeletonLoader from "./SkeletonLoader";
 
 interface PageProps {
   params: Promise<{
@@ -38,7 +38,7 @@ export default function Page({ params }: PageProps) {
   );
 
   if (isLoading || isLoadingTeamTournaments || isLoadingPlayerEvents)
-    return <LoadingPage />;
+    return <SkeletonLoader />;
 
   if (isError || isErrorTeamTournaments) {
     console.log(error);

@@ -26,9 +26,13 @@ export function NavigationIconBtn({
     <Box
       bg={isActive ? "navLink.hover.bg" : "transparent"}
       borderRadius={"sm"}
-      fill={isActive ? "navLink.active.text" : "navLink.default.text"}
+      fill={isActive ? "navLink.hover.text" : "navLink.default.text"}
       cursor={"pointer"}
-      _hover={{ bg: "navLink.hover.bg" }}
+      _hover={{
+        bg: "navLink.hover.bg",
+        color: "navLink.hover.text",
+        fill: "navLink.hover.text",
+      }}
       onClick={handleOnClick}
       style={{
         paddingLeft: boxPx,
