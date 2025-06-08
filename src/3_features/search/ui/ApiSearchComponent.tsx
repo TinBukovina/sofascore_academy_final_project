@@ -10,6 +10,8 @@ import { useSearchPlayers } from "../hook/useSearchPlayers";
 import { PlayerSearchCard } from "@/4_entities/player";
 import { ThreeDot } from "react-loading-indicators";
 import { redirect } from "@/navigation";
+import { useParams } from "next/navigation";
+import { AvailableSportsType } from "@/app/[locale]/home/[sportSlug]/page";
 
 interface ApiSearchComponentProps {
   searchValue: string;
@@ -19,6 +21,7 @@ export default function ApiSearchComponent({
   searchValue,
 }: ApiSearchComponentProps) {
   const tSearch = useTranslations("search");
+  const params = useParams();
 
   const locale = useLocale();
 
@@ -63,7 +66,11 @@ export default function ApiSearchComponent({
         {searchTeams && searchTeams.length > 0 ? (
           <Flex gap={"1rem"} w={"fit-content"}>
             {searchTeams.map((team) => (
-              <TeamSearchCard key={team.id} team={team} />
+              <TeamSearchCard
+                key={team.id}
+                team={team}
+                sportSlug={params.sportSlug as AvailableSportsType}
+              />
             ))}
           </Flex>
         ) : (
@@ -112,7 +119,11 @@ export default function ApiSearchComponent({
         {searchPlayers && searchPlayers.length > 0 ? (
           <Flex gap={"1rem"} w={"fit-content"}>
             {searchPlayers.map((player) => (
-              <PlayerSearchCard key={player.id} player={player} />
+              <PlayerSearchCard
+                key={player.id}
+                player={player}
+                sportSlug={params.sportSlug as AvailableSportsType}
+              />
             ))}
           </Flex>
         ) : (
