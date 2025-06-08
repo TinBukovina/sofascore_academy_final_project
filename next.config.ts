@@ -4,7 +4,6 @@ import createNextIntlPlugin from "next-intl/plugin";
 const withNextIntl = createNextIntlPlugin();
 
 const nextConfig: NextConfig = {
-  /* config options here */
   images: {
     remotePatterns: [
       {
@@ -19,7 +18,6 @@ const nextConfig: NextConfig = {
         port: "",
         pathname: "/**",
       },
-      // You can add other domains here as well
     ],
   },
 };
