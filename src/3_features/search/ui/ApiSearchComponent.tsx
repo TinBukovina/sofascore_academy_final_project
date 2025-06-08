@@ -40,7 +40,6 @@ export default function ApiSearchComponent({
     redirect({ href: "/error", locale });
   }
 
-  console.log(searchTeams);
   return (
     <Flex direction={"column"} gap={"1rem"}>
       {/*TEAMS*/}

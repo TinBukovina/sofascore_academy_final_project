@@ -30,9 +30,8 @@ export async function GET(
     if (!response.ok) {
       let errorDetails = `Upstream status: ${response.status}`;
       try {
-        // Pokušajte pročitati tijelo odgovora za više detalja o grešci
         const errorText = await response.text();
-        errorDetails += `, Body: ${errorText.substring(0, 200)}`; // Ograničite duljinu
+        errorDetails += `, Body: ${errorText.substring(0, 200)}`;
       } catch (e) {
         console.log(e);
       }

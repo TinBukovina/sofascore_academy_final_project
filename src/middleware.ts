@@ -1,12 +1,10 @@
-// src/middleware.ts
 import createMiddleware from "next-intl/middleware";
-import { routing } from "./i18n/routing"; // Importirajte routing konfiguraciju
+import { routing } from "./i18n/routing";
 
 export default createMiddleware({
   locales: routing.locales,
   defaultLocale: routing.defaultLocale,
   localePrefix: routing.localePrefix,
-  //pathnames: routing.pathnames,
 });
 
 export const config = {

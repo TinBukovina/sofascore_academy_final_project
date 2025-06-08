@@ -33,11 +33,6 @@ export default function Page() {
     setIsPopupDisplayed(false);
   };
 
-  console.log(favouriteEvents);
-  console.log(favouritePlayers);
-  console.log(favouriteTeams);
-  console.log(favouriteTournaments);
-
   return (
     <Flex
       gap={"1rem"}

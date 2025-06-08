@@ -83,14 +83,12 @@ export function EventIncidents({ event, styles }: EventEventsProps) {
       </Box>
       <Flex direction={"column"} gap={"0.5rem"} p={"0.5rem"} fontSize={"sm"}>
         {periodIncidents.map((period, i) => {
-          console.log(i);
           const periodWithStartTime = {
             ...period,
             startTime:
               i >= periodIncidents.length - 1 ? 0 : periodIncidents[i + 1].time,
           };
 
-          console.log(periodWithStartTime);
           return (
             <React.Fragment key={period.id}>
               <Flex gap={"0.5rem"} alignItems={"center"}>

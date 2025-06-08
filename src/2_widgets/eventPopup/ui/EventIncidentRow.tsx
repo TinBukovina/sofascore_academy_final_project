@@ -59,7 +59,7 @@ export function EventIncidentRow({ incident, type }: EventIncidentRowProps) {
                   src={"/images/red_card.png"}
                   width={16}
                   height={16}
-                  alt="red cart" // Originalni alt tekst ostavljen kako jest
+                  alt="red cart"
                 />
               </Box>
             ) : (
@@ -68,7 +68,7 @@ export function EventIncidentRow({ incident, type }: EventIncidentRowProps) {
                   src={"/images/yellow_card.png"}
                   width={16}
                   height={16}
-                  alt="red cart" // Originalni alt tekst ostavljen kako jest
+                  alt="red cart"
                 />
               </Box>
             )

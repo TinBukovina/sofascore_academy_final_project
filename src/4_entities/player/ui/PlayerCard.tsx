@@ -18,8 +18,6 @@ export function PlayerCard({ player, sportSlug }: PlayerCardProps) {
   const inistialPlayerSrc = `/api/player/${player.id}/image`;
   const fallbackAvatarSrc = `/images/avatar.png`;
 
-  console.log(player.country.name);
-  console.log(getCountryISO2(player.country.name));
   const initialCountrySrc = `https://flagcdn.com/w80/${getCountryISO2(player.country.name)}.png`;
   const fallbackCountrySrc = "/images/imageFallback.svg";
 
@@ -37,8 +35,6 @@ export function PlayerCard({ player, sportSlug }: PlayerCardProps) {
       setCountryImgSrc(fallbackCountrySrc);
     }
   };
-
-  console.log(player);
 
   return (
     <Flex

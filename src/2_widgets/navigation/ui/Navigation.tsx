@@ -84,7 +84,6 @@ export function Navigation() {
             isActive={isSearchDisplayed || pathname?.includes("search")}
             svgInfo={searchSvgInfo}
             handleOnClick={() => {
-              console.log(isSearchDisplayed);
               setIsSearchDisplayed(true);
             }}
           />
@@ -101,7 +100,6 @@ export function Navigation() {
             isActive={isSearchDisplayed || pathname?.includes("search")}
             svgInfo={searchSvgInfo}
             handleOnClick={() => {
-              console.log(isSearchDisplayed);
               setIsSearchDisplayed(true);
             }}
           >

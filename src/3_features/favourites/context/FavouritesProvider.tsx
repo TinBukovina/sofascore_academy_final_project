@@ -42,7 +42,6 @@ export const FavouritesProvider: React.FC<FavouritesProviderProps> = ({
           savedFavouritesString
         ) as Partial<LoaclStorageObject>;
 
-        console.log(savedFavourites);
         setFavouriteEvents((prev) => {
           if (!savedFavourites.events) {
             return prev;

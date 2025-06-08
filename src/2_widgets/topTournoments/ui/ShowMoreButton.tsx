@@ -1,4 +1,3 @@
-// Npr. unutar "@/2_widgets/topTournoments/ShowMoreButton.tsx"
 "use client";
 
 import React, { useState } from "react";

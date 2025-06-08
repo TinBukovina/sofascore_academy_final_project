@@ -1,5 +1,3 @@
-// Nastavak u istoj datoteci (npr. lib/data/tournaments.ts)
-
 import { TournamentInterface } from "@/4_entities/tournament";
 import { getTournamentByIdFromServer } from "./getTournamentByIdFromServer";
 

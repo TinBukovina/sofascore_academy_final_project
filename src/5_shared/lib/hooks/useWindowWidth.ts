@@ -1,4 +1,3 @@
-// src/5_shared/lib/hooks/useWindowWidth.ts
 "use client";
 
 import { useEffect, useState } from "react";

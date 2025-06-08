@@ -28,7 +28,6 @@ export function EventPopup({ event, colsePopup, sportSlug }: EventPopupProps) {
 
   const [isShrinked, setIsShrinked] = useState<boolean>(false);
 
-  console.log(sportSlug);
   return (
     <Flex
       display={{ base: "none", md: "flex" }}
@@ -83,9 +82,6 @@ export function EventPopup({ event, colsePopup, sportSlug }: EventPopupProps) {
           <EventIncidents event={event} styles={{ maxHeight: "250px" }} />
           <Button
             handleOnClick={() => {
-              console.log(
-                "going to the page: " + `/home/${sportSlug}/event/${event.id}`
-              );
               router.push(`/home/${sportSlug}/event/${event.id}`);
             }}
           >

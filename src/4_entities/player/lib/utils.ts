@@ -251,7 +251,6 @@ const countryCodes: CountryCodeMap = {
   connecticut: "US-CT",
   delaware: "US-DE",
   florida: "US-FL",
-  // 'georgia': 'US-GA', // Note: 'georgia' already maps to 'GE' (country). Disambiguation needed if US state is primary.
   hawaii: "US-HI",
   iowa: "US-IA",
   idaho: "US-ID",
@@ -317,7 +316,6 @@ export const getCountryISO2 = (
 ): string | null => {
   const normalizedCountryName = countryName.toLowerCase();
 
-  console.log(countryCodes);
   const isoCode = countryCodes[normalizedCountryName]?.toLocaleLowerCase();
 
   if (forName && isoCode?.startsWith("gb"))
