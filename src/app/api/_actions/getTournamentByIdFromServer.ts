@@ -13,7 +13,8 @@ export async function getTournamentByIdFromServer(
     return null;
   }
 
-  const url = getAbsoluteUrl(`/api/tournament/${tournamentId}`);
+  const url = getAbsoluteUrl(`api/tournament/${tournamentId}`);
+  console.log(`[Vercel Debug] Pokušavam dohvatiti URL: ${url}`);
 
   try {
     const response = await fetch(url);
