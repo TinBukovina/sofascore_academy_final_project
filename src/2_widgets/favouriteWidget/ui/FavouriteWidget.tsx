@@ -1,8 +1,8 @@
 "use client";
-import { SectionsType } from "@/app/favourites/page";
 import { Box, Flex } from "../../../../styled-system/jsx";
 import { FavouriteLink } from "./FavouriteLink";
 import { css } from "../../../../styled-system/css";
+import { SectionsType } from "@/app/[locale]/favourites/page";
 
 interface FavouriteWidgetProps {
   children: React.ReactNode;
