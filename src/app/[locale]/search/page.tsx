@@ -11,6 +11,7 @@ import { css } from "@styled-system/css";
 import { Box, Flex } from "@styled-system/jsx";
 import { useTranslations } from "next-intl";
 import { useState } from "react";
+import { AvailableSportsType } from "../home/[sportSlug]/page";
 
 export default function Page() {
   const tSearch = useTranslations("search");
@@ -107,7 +108,11 @@ export default function Page() {
               <Box>{tSearch("teams")}</Box>
               <Flex gap={"1rem"} w={"fit-content"}>
                 {filteredTeams.map((team) => (
-                  <TeamSearchCard key={team.id} team={team} />
+                  <TeamSearchCard
+                    key={team.id}
+                    team={team}
+                    sportSlug="football"
+                  />
                 ))}
               </Flex>
             </Flex>
@@ -140,6 +145,7 @@ export default function Page() {
                   <TournamentSearchCard
                     key={tournament.id}
                     tournament={tournament}
+                    sportSlug={tournament.sport.slug as AvailableSportsType}
                   />
                 ))}
               </Flex>
@@ -170,7 +176,11 @@ export default function Page() {
               <Box>{tSearch("players")}</Box>
               <Flex gap={"1rem"} w={"fit-content"}>
                 {filteredPlayers.map((player) => (
-                  <PlayerSearchCard key={player.id} player={player} />
+                  <PlayerSearchCard
+                    key={player.id}
+                    player={player}
+                    sportSlug="football"
+                  />
                 ))}
               </Flex>
             </Flex>
