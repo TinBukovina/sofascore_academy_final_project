@@ -10,12 +10,14 @@ import { redirect } from "@/navigation";
 
 interface PageProps {
   params: Promise<{
+    locale: string;
+    sportSlug: string;
     id: string;
   }>;
   status?: string;
 }
 
-export default async function Page({ params, status = "Finished" }: PageProps) {
+export default async function Page({ params }: PageProps) {
   const resolvedParams = await params;
   const eventId = resolvedParams.id;
 
