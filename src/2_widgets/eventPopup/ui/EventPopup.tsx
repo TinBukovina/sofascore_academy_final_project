@@ -80,11 +80,7 @@ export function EventPopup({ event, colsePopup, sportSlug }: EventPopupProps) {
             awayTeam={event.awayTeam}
             awayScore={event.awayScore}
           />
-          <EventIncidents
-            sportSlug={sportSlug}
-            event={event}
-            styles={{ maxHeight: "250px" }}
-          />
+          <EventIncidents event={event} styles={{ maxHeight: "250px" }} />
           <Button
             handleOnClick={() => {
               console.log(
