@@ -14,7 +14,6 @@ interface PageProps {
     sportSlug: string;
     id: string;
   }>;
-  status?: string;
 }
 
 export default async function Page({ params }: PageProps) {
