@@ -1,4 +1,5 @@
-import { EventInterface, TournamentInterface } from "@/4_entities/event";
+import { EventInterface } from "@/4_entities/event";
+import { TournamentInterface } from "../types";
 
 export function getDifferentTournomentFromListOfEvents(
   events: EventInterface[]
