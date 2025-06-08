@@ -21,7 +21,6 @@ interface StandingsProps {
   homeTeamId?: number;
   awayTeamId?: number;
   disableHeroLink?: boolean;
-  sportSlug: AvailableSportsType;
   styles?: React.CSSProperties;
 }
 
@@ -30,7 +29,6 @@ export function Standings({
   homeTeamId,
   awayTeamId,
   disableHeroLink = false,
-  sportSlug,
   styles,
 }: StandingsProps) {
   const router = useRouter();
@@ -156,7 +154,9 @@ export function Standings({
         }
         onClick={() => {
           if (!disableHeroLink)
-            router.push(`/home/${sportSlug}/tournament/${tournament.id}`);
+            router.push(
+              `/home/${tournament.sport.slug}/tournament/${tournament.id}`
+            );
         }}
       >
         <Flex gap={"0.75rem"}>
@@ -275,7 +275,7 @@ export function Standings({
                 : "noPass"
           }
           position={i + 1}
-          sportSlug={sportSlug}
+          sportSlug={tournament.sport.slug as AvailableSportsType}
           pastMatches={tournamentEvents.filter(
             (event) =>
               event.homeTeam.name === el.team.name ||

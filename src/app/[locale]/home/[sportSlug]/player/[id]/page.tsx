@@ -24,7 +24,7 @@ export default function Page({ params }: PageProps) {
 
   const [fetchedPage, setFetchedPage] = useState<number>(0);
 
-  const { player, isLoading, isError, error } = usePlayerById(playerId);
+  const { player, isLoading, isError, error } = usePlayerById(Number(playerId));
 
   const {
     teamTournaments,

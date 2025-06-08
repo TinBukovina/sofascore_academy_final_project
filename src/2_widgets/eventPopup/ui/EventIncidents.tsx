@@ -10,16 +10,14 @@ import { EventIncidentRow } from "./EventIncidentRow";
 import { useTranslations } from "next-intl";
 import EventIncidentLoader from "./EventIncidentLoader";
 import { BasketballIncicentRow } from "./BasketballIncidentRow";
-import { AvailableSportsType } from "@/app/[locale]/home/[sportSlug]/page";
 import { RugbyIncidentRow } from "./RugyIncidentRow";
 
 interface EventEventsProps {
   event: EventInterface;
   styles?: React.CSSProperties;
-  sportSlug: AvailableSportsType;
 }
 
-export function EventIncidents({ event, styles, sportSlug }: EventEventsProps) {
+export function EventIncidents({ event, styles }: EventEventsProps) {
   const tEventIncidents = useTranslations("event_incidents");
   const tError = useTranslations("error");
 
@@ -110,7 +108,7 @@ export function EventIncidents({ event, styles, sportSlug }: EventEventsProps) {
                 )
                 .sort((a, b) => b.time - a.time)
                 .map((el) =>
-                  sportSlug === "football" ? (
+                  event.tournament.sport.slug === "football" ? (
                     <EventIncidentRow
                       key={el.id}
                       incident={el}
@@ -126,7 +124,7 @@ export function EventIncidents({ event, styles, sportSlug }: EventEventsProps) {
                             : "home"
                       }
                     />
-                  ) : sportSlug === "basketball" ? (
+                  ) : event.tournament.sport.slug === "basketball" ? (
                     <BasketballIncicentRow
                       key={el.id}
                       incident={el}
