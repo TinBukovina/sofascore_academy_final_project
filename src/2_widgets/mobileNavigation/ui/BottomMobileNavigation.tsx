@@ -31,7 +31,7 @@ export function BottomMobileNavigation() {
       gap={"clamp(1rem, 5vw ,2rem)"}
       py={"0.75rem"}
       h={"fit-content"}
-      bg={"surface.s0"}
+      bg={"navigation.bg"}
       color={"text.normal"}
       borderTop={"1px solid token(colors.border)"}
     >

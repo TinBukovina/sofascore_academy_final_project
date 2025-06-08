@@ -82,7 +82,6 @@ export default function SkeletonLoader() {
         h={"100%"}
         border={"1px solid transparent"}
         borderColor={"border"}
-        borderRadius={"md"}
       >
         <Box
           w={"100%"}

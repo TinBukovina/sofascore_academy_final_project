@@ -3,13 +3,7 @@ import React from "react";
 
 export default function Loader() {
   return (
-    <Flex
-      direction={"column"}
-      gap={"1rem"}
-      h={"100%"}
-      color={"text.normal"}
-      fill={"text.normal"}
-    >
+    <Flex gap={"1rem"} h={"100%"} color={"text.normal"} fill={"text.normal"}>
       <Flex
         justifyContent={"space-between"}
         p={"1rem"}
@@ -45,7 +39,12 @@ export default function Loader() {
           <Box w={"24px"} h={"24px"} bg={"surface.s0"} borderRadius={"md"} />
         </Flex>
       </Flex>
-      <Flex gap={"1rem"} h={"100%"} overflow={"hidden"}>
+      <Flex
+        gap={"1rem"}
+        h={"100%"}
+        overflow={"hidden"}
+        direction={{ base: "row", lg: "column" }}
+      >
         <Box
           flex={"7"}
           w={"100%"}

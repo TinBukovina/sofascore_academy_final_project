@@ -61,7 +61,6 @@ export function EventWidget({
             initialDate={currentDate}
             onDateChange={handleDateChange}
             fontSize={"h5"}
-            hoverBgToken="navLink.hover.bg"
           />
           <IconButton
             handleOnClick={handleNextDay}

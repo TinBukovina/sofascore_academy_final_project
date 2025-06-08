@@ -41,7 +41,7 @@ export function TopMobileNavigation() {
       gap={"clamp(1rem, 10vw ,2rem)"}
       py={"0.75rem"}
       px={"1rem"}
-      bg={"surface.s0"}
+      bg={"navigation.bg"}
       color={"text.normal"}
       fill={"text.normal"}
       fontSize={"sm"}

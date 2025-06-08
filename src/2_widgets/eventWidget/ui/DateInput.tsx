@@ -17,10 +17,9 @@ export function MyDateInput({
   initialDate = new Date().toISOString().split("T")[0],
   onDateChange,
   fontSize = "inherit",
-  hoverBgToken = "navLink.hover.bg",
-  textColorToken = "text.normal",
 }: MyDateInputProps) {
   const [selectedDate, setSelectedDate] = useState<string>(initialDate);
+  const [isHovered, setIsHovered] = useState<boolean>(false);
   const inputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
@@ -59,11 +58,15 @@ export function MyDateInput({
     width: "100%",
     height: "100%",
     opacity: 0,
-    cursor: "pointer",
     border: "none",
     padding: 0,
     zIndex: 3,
     margin: 0,
+
+    _hover: {
+      color: "primaryClr",
+      fill: "primaryClr",
+    },
   });
 
   return (
@@ -71,23 +74,20 @@ export function MyDateInput({
       position="relative"
       justifyContent={"center"}
       alignItems={"center"}
-      p={"0.5rem"}
-      borderRadius={"sm"}
-      fontSize={fontSize}
-      cursor={"pointer"}
-      _hover={{ bg: hoverBgToken }}
       gap={"0.25rem"}
+      p={"0.5rem"}
       minWidth="180px"
+      borderRadius={"sm"}
+      color={"text.normal"}
+      fill={isHovered ? "primaryClr" : "text.normal"}
+      fontSize={fontSize}
     >
-      <Box color={textColorToken} whiteSpace="nowrap">
-        {formatDateForDisplay(selectedDate)}
-      </Box>
+      <Box whiteSpace="nowrap">{formatDateForDisplay(selectedDate)}</Box>
 
       <Icon
-        width="20px"
-        height="20px"
+        width="30px"
+        height="30px"
         svgInfo={iconInfo}
-        fill="currentColor"
         styles={{ zIndex: 1 }}
       />
 
@@ -98,6 +98,8 @@ export function MyDateInput({
         value={selectedDate}
         onChange={handleDateChange}
         className={inputOverlayStyles}
+        onMouseEnter={() => setIsHovered(true)}
+        onMouseLeave={() => setIsHovered(false)}
       />
     </Flex>
   );

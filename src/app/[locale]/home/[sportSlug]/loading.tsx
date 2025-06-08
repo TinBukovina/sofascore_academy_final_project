@@ -4,6 +4,7 @@ import React from "react";
 export default function Loader() {
   return (
     <Flex
+      direction={{ base: "column", md: "row" }}
       gap={"1rem"}
       p={"0"}
       w={"100%"}
@@ -20,6 +21,7 @@ export default function Loader() {
       <Box
         w={"100%"}
         h={"100%"}
+        minH={"400px"}
         bg={"surface.s0"}
         border={"1px solid transparent"}
         borderColor={"border"}

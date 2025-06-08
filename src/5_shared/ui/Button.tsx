@@ -21,7 +21,7 @@ export function Button({ children, handleOnClick }: ButtonProps) {
         _hover: {
           bg: "surface.s0",
           borderColor: "border",
-          color: "base.white",
+          color: "text.normal",
         },
       })}
     >

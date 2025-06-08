@@ -3,13 +3,13 @@ import { SemanticTokens } from "@pandacss/dev";
 export const colors: SemanticTokens["colors"] = {
   surface: {
     s0: { value: { base: "#FFFFFF", _dark: "#181A1E" } },
-    s1: { value: { base: "#FFFDF5", _dark: "#232120" } },
+    s1: { value: { base: "#fcf8e1", _dark: "#232120" } },
   },
   border: {
-    value: { base: "#E2E2DF ", _dark: "#5A5A5A " },
+    value: { base: "#d1d1cd ", _dark: "#5A5A5A " },
   },
   primaryClr: {
-    value: { base: "#F6D757", _dark: "#F6D757" },
+    value: { base: "#232120", _dark: "#F6D757" },
   },
   text: {
     normal: {
@@ -23,9 +23,9 @@ export const colors: SemanticTokens["colors"] = {
     },
   },
   base: {
-    white: { value: { base: "", _dark: "#fff" } },
-    black: { value: { base: "", _dark: "#141414" } },
-    gray: { value: { base: "", _dark: "#90929F" } },
+    white: { value: { base: "#fff", _dark: "#fff" } },
+    black: { value: { base: "#141414", _dark: "#141414" } },
+    gray: { value: { base: "#90929F", _dark: "#90929F" } },
   },
   actions: {
     postive: {
@@ -76,55 +76,55 @@ export const colors: SemanticTokens["colors"] = {
   },
   button: {
     default: {
-      bg: { value: { base: "", _dark: "#1B1D22" } },
-      border: { value: { base: "", _dark: "#363b45" } },
-      text: { value: { base: "", _dark: "#fff" } },
+      bg: { value: { base: "", _dark: "" } },
+      border: { value: { base: "", _dark: "" } },
+      text: { value: { base: "", _dark: "" } },
     },
     hover: {
-      bg: { value: { base: "", _dark: "#1B1D22" } },
-      border: { value: { base: "", _dark: "#57C4DC" } },
-      text: { value: { base: "", _dark: "#fff" } },
+      bg: { value: { base: "", _dark: "" } },
+      border: { value: { base: "", _dark: "" } },
+      text: { value: { base: "", _dark: "" } },
     },
     focus: {
-      bg: { value: { base: "", _dark: "#1B1D22" } },
-      border: { value: { base: "", _dark: "#57C4DC" } },
-      text: { value: { base: "", _dark: "#57C4DC" } },
+      bg: { value: { base: "", _dark: "" } },
+      border: { value: { base: "", _dark: "" } },
+      text: { value: { base: "", _dark: "" } },
     },
     active: {
-      bg: { value: { base: "", _dark: "#1B1D22" } },
-      border: { value: { base: "", _dark: "#57C4DC" } },
-      text: { value: { base: "", _dark: "#57C4DC" } },
+      bg: { value: { base: "", _dark: "" } },
+      border: { value: { base: "", _dark: "" } },
+      text: { value: { base: "", _dark: "" } },
     },
     disabled: {
-      bg: { value: { base: "", _dark: "rgba(178, 178, 178, 0.4)" } },
-      border: { value: { base: "", _dark: "#363b45" } },
-      text: { value: { base: "", _dark: "#141414" } },
+      bg: { value: { base: "", _dark: "" } },
+      border: { value: { base: "", _dark: "" } },
+      text: { value: { base: "", _dark: "" } },
     },
     primaryAction: {
       default: {
-        bg: { value: { base: "", _dark: "#57C4DC" } },
-        border: { value: { base: "", _dark: "#57C4DC" } },
-        text: { value: { base: "", _dark: "#141414" } },
+        bg: { value: { base: "", _dark: "" } },
+        border: { value: { base: "", _dark: "" } },
+        text: { value: { base: "", _dark: "" } },
       },
       hover: {
-        bg: { value: { base: "", _dark: "#23272F" } },
-        border: { value: { base: "", _dark: "#57C4DC" } },
-        text: { value: { base: "", _dark: "#fff" } },
+        bg: { value: { base: "", _dark: "" } },
+        border: { value: { base: "", _dark: "" } },
+        text: { value: { base: "", _dark: "" } },
       },
       focus: {
-        bg: { value: { base: "", _dark: "#23272F" } },
-        border: { value: { base: "", _dark: "#57C4DC" } },
-        text: { value: { base: "", _dark: "#57C4DC" } },
+        bg: { value: { base: "", _dark: "" } },
+        border: { value: { base: "", _dark: "" } },
+        text: { value: { base: "", _dark: "" } },
       },
       active: {
-        bg: { value: { base: "", _dark: "#23272F" } },
-        border: { value: { base: "", _dark: "#57C4DC" } },
-        text: { value: { base: "", _dark: "#57C4DC" } },
+        bg: { value: { base: "", _dark: "" } },
+        border: { value: { base: "", _dark: "" } },
+        text: { value: { base: "", _dark: "" } },
       },
       disabled: {
-        bg: { value: { base: "", _dark: "rgba(178, 178, 178, 0.4)" } },
-        border: { value: { base: "", _dark: "#363b45" } },
-        text: { value: { base: "", _dark: "#fff" } },
+        bg: { value: { base: "", _dark: "" } },
+        border: { value: { base: "", _dark: "" } },
+        text: { value: { base: "", _dark: "" } },
       },
     },
   },

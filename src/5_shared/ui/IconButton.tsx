@@ -29,7 +29,7 @@ export function IconButton({
       borderRadius={"sm"}
       fill={"text.normal"}
       cursor={"pointer"}
-      _hover={{ bg: "navLink.hover.bg" }}
+      _hover={{ bg: "navLink.hover.bg", fill: "navLink.hover.text" }}
       onClick={handleOnClick}
       style={{
         paddingLeft: boxPx,

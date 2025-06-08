@@ -4,7 +4,7 @@ import React from "react";
 export default function Loader() {
   return (
     <Flex
-      direction={"column"}
+      direction={{ base: "row", md: "column" }}
       gap={"1rem"}
       h={"100%"}
       color={"text.normal"}

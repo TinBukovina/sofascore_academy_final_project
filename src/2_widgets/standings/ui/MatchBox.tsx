@@ -22,7 +22,7 @@ export function MatchBox({ type, last = false }: MatchBoxProps) {
             : "border"
       }
       border={"2px solid transparent"}
-      borderColor={last ? "base.white" : "transparent"}
+      borderColor={last ? "text.normal" : "transparent"}
       borderRadius={"sm"}
       fontSize={"sm"}
       fontWeight={"bold"}
