@@ -71,7 +71,6 @@ export default async function Page({ params }: PageProps) {
               tournament={teamTournaments.at(0)!}
               homeTeamId={team.id}
               disableHeroLink={false}
-              sportSlug={sportSlug}
             />
           )}
           <Players sportSlug={sportSlug} teamId={team.id} />

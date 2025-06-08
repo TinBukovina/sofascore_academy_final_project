@@ -16,7 +16,6 @@ interface PageProps {
 export default async function Page({ params }: PageProps) {
   const resolvedParams = await params;
   const tournamentId = resolvedParams.id;
-  const sportSlug = resolvedParams.sportSlug;
   const locale = await getLocale();
 
   const tournament = await getTournamentByIdFromServer(tournamentId);
@@ -60,11 +59,7 @@ export default async function Page({ params }: PageProps) {
         </Flex>
       </Flex>
       <TournamentPageClient tournament={tournament} params={params}>
-        <Standings
-          sportSlug={sportSlug}
-          tournament={tournament}
-          disableHeroLink={true}
-        />
+        <Standings tournament={tournament} disableHeroLink={true} />
       </TournamentPageClient>
     </Flex>
   );
