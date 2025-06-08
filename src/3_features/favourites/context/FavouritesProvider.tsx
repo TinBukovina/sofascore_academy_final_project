@@ -92,10 +92,6 @@ export const FavouritesProvider: React.FC<FavouritesProviderProps> = ({
   useEffect(() => {
     if (!isMounted) return;
 
-    console.log(
-      `Spremanje: ${favouriteEvents}, ${favouriteTeams},
-        ${favouriteTournaments}, ${favouritePlayers}`
-    );
     localStorage.setItem(
       LOCAL_STORAGE_KEY,
       JSON.stringify({

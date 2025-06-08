@@ -96,7 +96,7 @@ export default async function Page({ params }: PageProps) {
             </Box>
           </Box>
           <Box fontWeight={"normal"} fontSize={"xs"}>
-            {status === "Finished" ? tEventPage("event_status_finished") : "x"}
+            {tEventPage("event_status_finished")}
           </Box>
         </Flex>
         <Flex
