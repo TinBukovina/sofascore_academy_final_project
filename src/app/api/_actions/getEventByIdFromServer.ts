@@ -1,10 +1,5 @@
 import { EventInterface } from "@/4_entities/event";
 
-const getAbsoluteUrl = (path: string) => {
-  const baseUrl = process.env.NEXT_PUBLIC_APP_URL || "http://localhost:3000/";
-  return `${baseUrl}${path}`;
-};
-
 export async function getEventByIdWithServer(
   eventId: number
 ): Promise<EventInterface | null> {
@@ -13,11 +8,10 @@ export async function getEventByIdWithServer(
     return null;
   }
 
-  const url = getAbsoluteUrl(`api/event/${eventId}`);
-  console.log(`[Vercel Debug] Pokušavam dohvatiti URL: ${url}`);
-
   try {
-    const response = await fetch(url);
+    const response = await fetch(
+      `https://academy-backend.sofascore.dev/event/${eventId}`
+    );
 
     if (!response.ok) {
       console.error(

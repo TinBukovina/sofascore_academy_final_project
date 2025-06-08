@@ -1,10 +1,5 @@
 import { TournamentInterface } from "@/4_entities/tournament";
 
-const getAbsoluteUrl = (path: string) => {
-  const baseUrl = process.env.NEXT_PUBLIC_APP_URL || "http://localhost:3000";
-  return `${baseUrl}${path}`;
-};
-
 export async function getTeamTournamentsFromServer(
   teamId: number
 ): Promise<TournamentInterface[] | null> {
@@ -13,11 +8,10 @@ export async function getTeamTournamentsFromServer(
     return null;
   }
 
-  const url = getAbsoluteUrl(`api/team/${teamId}/tournaments`);
-  console.log(`[Vercel Debug] Pokušavam dohvatiti URL: ${url}`);
-
   try {
-    const response = await fetch(url);
+    const response = await fetch(
+      `https://academy-backend.sofascore.dev/team/${teamId}/tournaments`
+    );
 
     if (!response.ok) {
       console.error(
