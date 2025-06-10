@@ -35,7 +35,7 @@ export function PlayerSearchCard({ player, sportSlug }: PlayerSearchCardProps) {
       }}
       onClick={() => {
         setIsSearchDisplayed(false);
-        router.push(`/home/${sportSlug}/player/${player.id}`);
+        router.push(`/home/${sportSlug || "football"}/player/${player.id}`);
       }}
     >
       {/*TOP PART*/}

@@ -9,6 +9,7 @@ export default function SkeletonLoader() {
       gap={"1rem"}
       color={"text.normal"}
       fill={"text.normal"}
+      overflow={"hidden"}
     >
       {/*HERO SECTION*/}
       <Flex
@@ -82,6 +83,7 @@ export default function SkeletonLoader() {
         h={"100%"}
         border={"1px solid transparent"}
         borderColor={"border"}
+        borderRadius={"md"}
       >
         <Box
           w={"100%"}
@@ -90,7 +92,7 @@ export default function SkeletonLoader() {
           borderColor={"primaryClr"}
         ></Box>
 
-        <RowLoader numberOfRows={7} rowHeight="32px" rowBorderRadius="md" />
+        <RowLoader numberOfRows={7} rowHeight="32px" rowBorderRadius="0" />
       </Flex>
     </Flex>
   );

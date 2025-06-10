@@ -1,6 +1,10 @@
 {
   "favouritesPage": {
-    "title": "Favoris"
+    "title": "Favoris",
+    "no_events": "Il n'y a aucun événement favori.",
+    "no_teams": "Il n'y a aucune équipe favorite.",
+    "no_tournaments": "Il n'y a aucun tournoi favori.",
+    "no_players": "Il n'y a aucun joueur favori."
   },
   "homePage": {
     "title": "Accueil"
@@ -15,18 +19,20 @@
     "favourite": "Favoris",
     "settings": "Paramètres",
     "football": "Football",
-    "basketball": "Basket-ball",
+    "basketball": "Basketball",
     "rugby": "Rugby"
   },
   "error": {
-    "no_events_for_sport": "Aucun événement pour ce sport.",
-    "no_tornaments": "Aucun tournoi.",
-    "no_incidents_for_event": "Aucun incident pour cet événement.",
-    "no_event_for_id": "Aucun événement avec cet ID.",
+    "no_events_for_sport": "Il n'y a pas d'événements pour ce sport.",
+    "no_events_for_sport_and_date": "Il n'y a pas d'événements pour ce sport à cette date.",
+    "no_tornaments": "Il n'y a pas de tournois.",
+    "no_incidents_for_event": "Il n'y a pas d'incidents pour cet événement.",
+    "no_event_for_id": "Il n'y a aucun événement avec cet ID.",
     "error": "Erreur",
-    "no_tournament_standings_for_id": "Aucun classement de tournoi avec cet ID.",
-    "no_tournament_events_for_id": "Aucun événement de tournoi avec cet ID.",
-    "no_players_for_team": "Aucun joueur pour cette équipe."
+    "no_tournament_standings_for_id": "Il n'y a pas de classement de tournoi avec cet ID.",
+    "no_tournament_events_for_id": "Il n'y a pas d'événements de tournoi avec cet ID.",
+    "no_players_for_team": "Il n'y a pas de joueurs pour cette équipe.",
+    "no_favourite_events": "Il n'y a pas d'événements favoris."
   },
   "top_tournametns": {
     "title": "Meilleurs Tournois",
@@ -38,7 +44,7 @@
   },
   "event_popup": {
     "status_finished": "Terminé",
-    "button": "VOIR LA PAGE COMPLÈTE"
+    "button": "VOIR EN PLEINE PAGE"
   },
   "event_incidents": {
     "title": "Événements"
@@ -47,19 +53,31 @@
     "event_status_finished": "Terminé"
   },
   "standings": {
-    "title": "Classements"
+    "title": "Classement"
   },
   "matches": {
-    "text_played": "Joué",
-    "text_finished": "Terminé",
-    "no_events": "Aucun événement."
+    "text_played": "Joués",
+    "text_finished": "Terminés",
+    "no_events": "Il n'y a pas d'événements."
   },
   "players": {
     "title": "Joueurs",
-    "position_forward": "Attaquant",
-    "position_midfilder": "Milieu de terrain",
-    "position_defender": "Défenseur",
-    "position_goalkeeper": "Gardien de but",
-    "position_coach": "Entraîneur"
+    "position_forward": "Attaquants",
+    "position_midfilder": "Milieux de terrain",
+    "position_defender": "Défenseurs",
+    "position_goalkeeper": "Gardiens de but",
+    "position_coach": "Entraîneurs"
+  },
+  "errorPage": {
+    "message": "Quelque chose s'est mal passé !",
+    "sub_message": "Réessayez",
+    "action_button": "Retour à l'accueil"
+  },
+  "search": {
+    "title": "Rechercher",
+    "teams": "Équipes",
+    "tournaments": "Tournois",
+    "players": "Joueurs",
+    "no_results": "Aucun résultat"
   }
 }

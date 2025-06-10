@@ -1,9 +1,13 @@
 {
   "favouritesPage": {
-    "title": "Favoritos"
+    "title": "Favoritos",
+    "no_events": "No hay eventos favoritos.",
+    "no_teams": "No hay equipos favoritos.",
+    "no_tournaments": "No hay torneos favoritos.",
+    "no_players": "No hay jugadores favoritos."
   },
   "homePage": {
-    "title": "Página de Inicio"
+    "title": "Inicio"
   },
   "searchPage": {
     "title": "Búsqueda"
@@ -12,7 +16,7 @@
     "title": "Configuración"
   },
   "navigation": {
-    "favourite": "Favoritos",
+    "favourite": "Favorito",
     "settings": "Configuración",
     "football": "Fútbol",
     "basketball": "Baloncesto",
@@ -20,13 +24,15 @@
   },
   "error": {
     "no_events_for_sport": "No hay eventos para este deporte.",
+    "no_events_for_sport_and_date": "No hay eventos para este deporte en esta fecha.",
     "no_tornaments": "No hay torneos.",
     "no_incidents_for_event": "No hay incidentes para este evento.",
     "no_event_for_id": "No hay ningún evento con ese ID.",
     "error": "Error",
-    "no_tournament_standings_for_id": "No hay clasificaciones de torneo con ese ID.",
-    "no_tournament_events_for_id": "No hay eventos de torneo con ese ID.",
-    "no_players_for_team": "No hay jugadores para este equipo."
+    "no_tournament_standings_for_id": "No hay clasificación del torneo con ese ID.",
+    "no_tournament_events_for_id": "No hay eventos del torneo con ese ID.",
+    "no_players_for_team": "No hay jugadores para este equipo.",
+    "no_favourite_events": "No hay eventos favoritos."
   },
   "top_tournametns": {
     "title": "Mejores Torneos",
@@ -38,7 +44,7 @@
   },
   "event_popup": {
     "status_finished": "Finalizado",
-    "button": "VER PÁGINA COMPLETA"
+    "button": "VER EN PÁGINA COMPLETA"
   },
   "event_incidents": {
     "title": "Eventos"
@@ -47,19 +53,31 @@
     "event_status_finished": "Finalizado"
   },
   "standings": {
-    "title": "Clasificaciones"
+    "title": "Clasificación"
   },
   "matches": {
-    "text_played": "Jugado",
-    "text_finished": "Finalizado",
+    "text_played": "Jugados",
+    "text_finished": "Finalizados",
     "no_events": "No hay eventos."
   },
   "players": {
     "title": "Jugadores",
-    "position_forward": "Delantero",
-    "position_midfilder": "Centrocampista",
-    "position_defender": "Defensa",
-    "position_goalkeeper": "Portero",
-    "position_coach": "Entrenador"
+    "position_forward": "Delanteros",
+    "position_midfilder": "Centrocampistas",
+    "position_defender": "Defensas",
+    "position_goalkeeper": "Porteros",
+    "position_coach": "Entrenadores"
+  },
+  "errorPage": {
+    "message": "¡Algo salió mal!",
+    "sub_message": "Inténtalo de nuevo",
+    "action_button": "Ir a inicio"
+  },
+  "search": {
+    "title": "Buscar",
+    "teams": "Equipos",
+    "tournaments": "Torneos",
+    "players": "Jugadores",
+    "no_results": "No hay resultados"
   }
 }

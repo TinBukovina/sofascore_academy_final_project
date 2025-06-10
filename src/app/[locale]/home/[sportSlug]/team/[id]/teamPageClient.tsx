@@ -11,7 +11,7 @@ import { redirect } from "@/navigation";
 import { css } from "@styled-system/css";
 import { Box, Center, Flex } from "@styled-system/jsx";
 import { useLocale } from "next-intl";
-import React, { ReactNode, useState } from "react";
+import React, { ReactNode, useEffect, useState } from "react";
 import { AvailableSportsType } from "../../page";
 
 interface TeamPageClientProps {
@@ -44,6 +44,13 @@ export default function TeamPageClient({
     team?.id,
     fetchedPage
   );
+
+  useEffect(() => {
+    if (isErrorTournaments) {
+      console.log(errorTournaments);
+      redirect({ href: "/error", locale: locale });
+    }
+  }, [isErrorTournaments, errorTournaments, locale]);
 
   if (isLoadingTournaments || isLoadingTeamEvents) {
     return (
@@ -104,12 +111,6 @@ export default function TeamPageClient({
         </Box>
       </Flex>
     );
-  }
-
-  if (isErrorTournaments) {
-    console.log(errorTournaments);
-    redirect({ href: "/error", locale: locale });
-    return;
   }
 
   if (!team) {

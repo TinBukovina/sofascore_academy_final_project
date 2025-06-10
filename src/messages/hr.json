@@ -1,6 +1,10 @@
 {
   "favouritesPage": {
-    "title": "Favoriti"
+    "title": "Favoriti",
+    "no_events": "Nema omiljenih događaja.",
+    "no_teams": "Nema omiljenih timova.",
+    "no_tournaments": "Nema omiljenih turnira.",
+    "no_players": "Nema omiljenih igrača."
   },
   "homePage": {
     "title": "Početna"
@@ -20,16 +24,18 @@
   },
   "error": {
     "no_events_for_sport": "Nema događaja za ovaj sport.",
+    "no_events_for_sport_and_date": "Nema događaja za ovaj sport na odabrani datum.",
     "no_tornaments": "Nema turnira.",
     "no_incidents_for_event": "Nema incidenata za ovaj događaj.",
-    "no_event_for_id": "Nema događaja s tim ID-om.",
+    "no_event_for_id": "Ne postoji događaj s tim ID-om.",
     "error": "Greška",
-    "no_tournament_standings_for_id": "Nema poretka turnira s tim ID-om.",
-    "no_tournament_events_for_id": "Nema događaja turnira s tim ID-om.",
-    "no_players_for_team": "Nema igrača za ovu momčad."
+    "no_tournament_standings_for_id": "Ne postoje ljestvice turnira s tim ID-om.",
+    "no_tournament_events_for_id": "Ne postoje događaji turnira s tim ID-om.",
+    "no_players_for_team": "Nema igrača za ovaj tim.",
+    "no_favourite_events": "Nema omiljenih događaja."
   },
   "top_tournametns": {
-    "title": "Top Turniri",
+    "title": "Najbolji Turniri",
     "show_more": "Prikaži više"
   },
   "event_widget": {
@@ -38,7 +44,7 @@
   },
   "event_popup": {
     "status_finished": "Završeno",
-    "button": "PUNI PRIKAZ STRANICE"
+    "button": "POGLEDAJ NA CIJELOJ STRANICI"
   },
   "event_incidents": {
     "title": "Događaji"
@@ -47,7 +53,7 @@
     "event_status_finished": "Završeno"
   },
   "standings": {
-    "title": "Poredak"
+    "title": "Ljestvice"
   },
   "matches": {
     "text_played": "Odigrano",
@@ -56,10 +62,22 @@
   },
   "players": {
     "title": "Igrači",
-    "position_forward": "Napadač",
-    "position_midfilder": "Vezni igrač",
-    "position_defender": "Branič",
-    "position_goalkeeper": "Vratar",
-    "position_coach": "Trener"
+    "position_forward": "Napadači",
+    "position_midfilder": "Vezni igrači",
+    "position_defender": "Braniči",
+    "position_goalkeeper": "Vratari",
+    "position_coach": "Treneri"
+  },
+  "errorPage": {
+    "message": "Nešto je pošlo po zlu!",
+    "sub_message": "Pokušajte ponovno",
+    "action_button": "Idi na početnu"
+  },
+  "search": {
+    "title": "Pretraga",
+    "teams": "Timovi",
+    "tournaments": "Turniri",
+    "players": "Igrači",
+    "no_results": "Nema rezultata"
   }
 }

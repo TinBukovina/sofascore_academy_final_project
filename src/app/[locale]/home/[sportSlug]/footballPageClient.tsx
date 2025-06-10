@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, ReactNode } from "react";
+import { useState, ReactNode, useEffect } from "react";
 import { Box, Flex } from "@styled-system/jsx";
 import { useTranslations } from "next-intl";
 import { useRouter } from "next/navigation";
@@ -36,6 +36,13 @@ export default function FootballPageClient({
     currentDate
   );
 
+  useEffect(() => {
+    if (isError) {
+      console.log(error);
+      router.push("/error");
+    }
+  }, [isError, error, router]);
+
   const handleDateChange = (newDate: string) => {
     setCurrentDate(newDate);
   };
@@ -69,11 +76,6 @@ export default function FootballPageClient({
         <ContentLoading />
       </EventWidget>
     );
-
-  if (isError) {
-    console.log(error);
-    router.push("/error");
-  }
 
   if (!events || events?.length <= 0) {
     return (
